@@ -2,11 +2,15 @@ package uebungen;
 
 import BIF.SWE2.interfaces.models.*;
 import BIF.SWE2.interfaces.presentationmodels.*;
+import picdb.BusinessLayerImpl;
+import picdb.DataAccessLayerImpl;
 import picdb.Main;
 import BIF.SWE2.interfaces.Application;
 import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.UEB1;
+import picdb.models.*;
+import picdb.presentationmodels.*;
 
 public class UEB1Impl implements UEB1 {
 
@@ -23,105 +27,109 @@ public class UEB1Impl implements UEB1 {
 	@Override
 	public DataAccessLayer getAnyDataAccessLayer() {
 		// TODO Auto-generated method stub
-		return null;
+		return new DataAccessLayerImpl();
 	}
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
 		// TODO Auto-generated method stub
-		return null;
+		return new BusinessLayerImpl();
 	}
 
 	@Override
 	public EXIFModel getEmptyEXIFModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new EXIFModelImpl();
 	}
 
 	@Override
 	public EXIFPresentationModel getEmptyEXIFPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new EXIFPresentationModelImpl();
 	}
 
 	@Override
 	public IPTCModel getEmptyIPTCModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new IPTCModelImpl();
 	}
 
 	@Override
 	public IPTCPresentationModel getEmptyIPTCPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new IPTCPresentationModelImpl();
 	}
 
 	@Override
 	public MainWindowPresentationModel getEmptyMainWindowPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MainWindowPresentationModelImpl();
 	}
 
 	@Override
 	public PhotographerListPresentationModel getEmptyPhotographerListPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PhotographerListPresentationModelImpl();
 	}
 
 	@Override
 	public PhotographerModel getEmptyPhotographerModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PhotographerModelImpl();
 	}
 
 	@Override
 	public CameraModel getEmptyCameraModel() {
-		return null;
+		// TODO Auto-generated method stub
+		return new CameraModelImpl();
 	}
 
 	@Override
 	public PhotographerPresentationModel getEmptyPhotographerPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PhotographerPresentationModelImpl();
 	}
 
 	@Override
 	public CameraListPresentationModel getEmptyCameraListPresentationModel() {
-		return null;
+		// TODO Auto-generated method stub
+		return new CameraListPresentationModelImpl();
 	}
 
 	@Override
 	public CameraPresentationModel getEmptyCameraPresentationModel() {
-		return null;
+		// TODO Auto-generated method stub
+		return new CameraPresentationModelImpl();
 	}
 
 	@Override
 	public PictureListPresentationModel getEmptyPictureListPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PictureListPresentationModelImpl();
 	}
 
 	@Override
 	public PictureModel getEmptyPictureModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PictureModelImpl();
 	}
 
 	@Override
 	public PicturePresentationModel getEmptyPicturePresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PicturePresentationModelImpl();
 	}
 
 	@Override
 	public SearchPresentationModel getEmptySearchPresentationModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SearchPresentationModelImpl();
 	}
 
 	@Override
 	public void testSetup(String picturePath) {
 		// TODO Auto-generated method stub
-		
+
+		// Nothing to do here, just returning new instances
 	}
 }

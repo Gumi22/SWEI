@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Tests/BIF-SWE2.Interfaces/BIF-SWE2.Interfaces.iml" filepath="$PROJECT_DIR$/../Tests/BIF-SWE2.Interfaces/BIF-SWE2.Interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Tests/BIF-SWE2.UnitTests/BIF-SWE2.UnitTests.iml" filepath="$PROJECT_DIR$/../Tests/BIF-SWE2.UnitTests/BIF-SWE2.UnitTests.iml" />
       <module fileurl="file://$PROJECT_DIR$/PicDB.iml" filepath="$PROJECT_DIR$/PicDB.iml" />
     </modules>
   </component>

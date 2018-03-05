@@ -15,7 +15,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="BIF-SWE2-Interfaces.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/BIF-SWE2-Interfaces.jar!/" />
