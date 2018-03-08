@@ -1,6 +1,7 @@
 package uebungen;
 
 import BIF.SWE2.interfaces.BusinessLayer;
+import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.UEB2;
 import BIF.SWE2.interfaces.models.CameraModel;
 import BIF.SWE2.interfaces.models.PictureModel;
@@ -10,7 +11,7 @@ import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import picdb.BusinessLayerImpl;
 import picdb.models.CameraModelImpl;
 import picdb.presentationmodels.MainWindowPresentationModelImpl;
-import picdb.presentationmodels.PicturePresentationModelImpl;
+import picdb.presentationmodels.CameraPresentationModelImpl;
 
 public class UEB2Impl implements UEB2 {
 
@@ -24,21 +25,23 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public MainWindowPresentationModel GetMainWindowPresentationModel() {
-		// TODO Auto-generated method stub
 		return MyMainWindowPresentationModel;
 	}
 
 	@Override
 	public CameraModel getCameraModel(String s, String s1) {
-		//List<CameraModelImpl>
-		//return MyBusinessLayer.getCamera(1);
-		return null;
+		CameraModelImpl MyCamMod = new CameraModelImpl();
+		MyCamMod.setProducer(s);
+		MyCamMod.setMake(s1);
+		return new CameraModelImpl();
 	}
 
 	@Override
 	public CameraPresentationModel getCameraPresentationModel(CameraModel cameraModel) {
-
-		return null;
+		CameraPresentationModelImpl myCamPresMod = new CameraPresentationModelImpl();
+		myCamPresMod.setMake(cameraModel.getMake());
+		myCamPresMod.setProducer(cameraModel.getProducer());
+		return myCamPresMod;
 	}
 
 	@Override
@@ -63,6 +66,6 @@ public class UEB2Impl implements UEB2 {
 	public void testSetup(String picturePath) {
 		// TODO Auto-generated method stub
 		MyMainWindowPresentationModel = new MainWindowPresentationModelImpl();
-		MyBusinessLayer = new BusinessLayerImpl();
+		MyBusinessLayer = BusinessLayerImpl.getInstance();
 	}
 }

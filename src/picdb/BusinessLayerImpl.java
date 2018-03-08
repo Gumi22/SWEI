@@ -9,8 +9,24 @@ import java.util.Collection;
  * Created by if16b014 on 05.03.18.
  */
 public class BusinessLayerImpl implements BusinessLayer {
+
+    private static BusinessLayerImpl instance;
+    private DataAccessLayerImpl myDAL;
+
+    private BusinessLayerImpl(){
+        myDAL = DataAccessLayerImpl.getInstance();
+    }
+
+    public static BusinessLayerImpl getInstance () {
+        if (BusinessLayerImpl.instance == null) {
+            BusinessLayerImpl.instance = new BusinessLayerImpl();
+        }
+        return BusinessLayerImpl.instance;
+    }
+
     @Override
     public Collection<PictureModel> getPictures() throws Exception {
+        //myDAL.getPictures();
         return null;
     }
 
