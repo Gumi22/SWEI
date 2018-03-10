@@ -10,8 +10,10 @@ import BIF.SWE2.interfaces.presentationmodels.MainWindowPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import picdb.BusinessLayerImpl;
 import picdb.models.CameraModelImpl;
+import picdb.models.PictureModelImpl;
 import picdb.presentationmodels.MainWindowPresentationModelImpl;
 import picdb.presentationmodels.CameraPresentationModelImpl;
+import picdb.presentationmodels.PicturePresentationModelImpl;
 
 public class UEB2Impl implements UEB2 {
 
@@ -51,20 +53,17 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public PictureModel getPictureModel(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PictureModelImpl();
 	}
 
 	@Override
 	public PicturePresentationModel getPicturePresentationModel(
 			PictureModel mdl) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PicturePresentationModelImpl();
 	}
 
 	@Override
 	public void testSetup(String picturePath) {
-		// TODO Auto-generated method stub
 		MyMainWindowPresentationModel = new MainWindowPresentationModelImpl();
 		MyBusinessLayer = BusinessLayerImpl.getInstance();
 	}

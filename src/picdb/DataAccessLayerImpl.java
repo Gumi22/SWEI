@@ -1,7 +1,11 @@
 package picdb;
 
 import BIF.SWE2.interfaces.DataAccessLayer;
+import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import picdb.models.CameraModelImpl;
+import picdb.models.EXIFModelImpl;
+import picdb.models.IPTCModelImpl;
 import picdb.models.PictureModelImpl;
 import BIF.SWE2.interfaces.models.PictureModel;
 
@@ -146,9 +150,35 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             rs = preparedStatement.executeQuery();
         }
 
+        //SELECT pic.id, pic.filename, pic.cameraid, pic.iptckeywords, " +
+        //"pic.iptccopyright, pic.iptcheadline, pic.iptccaption, pic.exifaperture, " +
+          //      "pic.exifexposuretime, pic.exifiso, pic.exifflash, pic.exifexposureprog, " +
+            //    "phot.id, phot.name, phot.surname, phot.birthdate, phot.notes, cam.model " +
+
         while(rs.next()){
+            EXIFModelImpl exif = new EXIFModelImpl();
+            exif.setExposureProgram(ExposurePrograms.values()[rs.getInt("pic.exifexposureprog")]);
+            exif.setExposureTime(rs.getDouble("pic.exifexposuretime"));
+            exif.setFlash(rs.getBoolean("pic.exifflash"));
+            exif.setFNumber(rs.getDouble("pic.exifaperture"));
+            exif.setISOValue(rs.getDouble("pic.exifiso"));
+            exif.setMake(rs.getString("cam.model"));
+
+            IPTCModelImpl iptc = new IPTCModelImpl();
+            iptc.setByLine(rs.getString("phot.name") + " " + rs.getString("phot.surname"));
+            iptc.setCaption(rs.getString("pic.iptccaption"));
+            iptc.setCopyrightNotice(rs.getString("pic.iptccopyright"));
+            iptc.setHeadline(rs.getString("pic.iptcheadline"));
+            iptc.setKeywords(rs.getString("pic.iptckeywords"));
+
+            CameraModelImpl cam = (CameraModelImpl) getCamera(rs.getInt("pic.cameraid"));
+
             PictureModelImpl pic = new PictureModelImpl();
-            //ToDo: set all values of models
+            pic.setCamera(cam);
+            pic.setEXIF(exif);
+            pic.setIPTC(iptc);
+            pic.setFileName(rs.getString("pic.filename"));
+            pic.setID(rs.getInt("pic.id"));
 
             myPics.add(pic);
         }
@@ -198,12 +228,36 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public void save(PhotographerModel photographerModel) throws Exception {
-
+        if(photographerModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new photographer
+            String insertSQL = "INSERT INTO photographer (id, name, surname, birthdate, notes)" +
+                    " VALUES (DEFAULT, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = con.prepareStatement(insertSQL);
+            preparedStatement.setString(1, photographerModel.getFirstName());
+            preparedStatement.setString(2, photographerModel.getLastName());
+            preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+            preparedStatement.setString(4, photographerModel.getNotes());
+            // execute delete SQL stetement
+            preparedStatement.executeUpdate();
+        }else{
+            String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
+            PreparedStatement preparedStatement = con.prepareStatement(updateSQL);
+            preparedStatement.setString(1, photographerModel.getFirstName());
+            preparedStatement.setString(2, photographerModel.getLastName());
+            preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+            preparedStatement.setString(4, photographerModel.getNotes());
+            preparedStatement.setInt(4, photographerModel.getID());
+            // execute delete SQL stetement
+            preparedStatement.executeUpdate();
+        }
     }
 
     @Override
     public void deletePhotographer(int i) throws Exception {
-
+        String deleteSQL = "DELETE photographer WHERE id = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(deleteSQL);
+        preparedStatement.setInt(1, i);
+        // execute delete SQL stetement
+        preparedStatement.executeUpdate();
     }
 
     @Override
@@ -213,6 +267,34 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public CameraModel getCamera(int i) {
-        return null;
+
+        String selectSQL = "SELECT id, producer, model, purchasedate, " +
+                "notes, isolimitgood, isolimitacceptable FROM camera WHERE id = ?";
+
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        CameraModelImpl cam = new CameraModelImpl();
+
+
+        try {
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, i);
+            rs = preparedStatement.executeQuery(selectSQL);
+
+            if(rs.next()){
+                cam.setMake(rs.getString("model"));
+                cam.setProducer(rs.getString("producer"));
+                cam.setBoughtOn(rs.getDate("purchasedate").toLocalDate());
+                cam.setID(rs.getInt("id"));
+                cam.setISOLimitAcceptable(rs.getDouble("isolimitacceptable"));
+                cam.setISOLimitGood(rs.getDouble("isolimitgood"));
+                cam.setNotes(rs.getString("notes"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cam;
     }
 }

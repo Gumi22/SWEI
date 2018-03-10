@@ -8,53 +8,60 @@ import java.time.LocalDate;
  * Created by if16b014 on 05.03.18.
  */
 public class PhotographerModelImpl implements PhotographerModel {
+
+    private int id = 0;
+    private String firstName;
+    private String lastName;
+    private LocalDate birthDay;
+    private String notes;
+
     @Override
     public int getID() {
-        return 0;
+        return id;
     }
 
     @Override
     public void setID(int i) {
-
+        id = i;
     }
 
     @Override
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     @Override
     public void setFirstName(String s) {
-
+        firstName = s;
     }
 
     @Override
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     @Override
     public void setLastName(String s) {
-
+        lastName = s;
     }
 
     @Override
     public LocalDate getBirthDay() {
-        return null;
+        return birthDay;
     }
 
     @Override
     public void setBirthDay(LocalDate localDate) {
-
+        birthDay = localDate;
     }
 
     @Override
     public String getNotes() {
-        return null;
+        return notes;
     }
 
     @Override
     public void setNotes(String s) {
-
+        notes = s;
     }
 }

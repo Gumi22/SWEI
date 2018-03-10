@@ -9,53 +9,60 @@ import BIF.SWE2.interfaces.models.PictureModel;
  * Created by if16b014 on 05.03.18.
  */
 public class PictureModelImpl implements PictureModel {
+
+    private int id = 0;
+    private String fileName;
+    private IPTCModel iptc;
+    private EXIFModel exif;
+    private CameraModel cam;
+
     @Override
     public int getID() {
-        return 0;
+        return id;
     }
 
     @Override
     public void setID(int i) {
-
+        id = i;
     }
 
     @Override
     public String getFileName() {
-        return null;
+        return fileName;
     }
 
     @Override
     public void setFileName(String s) {
-
+        fileName = s;
     }
 
     @Override
     public IPTCModel getIPTC() {
-        return null;
+        return iptc;
     }
 
     @Override
     public void setIPTC(IPTCModel iptcModel) {
-
+        iptc = iptcModel;
     }
 
     @Override
     public EXIFModel getEXIF() {
-        return null;
+        return exif;
     }
 
     @Override
     public void setEXIF(EXIFModel exifModel) {
-
+        exif = exifModel;
     }
 
     @Override
     public CameraModel getCamera() {
-        return null;
+        return cam;
     }
 
     @Override
     public void setCamera(CameraModel cameraModel) {
-
+        cam = cameraModel;
     }
 }
