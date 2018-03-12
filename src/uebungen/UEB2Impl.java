@@ -9,6 +9,7 @@ import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.MainWindowPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import picdb.BusinessLayerImpl;
+import picdb.DataAccessLayerImpl;
 import picdb.models.CameraModelImpl;
 import picdb.models.PictureModelImpl;
 import picdb.presentationmodels.MainWindowPresentationModelImpl;
@@ -17,9 +18,6 @@ import picdb.presentationmodels.PicturePresentationModelImpl;
 
 public class UEB2Impl implements UEB2 {
 
-	MainWindowPresentationModel MyMainWindowPresentationModel;
-	BusinessLayer MyBusinessLayer;
-
 	@Override
 	public void helloWorld() {
 		// I'm fine		
@@ -27,7 +25,7 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public MainWindowPresentationModel GetMainWindowPresentationModel() {
-		return MyMainWindowPresentationModel;
+		return new MainWindowPresentationModelImpl();
 	}
 
 	@Override
@@ -35,7 +33,7 @@ public class UEB2Impl implements UEB2 {
 		CameraModelImpl MyCamMod = new CameraModelImpl();
 		MyCamMod.setProducer(s);
 		MyCamMod.setMake(s1);
-		return new CameraModelImpl();
+		return MyCamMod;
 	}
 
 	@Override
@@ -48,23 +46,25 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return MyBusinessLayer;
+		return BusinessLayerImpl.getInstance();
 	}
 
 	@Override
 	public PictureModel getPictureModel(String arg0) {
-		return new PictureModelImpl();
+		PictureModel myPic = new PictureModelImpl("arg0");
+		myPic.setFileName(arg0);
+		return myPic;
 	}
 
 	@Override
 	public PicturePresentationModel getPicturePresentationModel(
 			PictureModel mdl) {
-		return new PicturePresentationModelImpl();
+		PicturePresentationModel mypic = new PicturePresentationModelImpl(mdl, null, null, null, null);
+		return mypic;
 	}
 
 	@Override
 	public void testSetup(String picturePath) {
-		MyMainWindowPresentationModel = new MainWindowPresentationModelImpl();
-		MyBusinessLayer = BusinessLayerImpl.getInstance();
+		DataAccessLayerImpl.getInstance().setTestingMode(true);
 	}
 }

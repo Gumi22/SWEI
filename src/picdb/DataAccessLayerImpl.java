@@ -21,6 +21,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     private static DataAccessLayerImpl instance;
     private Connection con;
+    private boolean testingMode = false;
 
     private DataAccessLayerImpl(){
 
@@ -48,6 +49,9 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         return DataAccessLayerImpl.instance;
     }
 
+    public void setTestingMode(boolean b){
+        testingMode = b;
+    }
 
     @Override
     public Collection<PictureModel> getPictures(String namePart, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {

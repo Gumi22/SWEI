@@ -2,54 +2,58 @@ package picdb.presentationmodels;
 
 import BIF.SWE2.interfaces.ISORatings;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
+import picdb.models.CameraModelImpl;
 
 import java.time.LocalDate;
 
 public class CameraPresentationModelImpl implements CameraPresentationModel {
 
+	private CameraModelImpl cam = new CameraModelImpl();
+
+
 	@Override
 	public int getID() {
-		return 0;
+		return cam.getID();
 	}
 
 	@Override
 	public String getProducer() {
-		return null;
+		return cam.getProducer();
 	}
 
 	@Override
 	public void setProducer(String s) {
-
+		cam.setProducer(s);
 	}
 
 	@Override
 	public String getMake() {
-		return null;
+		return cam.getMake();
 	}
 
 	@Override
 	public void setMake(String s) {
-
+		cam.setMake(s);
 	}
 
 	@Override
 	public LocalDate getBoughtOn() {
-		return null;
+		return cam.getBoughtOn();
 	}
 
 	@Override
 	public void setBoughtOn(LocalDate localDate) {
-
+		cam.setBoughtOn(localDate);
 	}
 
 	@Override
 	public String getNotes() {
-		return null;
+		return cam.getNotes();
 	}
 
 	@Override
 	public void setNotes(String s) {
-
+		cam.setNotes(s);
 	}
 
 	@Override
@@ -84,22 +88,22 @@ public class CameraPresentationModelImpl implements CameraPresentationModel {
 
 	@Override
 	public double getISOLimitGood() {
-		return 0;
+		return cam.getISOLimitGood();
 	}
 
 	@Override
 	public void setISOLimitGood(double v) {
-
+		cam.setISOLimitGood(v);
 	}
 
 	@Override
 	public double getISOLimitAcceptable() {
-		return 0;
+		return cam.getISOLimitAcceptable();
 	}
 
 	@Override
 	public void setISOLimitAcceptable(double v) {
-
+		cam.setISOLimitAcceptable(v);
 	}
 
 	@Override

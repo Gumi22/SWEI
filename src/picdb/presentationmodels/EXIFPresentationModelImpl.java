@@ -3,34 +3,38 @@ package picdb.presentationmodels;
 import BIF.SWE2.interfaces.ISORatings;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.EXIFPresentationModel;
+import picdb.models.EXIFModelImpl;
 
 /**
  * Created by if16b014 on 05.03.18.
  */
 public class EXIFPresentationModelImpl implements EXIFPresentationModel {
+
+    EXIFModelImpl exif = new EXIFModelImpl();
+
     @Override
     public String getMake() {
-        return null;
+        return exif.getMake();
     }
 
     @Override
     public double getFNumber() {
-        return 0;
+        return exif.getFNumber();
     }
 
     @Override
     public double getExposureTime() {
-        return 0;
+        return exif.getExposureTime();
     }
 
     @Override
     public double getISOValue() {
-        return 0;
+        return exif.getISOValue();
     }
 
     @Override
     public boolean getFlash() {
-        return false;
+        return exif.getFlash();
     }
 
     @Override

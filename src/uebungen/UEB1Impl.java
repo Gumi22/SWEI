@@ -94,7 +94,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public PictureModel getEmptyPictureModel() {
-		return new PictureModelImpl();
+		return new PictureModelImpl("arg0");
 	}
 
 	@Override

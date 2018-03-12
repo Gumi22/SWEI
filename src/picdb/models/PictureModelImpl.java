@@ -16,6 +16,13 @@ public class PictureModelImpl implements PictureModel {
     private EXIFModel exif;
     private CameraModel cam;
 
+    public PictureModelImpl(){
+    }
+
+    public PictureModelImpl(String fileName){
+        this.fileName = fileName;
+    }
+
     @Override
     public int getID() {
         return id;

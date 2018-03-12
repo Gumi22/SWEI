@@ -3,19 +3,24 @@ package picdb.presentationmodels;
 import BIF.SWE2.interfaces.presentationmodels.CameraListPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by if16b014 on 05.03.18.
  */
 public class CameraListPresentationModelImpl implements CameraListPresentationModel {
+
+    private Collection<CameraPresentationModel> list = new ArrayList<>();
+
+
     @Override
     public Collection<CameraPresentationModel> getList() {
-        return null;
+        return list;
     }
 
     @Override
     public CameraPresentationModel getCurrentCamera() {
-        return null;
+        return new CameraPresentationModelImpl(); //is this correct? xD
     }
 }

@@ -1,48 +1,73 @@
 package picdb.presentationmodels;
 
+import BIF.SWE2.interfaces.models.PictureModel;
 import BIF.SWE2.interfaces.presentationmodels.*;
+import javafx.beans.property.*;
+import picdb.models.PictureModelImpl;
 
 /**
  * Created by if16b014 on 05.03.18.
  */
 public class PicturePresentationModelImpl implements PicturePresentationModel {
+
+    private StringProperty filePath = new SimpleStringProperty();
+    private PictureModel pic = null;
+    private IPTCPresentationModel iptc = null;
+    private EXIFPresentationModel exif = null;
+    private CameraPresentationModel cam = null;
+    private PhotographerPresentationModel phot = null;
+
+    public PicturePresentationModelImpl(){
+        pic = new PictureModelImpl("lel.jpg");
+    }
+
+    public PicturePresentationModelImpl(PictureModel pi, IPTCPresentationModel i, EXIFPresentationModel e,
+                                        CameraPresentationModel c, PhotographerPresentationModel ph){
+        pic = (pi != null)? pi : new PictureModelImpl("lel.jpg");
+        iptc = (i != null)? i : new IPTCPresentationModelImpl();
+        exif = (e != null)? e : new EXIFPresentationModelImpl();
+        cam = (c != null)? c : new CameraPresentationModelImpl();
+        phot = (ph != null)? ph : new PhotographerPresentationModelImpl();
+    }
+
+
     @Override
     public int getID() {
-        return 0;
+        return pic.getID();
     }
 
     @Override
     public String getFileName() {
-        return null;
+        return pic.getFileName();
     }
 
     @Override
     public String getFilePath() {
-        return null;
+        return filePath.get();
     }
 
     @Override
     public String getDisplayName() {
-        return null;
+        return pic.getFileName().split("\\.")[0] + " (by " + phot.getFirstName() + " "  + phot.getLastName() + ")";
     }
 
     @Override
     public IPTCPresentationModel getIPTC() {
-        return null;
+        return iptc;
     }
 
     @Override
     public EXIFPresentationModel getEXIF() {
-        return null;
+        return exif;
     }
 
     @Override
     public PhotographerPresentationModel getPhotographer() {
-        return null;
+        return phot;
     }
 
     @Override
     public CameraPresentationModel getCamera() {
-        return null;
+        return cam;
     }
 }
