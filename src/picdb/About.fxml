@@ -3,15 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.AboutController">
-	<center>
-		<Text text="This is a basic application" />
-	</center>
-	<bottom>
-		<HBox alignment="BASELINE_RIGHT">
-			<Button onAction="#onClose" text="OK" />
-		</HBox>
-	</bottom>
-</BorderPane>
+<?import javafx.stage.Stage ?>
 
+<Stage title= "About" xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.AboutController">
+	<scene>
+		<Scene width="100" height="100">
+			<root>
+
+				<BorderPane>
+					<center>
+						<Text text="This is a basic application" />
+					</center>
+					<bottom>
+						<HBox alignment="BASELINE_RIGHT">
+							<Button onAction="#onClose" text="OK" />
+						</HBox>
+					</bottom>
+				</BorderPane>
+
+			</root>
+		</Scene>
+	</scene>
+</Stage>

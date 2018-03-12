@@ -9,8 +9,9 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
 
-public class MainController {
-	private Stage stage;
+public class MainController extends AbstractController {
+    public TabPane tabs;
+    private Stage stage;
 	
 	@FXML
     private Label lbStatus;
@@ -21,7 +22,10 @@ public class MainController {
 	
 	@FXML
 	private void onBtnAbout(ActionEvent event) throws IOException {
-		lbStatus.setText("Opening about box");
+
+
+
+		/*lbStatus.setText("Opening about box");
 		
 		FXMLLoader fl = new FXMLLoader();
         fl.setLocation(getClass().getResource("About.fxml"));
@@ -36,6 +40,8 @@ public class MainController {
         AboutController controller = (AboutController)fl.getController();
         controller.setStage(modal_dialog);
         modal_dialog.setScene(scene);
-        modal_dialog.show();
+        modal_dialog.show();*/
+
+        showDialog("About.fxml", "About");
 	}
 }

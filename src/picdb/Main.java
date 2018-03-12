@@ -15,15 +15,8 @@ public class Main extends Application implements BIF.SWE2.interfaces.Application
 	        fl.setLocation(getClass().getResource("Main.fxml"));
 	        fl.load();
 
-	        BorderPane root = (BorderPane)fl.getRoot();
-			MainController controller = (MainController)fl.getController();
-			
-			controller.setStage(primaryStage);
-
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			Stage stage = (Stage)fl.getRoot();
+			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
