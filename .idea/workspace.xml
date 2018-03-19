@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96e9f715-ee4e-4ead-841d-4896a781aa66" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uebungen/UEB2Impl.java" afterPath="$PROJECT_DIR$/src/uebungen/UEB2Impl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/DALFactory.java" afterPath="$PROJECT_DIR$/src/picdb/DALFactory.java" />
     </list>
     <ignored path="PicDB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,19 +26,23 @@
       <file leaf-file-name="BusinessLayerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2289">
-              <caret line="132" column="94" lean-forward="false" selection-start-line="132" selection-start-column="94" selection-end-line="132" selection-end-column="94" />
+            <state relative-caret-position="372">
+              <caret line="32" column="49" lean-forward="true" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
               <folding>
                 <element signature="e#816#817#0" expanded="true" />
                 <element signature="e#873#874#0" expanded="true" />
-                <element signature="e#1284#1285#0" expanded="true" />
-                <element signature="e#1343#1344#0" expanded="true" />
-                <element signature="e#1388#1389#0" expanded="true" />
-                <element signature="e#1440#1441#0" expanded="true" />
-                <element signature="e#1478#1479#0" expanded="true" />
-                <element signature="e#1505#1506#0" expanded="true" />
-                <element signature="e#1552#1553#0" expanded="true" />
-                <element signature="e#1597#1598#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DALFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/picdb/DALFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,10 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UEB2Impl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UEB2Impl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uebungen/UEB2Impl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378">
+            <state relative-caret-position="252">
               <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
               <folding>
                 <element signature="e#935#936#0" expanded="true" />
@@ -139,19 +143,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataAccessLayerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-              <folding>
-                <element signature="method#DataAccessLayerImpl#0;class#DataAccessLayerImpl#0" expanded="false" />
-                <element signature="method#getInstance#0;class#DataAccessLayerImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -195,15 +186,15 @@
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/PicturePresentationModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java" />
         <option value="$PROJECT_DIR$/src/uebungen/UEB1Impl.java" />
-        <option value="$PROJECT_DIR$/src/picdb/DALFactory.java" />
         <option value="$PROJECT_DIR$/src/picdb/models/CameraModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/models/PhotographerModelImpl.java" />
         <option value="$PROJECT_DIR$/src/uebungen/UEB3Impl.java" />
         <option value="$PROJECT_DIR$/src/picdb/models/EXIFModelImpl.java" />
-        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerMockImpl.java" />
         <option value="$PROJECT_DIR$/src/uebungen/UEB4Impl.java" />
         <option value="$PROJECT_DIR$/src/uebungen/UEB2Impl.java" />
+        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
+        <option value="$PROJECT_DIR$/src/picdb/DALFactory.java" />
       </list>
     </option>
   </component>
@@ -702,13 +693,17 @@
       <option name="project" value="LOCAL" />
       <updated>1521470353007</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Uebung 2 Testfälle für jenkins überarbeitet">
+      <created>1521474423578</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1521474423578</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests - 2018.03.19 at 15h 24m 31s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Tests - 2018.03.19 at 15h 31m 08s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
@@ -734,6 +729,9 @@
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
     <history-entry file="Tests - 2018.03.19 at 16h 46m 35s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Tests - 2018.03.19 at 16h 53m 02s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -785,7 +783,8 @@
     <MESSAGE value="Models fertig, dataaccess weitergemacht" />
     <MESSAGE value="Uebung 2 fehlt nur mehr Synch" />
     <MESSAGE value="Uebung 2 Synch für testfälle gemacht, Uebung 3 fast fertig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uebung 2 Synch für testfälle gemacht, Uebung 3 fast fertig" />
+    <MESSAGE value="Uebung 2 Testfälle für jenkins überarbeitet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uebung 2 Testfälle für jenkins überarbeitet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -825,14 +824,6 @@
           <folding>
             <element signature="e#816#817#0" expanded="true" />
             <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#1284#1285#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1440#1441#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1505#1506#0" expanded="true" />
-            <element signature="e#1552#1553#0" expanded="true" />
-            <element signature="e#1597#1598#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1078,16 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/DALFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/models/CameraModelImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1130,25 +1111,6 @@
           <folding>
             <element signature="e#738#739#0" expanded="true" />
             <element signature="e#765#766#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2289">
-          <caret line="132" column="94" lean-forward="false" selection-start-line="132" selection-start-column="94" selection-end-line="132" selection-end-column="94" />
-          <folding>
-            <element signature="e#816#817#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#1284#1285#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1440#1441#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1505#1506#0" expanded="true" />
-            <element signature="e#1552#1553#0" expanded="true" />
-            <element signature="e#1597#1598#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1222,11 +1184,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uebungen/UEB2Impl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
+        <state relative-caret-position="252">
           <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
           <folding>
             <element signature="e#935#936#0" expanded="true" />
             <element signature="e#981#982#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="32" column="49" lean-forward="true" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+          <folding>
+            <element signature="e#816#817#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/DALFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

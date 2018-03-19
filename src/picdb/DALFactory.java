@@ -21,11 +21,11 @@ public class DALFactory {
     }
 
     public DataAccessLayer getDAL(){
-        if(!DALFactory.databaseAccessible){
+        //if(!DALFactory.databaseAccessible){
             return DataAccessLayerMockImpl.getInstance();
-        }
-        else{
-            return DataAccessLayerImpl.getInstance();
-        }
+        //}
+        //else{
+        //    return DataAccessLayerImpl.getInstance();
+        //}
     }
 }
