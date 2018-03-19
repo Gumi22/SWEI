@@ -1,8 +1,18 @@
 package picdb;
 
 import BIF.SWE2.interfaces.BusinessLayer;
+import BIF.SWE2.interfaces.DataAccessLayer;
+import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import picdb.DataAccessLayers.DataAccessLayerImpl;
+import picdb.DataAccessLayers.DataAccessLayerMockImpl;
+import picdb.models.EXIFModelImpl;
+import picdb.models.IPTCModelImpl;
+import picdb.models.PictureModelImpl;
 
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -11,63 +21,97 @@ import java.util.Collection;
 public class BusinessLayerImpl implements BusinessLayer {
 
     private static BusinessLayerImpl instance;
-    private DataAccessLayerImpl myDAL;
+    private static DataAccessLayer myDAL;
+    private static boolean testingMode = false;
+    private static String path;
 
     private BusinessLayerImpl(){
-        myDAL = DataAccessLayerImpl.getInstance();
+        myDAL = DALFactory.getInstance().getDAL();
     }
 
     public static BusinessLayerImpl getInstance () {
         if (BusinessLayerImpl.instance == null) {
+            DALFactory.getInstance();
+            DALFactory.setDatabaseAccessible(!BusinessLayerImpl.isTestingMode());
             BusinessLayerImpl.instance = new BusinessLayerImpl();
         }
         return BusinessLayerImpl.instance;
     }
 
+    public static void setTestingMode(boolean testingMode) {
+        BusinessLayerImpl.testingMode = testingMode;
+    }
+
+    public static boolean isTestingMode() {
+        return BusinessLayerImpl.testingMode;
+    }
+
+    public static String getPath() {
+        return path;
+    }
+
+    public static void setPath(String path) {
+        BusinessLayerImpl.path = path;
+    }
+
+
     @Override
     public Collection<PictureModel> getPictures() throws Exception {
-        //myDAL.getPictures();
-        return null;
+        return myDAL.getPictures(null, null, null, null);
     }
 
     @Override
     public Collection<PictureModel> getPictures(String s, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
-        return null;
+        return myDAL.getPictures(s,photographerModel,iptcModel,exifModel);
     }
 
     @Override
     public PictureModel getPicture(int i) throws Exception {
-        return null;
+        return myDAL.getPicture(i);
     }
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
-
+        myDAL.save(pictureModel);
     }
 
     @Override
     public void deletePicture(int i) throws Exception {
-
+        myDAL.deletePicture(i);
     }
 
     @Override
     public void sync() throws Exception {
+        if(testingMode){
+            File folder = new File(path);
+            System.out.println(folder.getAbsolutePath());
+            File[] listOfFiles = folder.listFiles();
 
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    myDAL.save(new PictureModelImpl(listOfFiles[i].getName()));
+                } else if (listOfFiles[i].isDirectory()) {
+                    //eventually rekursive stategy? :D but for now do nothing
+                }
+            }
+        }else{
+
+        }
     }
 
     @Override
     public Collection<PhotographerModel> getPhotographers() throws Exception {
-        return null;
+        return myDAL.getPhotographers();
     }
 
     @Override
     public PhotographerModel getPhotographer(int i) throws Exception {
-        return null;
+        return myDAL.getPhotographer(i);
     }
 
     @Override
     public void save(PhotographerModel photographerModel) throws Exception {
-
+        myDAL.save(photographerModel);
     }
 
     @Override
@@ -77,12 +121,18 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public IPTCModel extractIPTC(String s) throws Exception {
-        return null;
+        if(testingMode){
+            return new IPTCModelImpl();
+        }
+        else return null;
     }
 
     @Override
     public EXIFModel extractEXIF(String s) throws Exception {
-        return null;
+        if(testingMode){
+            return new EXIFModelImpl("123", 1f, 1f, 1f, true, ExposurePrograms.LandscapeMode);
+        }
+        else return null;
     }
 
     @Override
@@ -92,11 +142,11 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public Collection<CameraModel> getCameras() {
-        return null;
+        return myDAL.getCameras();
     }
 
     @Override
     public CameraModel getCamera(int i) {
-        return null;
+        return myDAL.getCamera(i);
     }
 }

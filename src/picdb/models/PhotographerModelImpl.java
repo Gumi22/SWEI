@@ -15,6 +15,16 @@ public class PhotographerModelImpl implements PhotographerModel {
     private LocalDate birthDay;
     private String notes;
 
+    public PhotographerModelImpl(){}
+    public PhotographerModelImpl(int i, String name, String surname, LocalDate bDay, String note){
+        this.id = i;
+        this.firstName = name;
+        this.lastName = surname;
+        this.birthDay = bDay;
+        this.notes = note;
+    }
+
+
     @Override
     public int getID() {
         return id;

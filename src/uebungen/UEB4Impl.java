@@ -8,6 +8,13 @@ import BIF.SWE2.interfaces.models.IPTCModel;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.EXIFPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.IPTCPresentationModel;
+import picdb.BusinessLayerImpl;
+import picdb.models.CameraModelImpl;
+import picdb.models.EXIFModelImpl;
+import picdb.models.IPTCModelImpl;
+import picdb.presentationmodels.CameraPresentationModelImpl;
+import picdb.presentationmodels.EXIFPresentationModelImpl;
+import picdb.presentationmodels.IPTCPresentationModelImpl;
 
 public class UEB4Impl implements UEB4 {
 
@@ -20,37 +27,37 @@ public class UEB4Impl implements UEB4 {
 	@Override
 	public BusinessLayer getBusinessLayer() {
 		// TODO Auto-generated method stub
-		return null;
+		return BusinessLayerImpl.getInstance();
 	}
 
 	@Override
 	public EXIFModel getEmptyEXIFModel() {
-		return null;
+		return new EXIFModelImpl();
 	}
 
 	@Override
 	public EXIFPresentationModel getEXIFPresentationModel(EXIFModel exifModel) {
-		return null;
+		return new EXIFPresentationModelImpl();
 	}
 
 	@Override
 	public IPTCModel getEmptyIPTCModel() {
-		return null;
+		return new IPTCModelImpl();
 	}
 
 	@Override
 	public IPTCPresentationModel getIPTCPresentationModel(IPTCModel iptcModel) {
-		return null;
+		return new IPTCPresentationModelImpl();
 	}
 
 	@Override
 	public CameraModel getCameraModel(String s, String s1) {
-		return null;
+		return new CameraModelImpl();
 	}
 
 	@Override
 	public CameraPresentationModel getCameraPresentationModel(CameraModel cameraModel) {
-		return null;
+		return new CameraPresentationModelImpl();
 	}
 
 	@Override

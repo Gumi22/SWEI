@@ -4,6 +4,9 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.UEB3;
 import BIF.SWE2.interfaces.presentationmodels.SearchPresentationModel;
+import picdb.BusinessLayerImpl;
+import picdb.DALFactory;
+import picdb.presentationmodels.SearchPresentationModelImpl;
 
 public class UEB3Impl implements UEB3 {
 
@@ -16,17 +19,17 @@ public class UEB3Impl implements UEB3 {
 	@Override
 	public BusinessLayer getBusinessLayer() {
 		// TODO Auto-generated method stub
-		return null;
+		return BusinessLayerImpl.getInstance();
 	}
 
 	@Override
 	public DataAccessLayer getDataAccessLayer() {
-		return null;
+		return DALFactory.getInstance().getDAL();
 	}
 
 	@Override
 	public SearchPresentationModel getSearchPresentationModel() {
-		return null;
+		return new SearchPresentationModelImpl();
 	}
 
 	@Override

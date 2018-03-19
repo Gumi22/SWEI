@@ -15,6 +15,16 @@ public class EXIFModelImpl implements EXIFModel {
     private boolean flash;
     private ExposurePrograms exposureProgram;
 
+    public EXIFModelImpl(){}
+    public EXIFModelImpl(String make, double f, double e, double i, boolean fl, ExposurePrograms ex){
+        this.make = make;
+        this.fNumber = f;
+        this.exposureTime = e;
+        this.iso = i;
+        this.flash = fl;
+        this.exposureProgram = ex;
+    }
+
     @Override
     public String getMake() {
         return make;

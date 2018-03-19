@@ -17,6 +17,17 @@ public class CameraModelImpl implements CameraModel {
     private double isoAcceptable;
     private double isoGood;
 
+    public CameraModelImpl(){}
+    public CameraModelImpl(int i, String producer, String Make, LocalDate date, String notes, double isoAcceptable, double isoGood){
+        this.id = i;
+        this.producer = producer;
+        this.make = Make;
+        this.boughtOn = date;
+        this.notes = notes;
+        this.isoAcceptable = isoAcceptable;
+        this.isoGood = isoGood;
+    }
+
     @Override
     public int getID() {
         return id;

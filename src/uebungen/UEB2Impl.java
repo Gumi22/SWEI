@@ -1,7 +1,6 @@
 package uebungen;
 
 import BIF.SWE2.interfaces.BusinessLayer;
-import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.UEB2;
 import BIF.SWE2.interfaces.models.CameraModel;
 import BIF.SWE2.interfaces.models.PictureModel;
@@ -9,7 +8,7 @@ import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.MainWindowPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import picdb.BusinessLayerImpl;
-import picdb.DataAccessLayerImpl;
+import picdb.DataAccessLayers.DataAccessLayerImpl;
 import picdb.models.CameraModelImpl;
 import picdb.models.PictureModelImpl;
 import picdb.presentationmodels.MainWindowPresentationModelImpl;
@@ -18,9 +17,15 @@ import picdb.presentationmodels.PicturePresentationModelImpl;
 
 public class UEB2Impl implements UEB2 {
 
+
+
 	@Override
 	public void helloWorld() {
 		// I'm fine		
+	}
+
+	@Override
+	public void testSetup(String picturePath) {
 	}
 
 	@Override
@@ -46,7 +51,10 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return BusinessLayerImpl.getInstance();
+		BusinessLayerImpl mybus = BusinessLayerImpl.getInstance();
+		BusinessLayerImpl.setTestingMode(true);
+		BusinessLayerImpl.setPath("./Pictures");
+		return mybus;
 	}
 
 	@Override
@@ -63,8 +71,5 @@ public class UEB2Impl implements UEB2 {
 		return mypic;
 	}
 
-	@Override
-	public void testSetup(String picturePath) {
-		DataAccessLayerImpl.getInstance().setTestingMode(true);
-	}
+
 }

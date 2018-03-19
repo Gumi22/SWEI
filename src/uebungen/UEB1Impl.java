@@ -3,7 +3,7 @@ package uebungen;
 import BIF.SWE2.interfaces.models.*;
 import BIF.SWE2.interfaces.presentationmodels.*;
 import picdb.BusinessLayerImpl;
-import picdb.DataAccessLayerImpl;
+import picdb.DataAccessLayers.DataAccessLayerImpl;
 import picdb.Main;
 import BIF.SWE2.interfaces.Application;
 import BIF.SWE2.interfaces.BusinessLayer;
@@ -110,5 +110,6 @@ public class UEB1Impl implements UEB1 {
 	@Override
 	public void testSetup(String picturePath) {
 		// Nothing to do here, just returning new instances
+		BusinessLayerImpl.setTestingMode(true);
 	}
 }
