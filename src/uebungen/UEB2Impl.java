@@ -8,6 +8,7 @@ import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.MainWindowPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import picdb.BusinessLayerImpl;
+import picdb.DALFactory;
 import picdb.DataAccessLayers.DataAccessLayerImpl;
 import picdb.models.CameraModelImpl;
 import picdb.models.PictureModelImpl;
@@ -26,6 +27,7 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public void testSetup(String picturePath) {
+		DALFactory.setDatabaseAccessible(false);
 	}
 
 	@Override
