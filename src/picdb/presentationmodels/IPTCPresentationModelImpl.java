@@ -1,5 +1,6 @@
 package picdb.presentationmodels;
 
+import BIF.SWE2.interfaces.models.IPTCModel;
 import BIF.SWE2.interfaces.presentationmodels.IPTCPresentationModel;
 import picdb.models.IPTCModelImpl;
 
@@ -10,7 +11,11 @@ import java.util.Collection;
  */
 public class IPTCPresentationModelImpl implements IPTCPresentationModel {
 
-    private IPTCModelImpl iptc = new IPTCModelImpl();
+    private IPTCModel iptc = new IPTCModelImpl();
+
+    public IPTCPresentationModelImpl(IPTCModel i){
+        this.iptc = i;
+    }
 
     @Override
     public String getKeywords() {

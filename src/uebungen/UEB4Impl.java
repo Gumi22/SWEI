@@ -26,7 +26,6 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		// TODO Auto-generated method stub
 		return BusinessLayerImpl.getInstance();
 	}
 
@@ -37,7 +36,7 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public EXIFPresentationModel getEXIFPresentationModel(EXIFModel exifModel) {
-		return new EXIFPresentationModelImpl();
+		return new EXIFPresentationModelImpl(exifModel);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public IPTCPresentationModel getIPTCPresentationModel(IPTCModel iptcModel) {
-		return new IPTCPresentationModelImpl();
+		return new IPTCPresentationModelImpl(iptcModel);
 	}
 
 	@Override
@@ -62,7 +61,6 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		// TODO Auto-generated method stub
 		
 	}
 }

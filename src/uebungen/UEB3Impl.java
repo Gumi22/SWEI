@@ -18,7 +18,6 @@ public class UEB3Impl implements UEB3 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		// TODO Auto-generated method stub
 		return BusinessLayerImpl.getInstance();
 	}
 
@@ -34,7 +33,13 @@ public class UEB3Impl implements UEB3 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		// TODO Auto-generated method stub
-		
+		BusinessLayerImpl bus = BusinessLayerImpl.getInstance();
+		BusinessLayerImpl.setTestingMode(true);
+		BusinessLayerImpl.setPath(picturePath);
+		try{
+			bus.sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,16 +1,22 @@
 package picdb.presentationmodels;
 
+import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.ISORatings;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.EXIFPresentationModel;
-import picdb.models.EXIFModelImpl;
+import BIF.SWE2.interfaces.models.EXIFModel;
 
 /**
  * Created by if16b014 on 05.03.18.
  */
 public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
-    EXIFModelImpl exif = new EXIFModelImpl();
+    EXIFModel exif = null;
+    CameraPresentationModel cam = null;
+
+    public EXIFPresentationModelImpl(EXIFModel i){
+        this.exif = i;
+    }
 
     @Override
     public String getMake() {
@@ -39,7 +45,7 @@ public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
     @Override
     public String getExposureProgram() {
-        return null;
+        return ExposurePrograms.LandscapeMode.name();
     }
 
     @Override
@@ -49,17 +55,17 @@ public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
     @Override
     public CameraPresentationModel getCamera() {
-        return null;
+        return cam;
     }
 
     @Override
     public void setCamera(CameraPresentationModel cameraPresentationModel) {
-
+        cam = cameraPresentationModel;
     }
 
     @Override
     public ISORatings getISORating() {
-        return null;
+        return ISORatings.NotDefined;
     }
 
     @Override

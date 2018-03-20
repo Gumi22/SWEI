@@ -39,7 +39,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public EXIFPresentationModel getEmptyEXIFPresentationModel() {
-		return new EXIFPresentationModelImpl();
+		return new EXIFPresentationModelImpl(new EXIFModelImpl());
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public IPTCPresentationModel getEmptyIPTCPresentationModel() {
-		return new IPTCPresentationModelImpl();
+		return new IPTCPresentationModelImpl(new IPTCModelImpl());
 	}
 
 	@Override

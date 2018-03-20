@@ -3,6 +3,8 @@ package picdb.presentationmodels;
 import BIF.SWE2.interfaces.models.PictureModel;
 import BIF.SWE2.interfaces.presentationmodels.*;
 import javafx.beans.property.*;
+import picdb.models.EXIFModelImpl;
+import picdb.models.IPTCModelImpl;
 import picdb.models.PictureModelImpl;
 
 /**
@@ -24,8 +26,8 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
     public PicturePresentationModelImpl(PictureModel pi, IPTCPresentationModel i, EXIFPresentationModel e,
                                         CameraPresentationModel c, PhotographerPresentationModel ph){
         pic = (pi != null)? pi : new PictureModelImpl("lel.jpg");
-        iptc = (i != null)? i : new IPTCPresentationModelImpl();
-        exif = (e != null)? e : new EXIFPresentationModelImpl();
+        iptc = (i != null)? i : new IPTCPresentationModelImpl(new IPTCModelImpl());
+        exif = (e != null)? e : new EXIFPresentationModelImpl(new EXIFModelImpl());
         cam = (c != null)? c : new CameraPresentationModelImpl();
         phot = (ph != null)? ph : new PhotographerPresentationModelImpl();
     }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
 
 /**
  * Created by if16b014 on 05.03.18.
@@ -53,7 +54,8 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
         ArrayList<PictureModel> myPics = new ArrayList<>();
         for (PictureModel pic: pictures) {
-            if(pic.getFileName().contains(namePart) || pic.getIPTC().equals(iptcModel) || pic.getEXIF().equals(exifModel)){
+            System.out.println(pic.getFileName());
+            if(pic.getFileName().contains(namePart) || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))){
                 myPics.add(pic);
             }
         }
@@ -77,12 +79,17 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
     @Override
     public void deletePicture(int id) throws Exception {
-        for (int i = 0; i < pictures.size(); i++) {
-            if(pictures.get(i).getID() == id){
-                pictures.remove(i);
-                //break;
+        if(id < 0){
+            pictures.clear();
+        }else{
+            for (int i = 0; i < pictures.size(); i++) {
+                if(pictures.get(i).getID() == id){
+                    pictures.remove(i);
+                    //break;
+                }
             }
         }
+
     }
 
     @Override

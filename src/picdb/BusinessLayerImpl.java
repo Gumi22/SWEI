@@ -4,6 +4,9 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.omg.CosNaming.NamingContextPackage.NotFoundReason;
 import picdb.DataAccessLayers.DataAccessLayerImpl;
 import picdb.DataAccessLayers.DataAccessLayerMockImpl;
 import picdb.models.EXIFModelImpl;
@@ -83,6 +86,8 @@ public class BusinessLayerImpl implements BusinessLayer {
     @Override
     public void sync() throws Exception {
         if(testingMode){
+            myDAL.deletePicture(-1); //clear all pictures
+
             File folder = new File(path);
             System.out.println(folder.getAbsolutePath());
             File[] listOfFiles = folder.listFiles();
@@ -122,7 +127,19 @@ public class BusinessLayerImpl implements BusinessLayer {
     @Override
     public IPTCModel extractIPTC(String s) throws Exception {
         if(testingMode){
-            return new IPTCModelImpl();
+            IPTCModelImpl iptc = new IPTCModelImpl();
+            iptc.setCaption("lel");
+            iptc.setHeadline("test");
+            iptc.setCopyrightNotice("copyright: gnu licence");
+            iptc.setByLine("Me");
+            iptc.setKeywords("lol, Me, test, witzig");
+            Collection<PictureModel> pics = myDAL.getPictures(s, null, null, null);
+            if(pics.size() == 1){
+                return iptc ;
+            }else{
+                throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);
+            }
+            //return iptc;
         }
         else return null;
     }
@@ -130,7 +147,14 @@ public class BusinessLayerImpl implements BusinessLayer {
     @Override
     public EXIFModel extractEXIF(String s) throws Exception {
         if(testingMode){
-            return new EXIFModelImpl("123", 1f, 1f, 1f, true, ExposurePrograms.LandscapeMode);
+            EXIFModelImpl exif = new EXIFModelImpl("123", 1f, 1f, 1f, true, ExposurePrograms.LandscapeMode);
+            Collection<PictureModel> pics = myDAL.getPictures(s, null, null, null);
+            if(pics.size() == 1){
+                return exif ;
+            }else{
+                throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);
+            }
+            //return exif;
         }
         else return null;
     }
