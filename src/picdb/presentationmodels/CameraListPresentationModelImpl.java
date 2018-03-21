@@ -2,6 +2,7 @@ package picdb.presentationmodels;
 
 import BIF.SWE2.interfaces.presentationmodels.CameraListPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
+import picdb.models.CameraModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,6 +22,6 @@ public class CameraListPresentationModelImpl implements CameraListPresentationMo
 
     @Override
     public CameraPresentationModel getCurrentCamera() {
-        return new CameraPresentationModelImpl(); //is this correct? xD
+        return new CameraPresentationModelImpl(new CameraModelImpl()); //is this correct? xD
     }
 }

@@ -28,21 +28,19 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
 
     private DataAccessLayerImpl(){
-        throw new RuntimeException("Falsche Datenbank bla");
-        // connect to Database
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//            con = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
-//                    "postgres");
-//
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("Where is your PostgreSQL JDBC Driver? "
-//                    + "Include in your library path!");
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
+                    "postgres");
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Where is your PostgreSQL JDBC Driver? "
+                    + "Include in your library path!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

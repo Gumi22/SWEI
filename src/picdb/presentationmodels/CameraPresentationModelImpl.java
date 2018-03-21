@@ -1,6 +1,7 @@
 package picdb.presentationmodels;
 
 import BIF.SWE2.interfaces.ISORatings;
+import BIF.SWE2.interfaces.models.CameraModel;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import picdb.models.CameraModelImpl;
 
@@ -8,8 +9,11 @@ import java.time.LocalDate;
 
 public class CameraPresentationModelImpl implements CameraPresentationModel {
 
-	private CameraModelImpl cam = new CameraModelImpl();
+	private CameraModel cam;
 
+	public CameraPresentationModelImpl(CameraModel c){
+		cam = c;
+	}
 
 	@Override
 	public int getID() {

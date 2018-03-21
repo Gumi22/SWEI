@@ -50,7 +50,7 @@ public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
     @Override
     public String getExposureProgramResource() {
-        return null;
+        return "penis.jpg";
     }
 
     @Override
@@ -65,14 +65,22 @@ public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
     @Override
     public ISORatings getISORating() {
-        if(exif != null){
-            //if(cam.)
+        if(exif == null || cam == null || exif.getISOValue() == 0){
+            return ISORatings.NotDefined;
         }
-        return ISORatings.NotDefined;
+        else{
+
+            if(cam.getISOLimitGood() >= exif.getISOValue()){
+                return ISORatings.Good;
+            }else if(cam.getISOLimitAcceptable() >= exif.getISOValue()){
+                return ISORatings.Acceptable;
+            }
+            return ISORatings.Noisey;
+        }
     }
 
     @Override
     public String getISORatingResource() {
-        return null;
+        return "x";
     }
 }

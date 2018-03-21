@@ -4,6 +4,9 @@ import BIF.SWE2.interfaces.models.IPTCModel;
 import BIF.SWE2.interfaces.presentationmodels.IPTCPresentationModel;
 import picdb.models.IPTCModelImpl;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -11,7 +14,8 @@ import java.util.Collection;
  */
 public class IPTCPresentationModelImpl implements IPTCPresentationModel {
 
-    private IPTCModel iptc = new IPTCModelImpl();
+    private IPTCModel iptc;
+
 
     public IPTCPresentationModelImpl(IPTCModel i){
         this.iptc = i;
@@ -49,7 +53,8 @@ public class IPTCPresentationModelImpl implements IPTCPresentationModel {
 
     @Override
     public Collection<String> getCopyrightNotices() {
-        return null;
+        return new ArrayList<>(Arrays.asList("All rights reserved", "CC-BY",
+                "CC-BY-SA", "CC-BY-ND", "CC-BY-NC", "CC-BY-NC-SA", "CC-BY-NC-ND"));
     }
 
     @Override

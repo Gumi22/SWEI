@@ -41,7 +41,9 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public IPTCModel getEmptyIPTCModel() {
-		return new IPTCModelImpl();
+		IPTCModel i = new IPTCModelImpl();
+		i.setCopyrightNotice("lel");
+		return i;
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public CameraPresentationModel getCameraPresentationModel(CameraModel cameraModel) {
-		return new CameraPresentationModelImpl();
+		return new CameraPresentationModelImpl(cameraModel);
 	}
 
 	@Override

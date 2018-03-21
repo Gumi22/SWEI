@@ -46,7 +46,7 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public CameraPresentationModel getCameraPresentationModel(CameraModel cameraModel) {
-		CameraPresentationModelImpl myCamPresMod = new CameraPresentationModelImpl();
+		CameraPresentationModelImpl myCamPresMod = new CameraPresentationModelImpl(cameraModel);
 		myCamPresMod.setMake(cameraModel.getMake());
 		myCamPresMod.setProducer(cameraModel.getProducer());
 		return myCamPresMod;
