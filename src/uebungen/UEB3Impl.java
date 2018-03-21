@@ -10,7 +10,7 @@ import picdb.presentationmodels.SearchPresentationModelImpl;
 
 public class UEB3Impl implements UEB3 {
 
-	String path;
+	static String path;
 
 	@Override
 	public void helloWorld() {
@@ -19,7 +19,13 @@ public class UEB3Impl implements UEB3 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return BusinessLayerImpl.getInstance(path,true);
+		BusinessLayerImpl b = BusinessLayerImpl.getInstance(path,true);
+		try {
+			b.sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return b;
 	}
 
 	@Override

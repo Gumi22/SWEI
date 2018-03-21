@@ -144,7 +144,7 @@ public class BusinessLayerImpl implements BusinessLayer {
         if(testingMode){
             EXIFModelImpl exif = new EXIFModelImpl("123", 1f, 1f, 1f, true, ExposurePrograms.LandscapeMode);
             Collection<PictureModel> pics = myDAL.getPictures(s, null, null, null);
-            if(pics.size() == 1){
+            if(pics.size() >= 1){
                 return exif ;
             }else{
                 throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);

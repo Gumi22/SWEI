@@ -54,7 +54,6 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
         ArrayList<PictureModel> myPics = new ArrayList<>();
         for (PictureModel pic: pictures) {
-            System.out.println(pic.getFileName());
             if(pic.getFileName().contains(namePart) || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))){
                 myPics.add(pic);
             }
