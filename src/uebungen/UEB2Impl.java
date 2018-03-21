@@ -27,6 +27,7 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public void testSetup(String picturePath) {
+		DALFactory.getInstance();
 		DALFactory.setDatabaseAccessible(false);
 	}
 
