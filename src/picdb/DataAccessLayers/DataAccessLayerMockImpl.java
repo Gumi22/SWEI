@@ -62,6 +62,8 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
         return myPics;
     }
 
+    //Lambda verwenden!
+
     @Override
     public PictureModel getPicture(int i) throws Exception {
         for (PictureModel pic: pictures) {

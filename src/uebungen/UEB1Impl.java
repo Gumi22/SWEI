@@ -4,6 +4,7 @@ import BIF.SWE2.interfaces.models.*;
 import BIF.SWE2.interfaces.presentationmodels.*;
 import picdb.BusinessLayerImpl;
 import picdb.DataAccessLayers.DataAccessLayerImpl;
+import picdb.DataAccessLayers.DataAccessLayerMockImpl;
 import picdb.Main;
 import BIF.SWE2.interfaces.Application;
 import BIF.SWE2.interfaces.BusinessLayer;
@@ -25,7 +26,7 @@ public class UEB1Impl implements UEB1 {
 	}
 
 	@Override
-	public DataAccessLayer getAnyDataAccessLayer() { return DataAccessLayerImpl.getInstance(); }
+	public DataAccessLayer getAnyDataAccessLayer() { return DataAccessLayerMockImpl.getInstance(); }
 
 	@Override
 	public BusinessLayer getBusinessLayer() {

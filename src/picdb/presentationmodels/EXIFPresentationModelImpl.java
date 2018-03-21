@@ -65,6 +65,9 @@ public class EXIFPresentationModelImpl implements EXIFPresentationModel {
 
     @Override
     public ISORatings getISORating() {
+        if(exif != null){
+            //if(cam.)
+        }
         return ISORatings.NotDefined;
     }
 
