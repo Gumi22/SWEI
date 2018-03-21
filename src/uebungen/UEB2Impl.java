@@ -19,6 +19,8 @@ import picdb.presentationmodels.PicturePresentationModelImpl;
 public class UEB2Impl implements UEB2 {
 
 
+	private static BusinessLayerImpl mybus;
+
 
 	@Override
 	public void helloWorld() {
@@ -27,8 +29,8 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		DALFactory.getInstance();
-		DALFactory.setDatabaseAccessible(false);
+		mybus = BusinessLayerImpl.getInstance(picturePath,true);
+		System.out.println(mybus == null);
 	}
 
 	@Override
@@ -54,9 +56,6 @@ public class UEB2Impl implements UEB2 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		BusinessLayerImpl mybus = BusinessLayerImpl.getInstance();
-		BusinessLayerImpl.setTestingMode(true);
-		BusinessLayerImpl.setPath("./Pictures");
 		return mybus;
 	}
 

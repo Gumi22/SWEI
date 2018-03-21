@@ -10,6 +10,7 @@ import picdb.presentationmodels.SearchPresentationModelImpl;
 
 public class UEB3Impl implements UEB3 {
 
+	String path;
 
 	@Override
 	public void helloWorld() {
@@ -18,12 +19,12 @@ public class UEB3Impl implements UEB3 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return BusinessLayerImpl.getInstance();
+		return BusinessLayerImpl.getInstance(path,true);
 	}
 
 	@Override
 	public DataAccessLayer getDataAccessLayer() {
-		return DALFactory.getInstance().getDAL();
+		return DALFactory.getInstance(false).getDAL();
 	}
 
 	@Override
@@ -33,13 +34,6 @@ public class UEB3Impl implements UEB3 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		BusinessLayerImpl bus = BusinessLayerImpl.getInstance();
-		BusinessLayerImpl.setTestingMode(true);
-		BusinessLayerImpl.setPath(picturePath);
-		try{
-			bus.sync();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		path = picturePath;
 	}
 }

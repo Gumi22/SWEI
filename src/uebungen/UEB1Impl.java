@@ -15,6 +15,8 @@ import picdb.presentationmodels.*;
 
 public class UEB1Impl implements UEB1 {
 
+	String path;
+
 	@Override
 	public Application getApplication() {
 		return new Main();
@@ -30,7 +32,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return BusinessLayerImpl.getInstance();
+		return BusinessLayerImpl.getInstance(path,true);
 	}
 
 	@Override
@@ -111,6 +113,6 @@ public class UEB1Impl implements UEB1 {
 	@Override
 	public void testSetup(String picturePath) {
 		// Nothing to do here, just returning new instances
-		BusinessLayerImpl.setTestingMode(true);
+		path = picturePath;
 	}
 }

@@ -9,15 +9,12 @@ public class DALFactory {
     private static DALFactory instance;
     private static boolean databaseAccessible;
 
-    public static DALFactory getInstance () {
+    public static DALFactory getInstance (boolean DBAccessible) {
         if (DALFactory.instance == null) {
             DALFactory.instance = new DALFactory();
         }
+        databaseAccessible = DBAccessible;
         return DALFactory.instance;
-    }
-
-    public static void setDatabaseAccessible(boolean databaseAccessible) {
-        DALFactory.databaseAccessible = databaseAccessible;
     }
 
     public DataAccessLayer getDAL(){

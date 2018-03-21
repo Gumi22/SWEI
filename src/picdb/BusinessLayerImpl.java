@@ -25,36 +25,31 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     private static BusinessLayerImpl instance;
     private static DataAccessLayer myDAL;
-    private static boolean testingMode = false;
+    private static boolean testingMode = true;
     private static String path;
 
     private BusinessLayerImpl(){
-        myDAL = DALFactory.getInstance().getDAL();
     }
 
-    public static BusinessLayerImpl getInstance () {
+    public static BusinessLayerImpl getInstance (String path, boolean Testing) {
         if (BusinessLayerImpl.instance == null) {
-            DALFactory.getInstance();
-            DALFactory.setDatabaseAccessible(!BusinessLayerImpl.isTestingMode());
             BusinessLayerImpl.instance = new BusinessLayerImpl();
         }
+
+        testingMode = Testing;
+        BusinessLayerImpl.path = path;
+
+        myDAL = DALFactory.getInstance(!testingMode).getDAL();
+
         return BusinessLayerImpl.instance;
     }
 
-    public static void setTestingMode(boolean testingMode) {
-        BusinessLayerImpl.testingMode = testingMode;
-    }
-
     public static boolean isTestingMode() {
-        return BusinessLayerImpl.testingMode;
+        return testingMode;
     }
 
     public static String getPath() {
         return path;
-    }
-
-    public static void setPath(String path) {
-        BusinessLayerImpl.path = path;
     }
 
 

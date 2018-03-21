@@ -19,6 +19,8 @@ import picdb.presentationmodels.IPTCPresentationModelImpl;
 public class UEB4Impl implements UEB4 {
 
 
+	String path;
+
 	@Override
 	public void helloWorld() {
 		// I'm fine		
@@ -26,7 +28,7 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		return BusinessLayerImpl.getInstance();
+		return BusinessLayerImpl.getInstance(path, true);
 	}
 
 	@Override
@@ -63,6 +65,6 @@ public class UEB4Impl implements UEB4 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		
+		path = picturePath;
 	}
 }
