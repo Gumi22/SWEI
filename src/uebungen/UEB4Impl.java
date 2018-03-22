@@ -19,7 +19,7 @@ import picdb.presentationmodels.IPTCPresentationModelImpl;
 public class UEB4Impl implements UEB4 {
 
 
-	String path;
+	static String path;
 
 	@Override
 	public void helloWorld() {
