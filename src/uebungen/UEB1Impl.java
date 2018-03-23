@@ -77,7 +77,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public PhotographerPresentationModel getEmptyPhotographerPresentationModel() {
-		return new PhotographerPresentationModelImpl();
+		return new PhotographerPresentationModelImpl(new PhotographerModelImpl());
 	}
 
 	@Override

@@ -24,7 +24,6 @@ public class UEB5Impl implements UEB5 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		// TODO Auto-generated method stub
 		return BusinessLayerImpl.getInstance(path, true);
 	}
 
@@ -35,7 +34,7 @@ public class UEB5Impl implements UEB5 {
 
 	@Override
 	public PhotographerPresentationModel getPhotographerPresentationModel(PhotographerModel photographerModel) {
-		return new PhotographerPresentationModelImpl();
+		return new PhotographerPresentationModelImpl(photographerModel);
 	}
 
 	@Override
@@ -50,7 +49,6 @@ public class UEB5Impl implements UEB5 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		// TODO Auto-generated method stub
 		path = picturePath;
 	}
 }

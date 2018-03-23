@@ -19,7 +19,6 @@ public class UEB6Impl implements UEB6 {
 
 	@Override
 	public BusinessLayer getBusinessLayer() {
-		// TODO Auto-generated method stub
 		return BusinessLayerImpl.getInstance(path, true);
 	}
 
@@ -35,7 +34,11 @@ public class UEB6Impl implements UEB6 {
 
 	@Override
 	public void testSetup(String picturePath) {
-		// TODO Auto-generated method stub
 		path = picturePath;
+		try {
+			BusinessLayerImpl.getInstance(path, true).sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

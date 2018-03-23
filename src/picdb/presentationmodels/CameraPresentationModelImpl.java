@@ -67,27 +67,37 @@ public class CameraPresentationModelImpl implements CameraPresentationModel {
 
 	@Override
 	public boolean isValid() {
-		return false;
+		return isValidBoughtOn() && isValidMake() && isValidProducer();
 	}
 
 	@Override
 	public String getValidationSummary() {
-		return null;
+		String validation = "";
+		if(!isValidProducer()){
+			validation += "Not a valid Producer.\n";
+		}
+		if(!isValidMake()){
+			validation += "Not a valid Make\n";
+		}
+		if(!isValidBoughtOn()){
+			validation += "Not a valid Bought On Date\n";
+		}
+		return validation;
 	}
 
 	@Override
 	public boolean isValidProducer() {
-		return false;
+		return (cam.getProducer() != null && !cam.getProducer().isEmpty());
 	}
 
 	@Override
 	public boolean isValidMake() {
-		return false;
+		return (cam.getMake() != null && !cam.getMake().isEmpty());
 	}
 
 	@Override
 	public boolean isValidBoughtOn() {
-		return false;
+		return cam.getBoughtOn() == null || (cam.getBoughtOn().isBefore(LocalDate.now()));
 	}
 
 	@Override

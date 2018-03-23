@@ -22,6 +22,6 @@ public class CameraListPresentationModelImpl implements CameraListPresentationMo
 
     @Override
     public CameraPresentationModel getCurrentCamera() {
-        return new CameraPresentationModelImpl(new CameraModelImpl()); //is this correct? xD
+        return new CameraPresentationModelImpl(new CameraModelImpl()); //ToDo: Do this correctly
     }
 }

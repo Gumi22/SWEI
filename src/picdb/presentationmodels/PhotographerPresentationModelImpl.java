@@ -9,49 +9,57 @@ import java.time.LocalDate;
  * Created by if16b014 on 05.03.18.
  */
 public class PhotographerPresentationModelImpl implements PhotographerPresentationModel {
+
+
+    private PhotographerModel phot;
+
+    public PhotographerPresentationModelImpl(PhotographerModel photographerModel) {
+        phot = photographerModel;
+    }
+
     @Override
     public int getID() {
-        return 0;
+        return phot.getID();
     }
 
     @Override
     public String getFirstName() {
-        return null;
+        return phot.getFirstName();
     }
 
     @Override
     public void setFirstName(String s) {
-
+        phot.setFirstName(s);
     }
 
     @Override
     public String getLastName() {
-        return null;
+        return phot.getLastName();
     }
 
     @Override
     public void setLastName(String s) {
-
+        phot.setLastName(s);
     }
 
     @Override
     public LocalDate getBirthDay() {
-        return null;
+        return phot.getBirthDay();
     }
 
     @Override
     public void setBirthDay(LocalDate localDate) {
-
+        phot.setBirthDay(localDate);
     }
 
     @Override
     public String getNotes() {
-        return null;
+        return phot.getNotes();
     }
 
     @Override
     public void setNotes(String s) {
-
+        phot.setNotes(s);
     }
 
     @Override
@@ -61,21 +69,28 @@ public class PhotographerPresentationModelImpl implements PhotographerPresentati
 
     @Override
     public boolean isValid() {
-        return false;
+        return (isValidLastName() && isValidBirthDay());
     }
 
     @Override
     public String getValidationSummary() {
-        return null;
+        String validation = "";
+        if(!isValidBirthDay()){
+            validation += "Not a valid Birthdate";
+        }
+        if(!isValidLastName()){
+            validation += "Not a valid Last Name";
+        }
+        return validation;
     }
 
     @Override
     public boolean isValidLastName() {
-        return false;
+        return phot.getLastName() != null && !phot.getLastName().isEmpty();
     }
 
     @Override
     public boolean isValidBirthDay() {
-        return false;
+        return phot.getBirthDay() == null || (phot.getBirthDay().isBefore(LocalDate.now()));
     }
 }

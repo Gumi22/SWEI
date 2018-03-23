@@ -3,10 +3,7 @@ package picdb.presentationmodels;
 import BIF.SWE2.interfaces.models.PictureModel;
 import BIF.SWE2.interfaces.presentationmodels.*;
 import javafx.beans.property.*;
-import picdb.models.CameraModelImpl;
-import picdb.models.EXIFModelImpl;
-import picdb.models.IPTCModelImpl;
-import picdb.models.PictureModelImpl;
+import picdb.models.*;
 
 /**
  * Created by if16b014 on 05.03.18.
@@ -30,7 +27,7 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
         iptc = (i != null)? i : new IPTCPresentationModelImpl(new IPTCModelImpl());
         exif = (e != null)? e : new EXIFPresentationModelImpl(new EXIFModelImpl());
         cam = (c != null)? c : new CameraPresentationModelImpl(new CameraModelImpl());
-        phot = (ph != null)? ph : new PhotographerPresentationModelImpl();
+        phot = (ph != null)? ph : new PhotographerPresentationModelImpl(new PhotographerModelImpl());
     }
 
 
@@ -51,7 +48,7 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
 
     @Override
     public String getDisplayName() {
-        return pic.getFileName().split("\\.")[0] + " (by " + phot.getFirstName() + " "  + phot.getLastName() + ")";
+        return pic.getFileName().split("\\.")[0] + " (by " + ((phot.getFirstName() != null) ? phot.getFirstName() : "" ) + " "  + ((phot.getLastName() != null) ? phot.getLastName() : "" ) + ")";
     }
 
     @Override

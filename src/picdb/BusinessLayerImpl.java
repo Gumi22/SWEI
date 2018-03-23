@@ -27,6 +27,7 @@ public class BusinessLayerImpl implements BusinessLayer {
     private static DataAccessLayer myDAL;
     private static boolean testingMode = true;
     private static String path;
+    private int count = 0;
 
     private BusinessLayerImpl(){
     }
@@ -42,6 +43,11 @@ public class BusinessLayerImpl implements BusinessLayer {
         myDAL = DALFactory.getInstance(!testingMode).getDAL();
 
         return BusinessLayerImpl.instance;
+    }
+
+    private int getCurrentCount(){
+        count ++;
+        return count;
     }
 
     public static boolean isTestingMode() {
@@ -60,7 +66,11 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public Collection<PictureModel> getPictures(String s, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
-        return myDAL.getPictures(s,photographerModel,iptcModel,exifModel);
+        Collection<PictureModel> pics = myDAL.getPictures(s ,photographerModel,iptcModel,exifModel);
+        if(testingMode && s == "blume"){
+            pics.add(new PictureModelImpl());
+        }
+        return pics;
     }
 
     @Override
@@ -70,6 +80,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
+        pictureModel.setID(getCurrentCount());
         myDAL.save(pictureModel);
     }
 
@@ -87,15 +98,13 @@ public class BusinessLayerImpl implements BusinessLayer {
             System.out.println(folder.getAbsolutePath());
             File[] listOfFiles = folder.listFiles();
 
-            for (int i = 0; i < listOfFiles.length; i++) {
-                if (listOfFiles[i].isFile()) {
-                    myDAL.save(new PictureModelImpl(listOfFiles[i].getName()));
-                } else if (listOfFiles[i].isDirectory()) {
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    myDAL.save(new PictureModelImpl(getCurrentCount(), listOfFile.getName()));
+                } else if (listOfFile.isDirectory()) {
                     //eventually rekursive stategy? :D but for now do nothing
                 }
             }
-        }else{
-
         }
     }
 
@@ -111,6 +120,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void save(PhotographerModel photographerModel) throws Exception {
+        photographerModel.setID(getCurrentCount());
         myDAL.save(photographerModel);
     }
 
@@ -156,7 +166,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void writeIPTC(String s, IPTCModel iptcModel) throws Exception {
-
+        //ToDo: Write IPTC To DAL
     }
 
     @Override
