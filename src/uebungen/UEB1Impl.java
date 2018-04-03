@@ -28,7 +28,7 @@ public class UEB1Impl implements UEB1 {
 	}
 
 	@Override
-	public DataAccessLayer getAnyDataAccessLayer() { return DataAccessLayerMockImpl.getInstance(); }
+	public DataAccessLayer getAnyDataAccessLayer() { return new DataAccessLayerMockImpl(); }
 
 	@Override
 	public BusinessLayer getBusinessLayer() {

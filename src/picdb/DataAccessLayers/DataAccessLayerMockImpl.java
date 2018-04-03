@@ -18,13 +18,11 @@ import java.util.logging.ConsoleHandler;
  */
 public class DataAccessLayerMockImpl implements DataAccessLayer {
 
-    private static DataAccessLayerMockImpl instance;
-
     private List<CameraModel> cameras;
     private List<PictureModel> pictures;
     private List<PhotographerModel> photographers;
 
-    private DataAccessLayerMockImpl(){
+    public DataAccessLayerMockImpl(){
         cameras = new ArrayList<>();
         pictures = new ArrayList<>();
         photographers = new ArrayList<>();
@@ -39,16 +37,13 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
         //pictures.add(new PictureModelImpl("1"));
     }
 
-    public static DataAccessLayerMockImpl getInstance () {
-        if (DataAccessLayerMockImpl.instance == null) {
-            DataAccessLayerMockImpl.instance = new DataAccessLayerMockImpl();
-        }
-        return DataAccessLayerMockImpl.instance;
-    }
-
     @Override
     public Collection<PictureModel> getPictures(String namePart, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
         if(namePart == null && photographerModel == null && iptcModel == null && exifModel == null){
+            if(pictures.size() < 1){
+                pictures.add(new PictureModelImpl("1234"));
+                pictures.add(new PictureModelImpl("1"));
+            }
             return pictures;
         }
 

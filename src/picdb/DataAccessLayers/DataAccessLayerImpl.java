@@ -20,37 +20,8 @@ import java.util.Collection;
 public class DataAccessLayerImpl implements DataAccessLayer {
 
 
-    //kein Singleton!!!!
-
-    private static DataAccessLayerImpl instance;
-    private Connection con;
-    // jedes mal connection aufbauen !!!
-
-
-    private DataAccessLayerImpl(){
-        try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
-                    "postgres");
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("Where is your PostgreSQL JDBC Driver? "
-                    + "Include in your library path!");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    public DataAccessLayerImpl(){
     }
-
-    public static DataAccessLayerImpl getInstance () {
-        if (DataAccessLayerImpl.instance == null) {
-            DataAccessLayerImpl.instance = new DataAccessLayerImpl();
-        }
-        return DataAccessLayerImpl.instance;
-    }
-
 
     @Override
     public Collection<PictureModel> getPictures(String namePart, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
@@ -110,12 +81,12 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
         if(!namePartSet && !photModelIdSet && !iptcModelSet && !exifModelSet){ //if nothing was set return whole list
             selectSQL += " 1 = ? ";
-            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
             preparedStatement.setInt(1, 1);
             rs = preparedStatement.executeQuery();
 
         }else{
-            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
             if(namePartSet){
                 preparedStatement.setString(counter, "%" + namePart + "%" );
                 counter ++;
@@ -198,7 +169,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         String selectSQL = "SELECT id, filename, cameraid, iptckeywords, " +
                 "iptccopyright, iptcheadline, iptccaption, exifaperture, " +
                 "exifexposuretime, exifiso, exifflash, exifexposureprog FROM picture WHERE id = ?";
-        PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+        PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
         preparedStatement.setInt(1, i);
         ResultSet rs = preparedStatement.executeQuery(selectSQL);
 
@@ -234,7 +205,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         if(photographerModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new photographer
             String insertSQL = "INSERT INTO photographer (id, name, surname, birthdate, notes)" +
                     " VALUES (DEFAULT, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = con.prepareStatement(insertSQL);
+            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
             preparedStatement.setString(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
@@ -243,7 +214,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.executeUpdate();
         }else{
             String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
-            PreparedStatement preparedStatement = con.prepareStatement(updateSQL);
+            PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
             preparedStatement.setString(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
@@ -257,7 +228,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
     @Override
     public void deletePhotographer(int i) throws Exception {
         String deleteSQL = "DELETE photographer WHERE id = ?";
-        PreparedStatement preparedStatement = con.prepareStatement(deleteSQL);
+        PreparedStatement preparedStatement = openConnection().prepareStatement(deleteSQL);
         preparedStatement.setInt(1, i);
         // execute delete SQL stetement
         preparedStatement.executeUpdate();
@@ -280,7 +251,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
 
         try {
-            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement = openConnection().prepareStatement(selectSQL);
             preparedStatement.setInt(1, i);
             rs = preparedStatement.executeQuery(selectSQL);
 
@@ -296,8 +267,27 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return cam;
+    }
+
+    private Connection openConnection() throws Exception{
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
+                    "postgres");
+            return con;
+        } catch (ClassNotFoundException e) {
+            System.out.println("Where is your PostgreSQL JDBC Driver? "
+                    + "Include in your library path!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Couldn't get a connection to Database");
     }
 }

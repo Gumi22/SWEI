@@ -8,6 +8,8 @@ public class DALFactory {
 
     private static DALFactory instance;
     private static boolean databaseAccessible;
+    private static DataAccessLayer activeDAL;
+    private static DataAccessLayer activeMockDAL;
 
     public static DALFactory getInstance (boolean DBAccessible) {
         if (DALFactory.instance == null) {
@@ -19,10 +21,16 @@ public class DALFactory {
 
     public DataAccessLayer getDAL(){
         if(!DALFactory.databaseAccessible){
-            return DataAccessLayerMockImpl.getInstance();
+            if(activeMockDAL == null){
+                activeMockDAL = new DataAccessLayerMockImpl();
+            }
+            return activeMockDAL;
         }
         else{
-            return DataAccessLayerImpl.getInstance();
+            if(activeDAL == null){
+                activeDAL = new DataAccessLayerImpl();
+            }
+            return activeDAL;
         }
     }
 }
