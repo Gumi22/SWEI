@@ -1513,7 +1513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521835830746</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="merge">
+      <created>1522847429700</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1522847429700</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1619,7 +1626,8 @@
     <MESSAGE value="Übung 3 fertig, muss noch refactored werden" />
     <MESSAGE value="Übung 4 fertig, refactoring fehlt" />
     <MESSAGE value="Übung 5 und 6 fertig, refactoring fehlt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Übung 5 und 6 fertig, refactoring fehlt" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

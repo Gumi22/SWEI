@@ -46,15 +46,17 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
             }
             return pictures;
         }
-
-        ArrayList<PictureModel> myPics = new ArrayList<>();
-        for (PictureModel pic: pictures) {
-            System.out.println(pic.getFileName());
-            if(pic.getFileName().contains(namePart) || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))){
-                myPics.add(pic);
+        else{
+            ArrayList<PictureModel> myPics = new ArrayList<>();
+            for (PictureModel pic: pictures) {
+                System.out.println(pic.getFileName());
+                if(pic.getFileName().contains(namePart != null ? namePart : "") || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))){
+                    myPics.add(pic);
+                }
             }
+            return myPics;
         }
-        return myPics;
+
     }
 
     //Lambda verwenden!
