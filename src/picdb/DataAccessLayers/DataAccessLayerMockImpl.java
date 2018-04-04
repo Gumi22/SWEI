@@ -114,7 +114,6 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
         for (int i = 0; i < photographers.size(); i++) {
             if(photographers.get(i).getID() == id){
                 photographers.remove(i);
-                //break;
             }
         }
     }
