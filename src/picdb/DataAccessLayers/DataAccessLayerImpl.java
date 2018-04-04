@@ -182,7 +182,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
-
+        //ToDo: Do this
     }
 
     @Override
