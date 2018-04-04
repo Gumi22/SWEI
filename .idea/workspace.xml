@@ -41,8 +41,8 @@
       <file leaf-file-name="DataAccessLayerMockImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerMockImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+            <state relative-caret-position="249">
+              <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -786,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521835830746</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="merge">
+      <created>1522847429700</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1522847429700</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -892,7 +899,8 @@
     <MESSAGE value="Übung 3 fertig, muss noch refactored werden" />
     <MESSAGE value="Übung 4 fertig, refactoring fehlt" />
     <MESSAGE value="Übung 5 und 6 fertig, refactoring fehlt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Übung 5 und 6 fertig, refactoring fehlt" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,8 +1302,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerMockImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+        <state relative-caret-position="249">
+          <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
           <folding />
         </state>
       </provider>
