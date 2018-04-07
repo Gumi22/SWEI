@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+
+<?import javafx.stage.Stage ?>
+
+<Stage title= "Main" xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.controllers.MainController">
+	<scene>
+		<Scene width="700" height="500">
+			<root>
+
+				<BorderPane>
+
+					<top>
+						<VBox>
+							<children>
+								<fx:include source="../fxml/MenuBar.fxml"/>
+								<fx:include source="../fxml/Search.fxml"/>
+							</children>
+						</VBox>
+
+
+					</top>
+
+
+					<center>
+						<VBox alignment="CENTER">
+							<Button text="About" onAction="#onBtnAbout" />
+						</VBox>
+					</center>
+
+
+					<right>
+						<fx:include source="../fxml/PictureInfo.fxml"/>
+					</right>
+
+
+					<bottom>
+						<Label fx:id="lbStatus" />
+					</bottom>
+
+
+				</BorderPane>
+
+			</root>
+		</Scene>
+	</scene>
+</Stage>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.text.Text?>
+
+<?import javafx.collections.FXCollections?>
+<TabPane fx:id="tabs" xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="picdb.controllers.MainController"
+         maxWidth="200">
+    <tabs>
+        <Tab text="IPTC">
+            <VBox>
+                <children>
+                    <HBox>
+                        <Text text="Headline:" />
+                        <TextField fx:id="IPTCHeadline" maxWidth="Infinity"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="Caption:" />
+                        <TextField fx:id="IPTCCaption" maxWidth="Infinity"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="By Line:" />
+                        <TextField fx:id="IPTCByLine" maxWidth="Infinity"/>
+                    </HBox>
+                    <Text text="Keywords:" />
+                    <TextArea fx:id="IPTCKeywords" maxWidth="Infinity"/>
+                    <HBox>
+                        <Text text="Copyright Notice:" />
+                        <ChoiceBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Not Set"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                    </HBox>
+                    <HBox>
+                        <Region HBox.hgrow="SOMETIMES"/>
+                        <Button>Save</Button>
+                    </HBox>
+                </children>
+            </VBox>
+        </Tab>
+
+        <Tab text="EXIF">
+            <VBox>
+                <children>
+                    <ChoiceBox fx:id="UsedCamera" maxWidth="Infinity">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="No Camera"/>
+                            </FXCollections>
+                        </items>
+                    </ChoiceBox>
+                    <HBox>
+                        <Text text="F-Number:" />
+                        <TextField fx:id="EXIFFNumber" maxWidth="Infinity"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="Exposure Time:" />
+                        <TextField fx:id="EXIFExposureTime" maxWidth="Infinity"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="ISO Value:" />
+                        <TextField fx:id="EXIFIsoValue" maxWidth="Infinity"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="Flash:" />
+                        <CheckBox fx:id="EXIFFlash"/>
+                    </HBox>
+                    <HBox>
+                        <Text text="Exposure Program:" />
+                        <ChoiceBox fx:id="EXIFExposureProgram" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Not Set"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                    </HBox>
+                    <HBox>
+                        <Text text="ISO-Rating:" />
+                        <Text fx:id="EXIFISORating"/>
+                    </HBox>
+                    <HBox>
+                        <Region HBox.hgrow="SOMETIMES"/>
+                        <Button>Save</Button>
+                    </HBox>
+                </children>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>

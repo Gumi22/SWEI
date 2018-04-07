@@ -1,4 +1,4 @@
-package picdb;
+package picdb.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

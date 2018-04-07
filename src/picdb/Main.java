@@ -12,7 +12,7 @@ public class Main extends Application implements BIF.SWE2.interfaces.Application
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader fl = new FXMLLoader();
-	        fl.setLocation(getClass().getResource("Main.fxml"));
+	        fl.setLocation(getClass().getResource("fxml/Main.fxml"));
 	        fl.load();
 
 			Stage stage = (Stage)fl.getRoot();

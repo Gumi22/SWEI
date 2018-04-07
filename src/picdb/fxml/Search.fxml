@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="picdb.controllers.MainController"
+      prefWidth="Infinity">
+    <children>
+        <StackPane focusTraversable="true" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+            <children>
+                <TextField focusTraversable="true" HBox.hgrow="ALWAYS" promptText="Search"></TextField>
+                <Button style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25">
+                            <image>
+                                <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </StackPane>
+    </children>
+</HBox>

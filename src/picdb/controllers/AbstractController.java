@@ -1,4 +1,4 @@
-package picdb;
+package picdb.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,26 +32,40 @@ public abstract class AbstractController implements Initializable {
         FXMLLoader fl = new FXMLLoader();
         fl.setLocation(getClass().getResource(resource));
         fl.load();
-        Parent root = fl.getRoot();
 
-        Stage newStage = new Stage(StageStyle.DECORATED);
-        newStage.initModality(m);
-        newStage.initOwner(stage);
-        Scene scene = new Scene(root, 1024, 768);
-        scene.getStylesheets().add(
-                getClass().getResource("application.css").toExternalForm());
-        // more css by code
-        for (String css : cssList) {
+
+        try{
+            Parent root = fl.getRoot();
+
+            Stage newStage = new Stage(StageStyle.DECORATED);
+            newStage.initModality(m);
+            newStage.initOwner(stage);
+            Scene scene = new Scene(root, 1024, 768);
             scene.getStylesheets().add(
-                    getClass().getResource(css).toExternalForm());
+                    getClass().getResource("application.css").toExternalForm());
+            // more css by code
+            for (String css : cssList) {
+                scene.getStylesheets().add(
+                        getClass().getResource(css).toExternalForm());
+            }
+
+            AbstractController controller = (AbstractController) fl.getController();
+            controller.setStage(newStage);
+            controller.setModel(model);
+            newStage.setScene(scene);
+            newStage.setTitle(title);
+            newStage.show();
+        }
+        catch(Exception e){
+            Stage stage = (Stage)fl.getRoot();
+            AbstractController controller = (AbstractController) fl.getController();
+            controller.setStage(stage);
+            controller.setModel(model);
+            stage.setTitle(title);
+            stage.show();
         }
 
-        AbstractController controller = (AbstractController) fl.getController();
-        controller.setStage(newStage);
-        controller.setModel(model);
-        newStage.setScene(scene);
-        newStage.setTitle(title);
-        newStage.show();
+
     }
 
     public void show(String resource, Object model, String title, String... cssList) throws IOException {
@@ -73,5 +87,7 @@ public abstract class AbstractController implements Initializable {
     public void setModel(Object model) {
         // optional set model in derived classes
     }
+
+
 }
 
