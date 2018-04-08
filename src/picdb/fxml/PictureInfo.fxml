@@ -12,9 +12,11 @@
 <TabPane fx:id="tabs" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="picdb.controllers.MainController"
+         minWidth="150"
          prefWidth="200"
-         tabClosingPolicy="UNAVAILABLE" prefHeight="Infinity">
+         tabClosingPolicy="UNAVAILABLE">
     <tabs>
+
         <Tab text="IPTC">
             <ScrollPane fitToWidth="true">
                 <content>
@@ -105,5 +107,6 @@
                 </content>
             </ScrollPane>
         </Tab>
+
     </tabs>
 </TabPane>

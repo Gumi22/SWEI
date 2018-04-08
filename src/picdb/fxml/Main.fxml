@@ -28,14 +28,17 @@
 
 
 					<center>
-						<SplitPane focusTraversable="true" orientation="VERTICAL">
-						<SplitPane focusTraversable="true" >
+						<SplitPane focusTraversable="true" orientation="VERTICAL" dividerPositions = "0.75">
+						<SplitPane focusTraversable="true" dividerPositions = "0.75">
 							<items>
+
 								<SplitPane focusTraversable="true" orientation="VERTICAL">
 									<items>
-										<Button text="About" onAction="#onBtnAbout"/>
+										<Button text="About" onAction="#onBtnAbout" prefWidth="Infinity"/>
 									</items>
 								</SplitPane>
+
+
 								<fx:include source="../fxml/PictureInfo.fxml"/>
 							</items>
 						</SplitPane>
