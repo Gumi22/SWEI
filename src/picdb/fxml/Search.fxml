@@ -15,7 +15,7 @@
                 <TextField focusTraversable="true" HBox.hgrow="ALWAYS" promptText="Search"></TextField>
                 <Button style="-fx-background-color: transparent;">
                     <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25">
+                        <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25" focusTraversable="true">
                             <image>
                                 <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
                             </image>

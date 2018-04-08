@@ -7,6 +7,7 @@
 
 <?import javafx.stage.Stage ?>
 
+<?import javafx.geometry.Insets?>
 <Stage title= "Main" xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.controllers.MainController">
 	<scene>
 		<Scene width="700" height="500">
@@ -27,15 +28,24 @@
 
 
 					<center>
-						<VBox alignment="CENTER">
-							<Button text="About" onAction="#onBtnAbout" />
-						</VBox>
+						<SplitPane focusTraversable="true" orientation="VERTICAL">
+						<SplitPane focusTraversable="true" >
+							<items>
+								<SplitPane focusTraversable="true" orientation="VERTICAL">
+									<items>
+										<Button text="About" onAction="#onBtnAbout"/>
+									</items>
+								</SplitPane>
+								<fx:include source="../fxml/PictureInfo.fxml"/>
+							</items>
+						</SplitPane>
+							<fx:include source="../fxml/PictureScroller.fxml"/>
+
+
+
+						</SplitPane>
+
 					</center>
-
-
-					<right>
-						<fx:include source="../fxml/PictureInfo.fxml"/>
-					</right>
 
 
 					<bottom>
