@@ -8,60 +8,59 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<ScrollPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="picdb.controllers.MainController">
+<?import javafx.collections.FXCollections?>
 
-    <content>
-        <HBox alignment="center" fx:id="Left">
-            <children>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+<ListView xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="picdb.controllers.MainController"
+          orientation="HORIZONTAL">
+    <items>
+        <FXCollections fx:factory="observableArrayList">
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
                 <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
                 </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                    <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </HBox>
-    </content>
-
-</ScrollPane>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
+                <image>
+                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
+                </image>
+            </ImageView>
+        </FXCollections>
+    </items>
+</ListView>
