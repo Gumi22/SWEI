@@ -44,8 +44,6 @@
 						</SplitPane>
 							<fx:include source="../fxml/PictureScroller.fxml"/>
 
-
-
 						</SplitPane>
 
 					</center>
