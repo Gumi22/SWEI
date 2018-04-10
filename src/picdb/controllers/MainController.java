@@ -58,12 +58,14 @@ public class MainController extends AbstractController {
             } else if (event.getDeltaY() < 0) {
                 zoomProperty.set(zoomProperty.get() / 1.1);
             }
+            scrollPane.setHvalue(scrollPane.getHvalue() + event.getDeltaY() / SelectedPicture.getBoundsInParent().getMaxX() * 2);
+            scrollPane.setVvalue(scrollPane.getVvalue() + event.getDeltaY() / SelectedPicture.getBoundsInParent().getMaxY() * 2);
         });
 
         SelectedPicture.setImage(new Image("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"));
         SelectedPicture.preserveRatioProperty().set(true);
         scrollPane.setContent(SelectedPicture);
-
+        scrollPane.setPannable(true);
         ImageInfoSplit.getItems().add(0, scrollPane);
     }
 
