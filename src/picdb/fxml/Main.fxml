@@ -8,6 +8,8 @@
 <?import javafx.stage.Stage ?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <Stage title= "Main" xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.controllers.MainController">
 	<scene>
 		<Scene width="700" height="500">
@@ -29,15 +31,10 @@
 
 					<center>
 						<SplitPane focusTraversable="true" orientation="VERTICAL" dividerPositions = "0.75">
-						<SplitPane focusTraversable="true" dividerPositions = "0.75">
+						<SplitPane fx:id="ImageInfoSplit" focusTraversable="true" dividerPositions = "0.75" style='-fx-background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");-fx-background-size: cover ;'>
 							<items>
 
-								<SplitPane focusTraversable="true" orientation="VERTICAL">
-									<items>
-										<Button text="About" onAction="#onBtnAbout" prefWidth="Infinity"/>
-									</items>
-								</SplitPane>
-
+								<!-- <ScrollPane fx:id="scrollPane"/>-->
 
 								<fx:include source="../fxml/PictureInfo.fxml"/>
 							</items>
