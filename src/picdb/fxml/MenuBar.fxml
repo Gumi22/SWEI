@@ -18,7 +18,7 @@
                 <Menu text="File">
                     <items>
                         <MenuItem text="Open"/>
-                        <MenuItem text="Synch"/>
+                        <MenuItem text="Synch" onAction="#onBtnSynch"/>
                         <SeparatorMenuItem  />
                         <MenuItem text="Exit"/>
                     </items>

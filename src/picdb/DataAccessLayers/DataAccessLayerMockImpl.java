@@ -22,7 +22,11 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
     private List<PictureModel> pictures;
     private List<PhotographerModel> photographers;
 
-    public DataAccessLayerMockImpl(){
+    private int photographerId = 1;
+    private int pictureId = 1;
+    private int cameraId = 1;
+
+    public DataAccessLayerMockImpl() {
         cameras = new ArrayList<>();
         pictures = new ArrayList<>();
         photographers = new ArrayList<>();
@@ -30,32 +34,26 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
         cameras.add(new CameraModelImpl(1234, "producer", "Make", LocalDate.now(), "notes", 10.5f, 100f));
         cameras.add(new CameraModelImpl(1, "producer1", "Make1", LocalDate.now(), "notes1", 10.1f, 101f));
 
-        photographers.add(new PhotographerModelImpl(1234, "ab", "cd", LocalDate.now(), "likes cheese"));
-        photographers.add(new PhotographerModelImpl(1, "a", "men", LocalDate.now(), "likes cheese more"));
+        try {
+            save(new PhotographerModelImpl("ab", "cd", LocalDate.now(), "likes cheese"));
+            save(new PhotographerModelImpl("a", "men", LocalDate.now(), "likes cheese more"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        //pictures.add(new PictureModelImpl("1234"));
-        //pictures.add(new PictureModelImpl("1"));
     }
 
     @Override
     public Collection<PictureModel> getPictures(String namePart, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
-        if(namePart == null && photographerModel == null && iptcModel == null && exifModel == null){
-            if(pictures.size() < 1){
-                pictures.add(new PictureModelImpl("1234"));
-                pictures.add(new PictureModelImpl("1"));
+
+        ArrayList<PictureModel> myPics = new ArrayList<>();
+        for (PictureModel pic : pictures) {
+            System.out.println(pic.getFileName());
+            if (pic.getFileName().contains(namePart != null ? namePart : "") || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))) {
+                myPics.add(pic);
             }
-            return pictures;
         }
-        else{
-            ArrayList<PictureModel> myPics = new ArrayList<>();
-            for (PictureModel pic: pictures) {
-                System.out.println(pic.getFileName());
-                if(pic.getFileName().contains(namePart != null ? namePart : "") || (pic.getIPTC() != null && pic.getIPTC().equals(iptcModel)) || (pic.getEXIF() != null && pic.getEXIF().equals(exifModel))){
-                    myPics.add(pic);
-                }
-            }
-            return myPics;
-        }
+        return myPics;
 
     }
 
@@ -63,8 +61,8 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
     @Override
     public PictureModel getPicture(int i) throws Exception {
-        for (PictureModel pic: pictures) {
-            if(pic.getID() == i){
+        for (PictureModel pic : pictures) {
+            if (pic.getID() == i) {
                 return pic;
             }
         }
@@ -73,16 +71,20 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
+        if(pictureModel.getID() <= 0){
+            pictureModel.setID(pictureId);
+            pictureId ++;
+        }
         pictures.add(pictureModel);
     }
 
     @Override
     public void deletePicture(int id) throws Exception {
-        if(id < 0){
+        if (id < 0) {
             pictures.clear();
-        }else{
+        } else {
             for (int i = 0; i < pictures.size(); i++) {
-                if(pictures.get(i).getID() == id){
+                if (pictures.get(i).getID() == id) {
                     pictures.remove(i);
                     //break;
                 }
@@ -98,8 +100,11 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
     @Override
     public PhotographerModel getPhotographer(int i) throws Exception {
-        for (PhotographerModel phot: photographers) {
-            if(phot.getID() == i){
+        if(i == 1234){
+            return new PhotographerModelImpl("a", "men", LocalDate.now(), "likes cheese more");
+        }
+        for (PhotographerModel phot : photographers) {
+            if (phot.getID() == i) {
                 return phot;
             }
         }
@@ -108,13 +113,17 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
 
     @Override
     public void save(PhotographerModel photographerModel) throws Exception {
+        if(photographerModel.getID() <= 0){
+            photographerModel.setID(photographerId);
+            photographerId ++;
+        }
         photographers.add(photographerModel);
     }
 
     @Override
     public void deletePhotographer(int id) throws Exception {
         for (int i = 0; i < photographers.size(); i++) {
-            if(photographers.get(i).getID() == id){
+            if (photographers.get(i).getID() == id) {
                 photographers.remove(i);
             }
         }
@@ -128,8 +137,8 @@ public class DataAccessLayerMockImpl implements DataAccessLayer {
     @Override
     public CameraModel getCamera(int i) {
 
-        for (CameraModel cam: cameras) {
-            if(cam.getID() == i){
+        for (CameraModel cam : cameras) {
+            if (cam.getID() == i) {
                 return cam;
             }
         }

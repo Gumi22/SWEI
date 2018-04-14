@@ -16,8 +16,7 @@ public class PhotographerModelImpl implements PhotographerModel {
     private String notes;
 
     public PhotographerModelImpl(){}
-    public PhotographerModelImpl(int i, String name, String surname, LocalDate bDay, String note){
-        this.id = i;
+    public PhotographerModelImpl(String name, String surname, LocalDate bDay, String note){
         this.firstName = name;
         this.lastName = surname;
         this.birthDay = bDay;

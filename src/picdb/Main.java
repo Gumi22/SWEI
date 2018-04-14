@@ -23,11 +23,6 @@ public class Main extends Application implements BIF.SWE2.interfaces.Application
 	}
 	
 	public static void main(String[] args) {
-		/*try {
-			DataAccessLayerImpl.getInstance().getPictures("lol",null,null,null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 		launch(args);
 	}
 

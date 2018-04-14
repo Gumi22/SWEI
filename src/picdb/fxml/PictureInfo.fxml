@@ -38,13 +38,13 @@
                             <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
                             <HBox>
                                 <Text text="Copyright Notice:" />
-                                <ChoiceBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                                <ComboBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity" onMouseClicked="#onIPTCCopyrightListLoad" editable="true">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Not Set"/>
                                         </FXCollections>
                                     </items>
-                                </ChoiceBox>
+                                </ComboBox>
                             </HBox>
                             <HBox>
                                 <Region HBox.hgrow="SOMETIMES"/>

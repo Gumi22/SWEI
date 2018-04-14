@@ -1,20 +1,16 @@
 package picdb.controllers;
 
-import java.awt.*;
-import java.io.Console;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import BIF.SWE2.interfaces.BusinessLayer;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuBar;
@@ -22,9 +18,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
-import javafx.stage.Stage;
+import picdb.BusinessLayerImpl;
 import picdb.models.IPTCModelImpl;
 import picdb.presentationmodels.IPTCPresentationModelImpl;
+import picdb.presentationmodels.PictureListPresentationModelImpl;
 
 public class MainController extends AbstractController {
 
@@ -32,11 +29,13 @@ public class MainController extends AbstractController {
     public MenuBar menuBarLeft;
     public TabPane tabs;
     public MenuBar menuBarRight;
-    public ChoiceBox IPTCCopyrighNotices;
+    public ComboBox IPTCCopyrighNotices;
     public SplitPane ImageInfoSplit = new SplitPane();
     final DoubleProperty zoomProperty = new SimpleDoubleProperty(100);
     public ImageView SelectedPicture = new ImageView();
     public ScrollPane scrollPane = new ScrollPane();
+    public ListView pictureScroller = new ListView();
+    private BusinessLayer BL = BusinessLayerImpl.getInstance("Pictures", false); //E:/Bilder/Desktophintergrund/FHungergames
 
 
     @FXML
@@ -47,6 +46,9 @@ public class MainController extends AbstractController {
 	@Override
     public void initialize(java.net.URL arg0, ResourceBundle arg1) {
         super.initialize(arg0,arg1);
+
+        sync();
+
         zoomProperty.addListener(arg01 -> {
             SelectedPicture.setFitWidth(zoomProperty.get() * 4);
             SelectedPicture.setFitHeight(zoomProperty.get() * 3);
@@ -67,14 +69,32 @@ public class MainController extends AbstractController {
         scrollPane.setContent(SelectedPicture);
         scrollPane.setPannable(true);
         ImageInfoSplit.getItems().add(0, scrollPane);
+
+        try {
+            pictureScroller.setItems(FXCollections.observableList((List)new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null)).getImages()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    private void onIPTCCopyrightListLoad(ActionEvent event) throws IOException {
+    private void onIPTCCopyrightListLoad(Event event) throws IOException {
         ObservableList obList = FXCollections.observableList((List)new IPTCPresentationModelImpl(new IPTCModelImpl()).getCopyrightNotices());
         obList.add("Not Set");
         IPTCCopyrighNotices.getItems().clear();
         IPTCCopyrighNotices.setItems(obList);
+    }
+
+    public void onBtnSynch(ActionEvent actionEvent) {
+        sync();
+    }
+
+    private void sync(){
+        try{
+            BL.sync();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

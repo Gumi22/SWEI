@@ -27,12 +27,11 @@ public class BusinessLayerImpl implements BusinessLayer {
     private static DataAccessLayer myDAL;
     private static boolean testingMode = true;
     private static String path;
-    private int count = 0;
 
-    private BusinessLayerImpl(){
+    private BusinessLayerImpl() {
     }
 
-    public static BusinessLayerImpl getInstance (String path, boolean Testing) {
+    public static BusinessLayerImpl getInstance(String path, boolean Testing) {
         if (BusinessLayerImpl.instance == null) {
             BusinessLayerImpl.instance = new BusinessLayerImpl();
         }
@@ -43,11 +42,6 @@ public class BusinessLayerImpl implements BusinessLayer {
         myDAL = DALFactory.getInstance(!testingMode).getDAL();
 
         return BusinessLayerImpl.instance;
-    }
-
-    private int getCurrentCount(){
-        count ++;
-        return count;
     }
 
     public static boolean isTestingMode() {
@@ -66,8 +60,8 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public Collection<PictureModel> getPictures(String s, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
-        Collection<PictureModel> pics = myDAL.getPictures(s ,photographerModel,iptcModel,exifModel);
-        if(testingMode && s == "blume"){
+        Collection<PictureModel> pics = myDAL.getPictures(s, photographerModel, iptcModel, exifModel);
+        if (testingMode && s == "blume") {
             pics.add(new PictureModelImpl());
         }
         return pics;
@@ -80,7 +74,6 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
-        pictureModel.setID(getCurrentCount());
         myDAL.save(pictureModel);
     }
 
@@ -91,19 +84,38 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void sync() throws Exception {
-        if(testingMode){
-            myDAL.deletePicture(-1); //clear all pictures
+        Collection<PictureModel> DBPics = myDAL.getPictures(null, null, null, null);
 
-            File folder = new File(path);
-            System.out.println(folder.getAbsolutePath());
-            File[] listOfFiles = folder.listFiles();
+        File folder = new File(path);
+        //System.out.println(folder.getAbsolutePath());
+        File[] listOfFiles = folder.listFiles();
 
-            for (File listOfFile : listOfFiles) {
-                if (listOfFile.isFile()) {
-                    myDAL.save(new PictureModelImpl(getCurrentCount(), listOfFile.getName()));
-                } else if (listOfFile.isDirectory()) {
-                    //eventually rekursive stategy? :D but for now do nothing
+        //Add new Pictures
+        for (File listOfFile : listOfFiles) {
+            boolean alreadySaved = false;
+            if (listOfFile.isFile()) {
+                for (PictureModel pm : DBPics) {
+                    if (pm.getFileName().equals(listOfFile.getName())) {
+                        alreadySaved = true;
+                    }
                 }
+                if (!alreadySaved) {
+                    save(new PictureModelImpl(listOfFile.getName()));
+                }
+            }
+        }
+
+        //Delete old Pictures in DB
+        DBPics = myDAL.getPictures(null, null, null, null);
+        for (PictureModel pm : DBPics) {
+            boolean onDisk = false;
+            for (File listOfFile : listOfFiles) {
+                if (pm.getFileName().equals(listOfFile.getName())) {
+                    onDisk = true;
+                }
+            }
+            if (!onDisk) {
+                myDAL.deletePicture(pm.getID());
             }
         }
     }
@@ -120,7 +132,6 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void save(PhotographerModel photographerModel) throws Exception {
-        photographerModel.setID(getCurrentCount());
         myDAL.save(photographerModel);
     }
 
@@ -131,7 +142,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public IPTCModel extractIPTC(String s) throws Exception {
-        if(testingMode){
+        if (testingMode) {
             IPTCModelImpl iptc = new IPTCModelImpl();
             iptc.setCaption("lel");
             iptc.setHeadline("test");
@@ -139,29 +150,27 @@ public class BusinessLayerImpl implements BusinessLayer {
             iptc.setByLine("Me");
             iptc.setKeywords("lol, Me, test, witzig");
             Collection<PictureModel> pics = myDAL.getPictures(s, null, null, null);
-            if(pics.size() == 1){
-                return iptc ;
-            }else{
+            if (pics.size() == 1) {
+                return iptc;
+            } else {
                 throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);
             }
             //return iptc;
-        }
-        else return null;
+        } else return null;
     }
 
     @Override
     public EXIFModel extractEXIF(String s) throws Exception {
-        if(testingMode){
+        if (testingMode) {
             EXIFModelImpl exif = new EXIFModelImpl("123", 1f, 1f, 1f, true, ExposurePrograms.LandscapeMode);
             Collection<PictureModel> pics = myDAL.getPictures(s, null, null, null);
-            if(pics.size() >= 1){
-                return exif ;
-            }else{
+            if (pics.size() >= 1) {
+                return exif;
+            } else {
                 throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);
             }
             //return exif;
-        }
-        else return null;
+        } else return null;
     }
 
     @Override

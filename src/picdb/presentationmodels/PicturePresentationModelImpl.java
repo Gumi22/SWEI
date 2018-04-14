@@ -21,6 +21,10 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
         pic = new PictureModelImpl("lel.jpg");
     }
 
+    public PicturePresentationModelImpl(PictureModel pi){
+        pic = (pi != null)? pi : new PictureModelImpl("lel.jpg");
+    }
+
     public PicturePresentationModelImpl(PictureModel pi, IPTCPresentationModel i, EXIFPresentationModel e,
                                         CameraPresentationModel c, PhotographerPresentationModel ph){
         pic = (pi != null)? pi : new PictureModelImpl("lel.jpg");

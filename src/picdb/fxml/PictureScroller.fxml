@@ -13,7 +13,9 @@
 <ListView xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="picdb.controllers.MainController"
-          orientation="HORIZONTAL">
+          orientation="HORIZONTAL"
+          fx:id="pictureScroller"
+          minHeight="150">
     <items>
         <FXCollections fx:factory="observableArrayList">
             <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">

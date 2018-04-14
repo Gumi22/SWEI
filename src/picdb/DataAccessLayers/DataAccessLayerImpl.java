@@ -19,13 +19,23 @@ import java.util.Collection;
  */
 public class DataAccessLayerImpl implements DataAccessLayer {
 
+    private Connection con;
+    private int conCounter = 0;
 
     public DataAccessLayerImpl(){
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Where is your PostgreSQL JDBC Driver? "
+                    + "Include in your library path!");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Collection<PictureModel> getPictures(String namePart, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
         ArrayList<PictureModel> myPics = new ArrayList<PictureModel>();
+
         boolean namePartSet = false;
         boolean photModelIdSet = false;
         boolean iptcModelSet = false;
@@ -36,8 +46,8 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                 "pic.iptccopyright, pic.iptcheadline, pic.iptccaption, pic.exifaperture, " +
                 "pic.exifexposuretime, pic.exifiso, pic.exifflash, pic.exifexposureprog, " +
                 "phot.id, phot.name, phot.surname, phot.birthdate, phot.notes, cam.model " +
-                "FROM picture pic JOIN photographer phot ON pic.photographerid = phot.id " +
-                "JOIN camera cam ON pic.cameraid = cam.id WHERE ";
+                "FROM picture pic LEFT JOIN photographer phot ON pic.photographerid = phot.id " +
+                "LEFT JOIN camera cam ON pic.cameraid = cam.id WHERE ";
 
         if(namePart != null && !namePart.isEmpty()){
             selectSQL += "concat_ws(' ', phot.name::text, phot.surname::text) LIKE ? "; //? = namePart
@@ -124,41 +134,33 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             rs = preparedStatement.executeQuery();
         }
 
-        //SELECT pic.id, pic.filename, pic.cameraid, pic.iptckeywords, " +
-        //"pic.iptccopyright, pic.iptcheadline, pic.iptccaption, pic.exifaperture, " +
-          //      "pic.exifexposuretime, pic.exifiso, pic.exifflash, pic.exifexposureprog, " +
-            //    "phot.id, phot.name, phot.surname, phot.birthdate, phot.notes, cam.model " +
-
         while(rs.next()){
             EXIFModelImpl exif = new EXIFModelImpl();
-            exif.setExposureProgram(ExposurePrograms.values()[rs.getInt("pic.exifexposureprog")]);
-            exif.setExposureTime(rs.getDouble("pic.exifexposuretime"));
-            exif.setFlash(rs.getBoolean("pic.exifflash"));
-            exif.setFNumber(rs.getDouble("pic.exifaperture"));
-            exif.setISOValue(rs.getDouble("pic.exifiso"));
-            exif.setMake(rs.getString("cam.model"));
+            exif.setExposureProgram(ExposurePrograms.values()[rs.getInt("exifexposureprog")]);
+            exif.setExposureTime(rs.getDouble("exifexposuretime"));
+            exif.setFlash(rs.getBoolean("exifflash"));
+            exif.setFNumber(rs.getDouble("exifaperture"));
+            exif.setISOValue(rs.getDouble("exifiso"));
+            exif.setMake(rs.getString("model"));
 
             IPTCModelImpl iptc = new IPTCModelImpl();
-            iptc.setByLine(rs.getString("phot.name") + " " + rs.getString("phot.surname"));
-            iptc.setCaption(rs.getString("pic.iptccaption"));
-            iptc.setCopyrightNotice(rs.getString("pic.iptccopyright"));
-            iptc.setHeadline(rs.getString("pic.iptcheadline"));
-            iptc.setKeywords(rs.getString("pic.iptckeywords"));
+            iptc.setByLine(rs.getString("name") + " " + rs.getString("surname"));
+            iptc.setCaption(rs.getString("iptccaption"));
+            iptc.setCopyrightNotice(rs.getString("iptccopyright"));
+            iptc.setHeadline(rs.getString("iptcheadline"));
+            iptc.setKeywords(rs.getString("iptckeywords"));
 
-            CameraModelImpl cam = (CameraModelImpl) getCamera(rs.getInt("pic.cameraid"));
+            CameraModelImpl cam = (CameraModelImpl) getCamera(rs.getInt("cameraid"));
 
             PictureModelImpl pic = new PictureModelImpl();
             pic.setCamera(cam);
             pic.setEXIF(exif);
             pic.setIPTC(iptc);
-            pic.setFileName(rs.getString("pic.filename"));
-            pic.setID(rs.getInt("pic.id"));
+            pic.setFileName(rs.getString("filename"));
+            pic.setID(rs.getInt("id"));
 
             myPics.add(pic);
         }
-
-        JOptionPane.showMessageDialog(new JFrame(), selectSQL);
-
 
         return myPics;
     }
@@ -182,12 +184,30 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public void save(PictureModel pictureModel) throws Exception {
-        //ToDo: Do this
+        if(pictureModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new picture
+            String insertSQL = "INSERT INTO picture (id, filename, cameraid, iptckeywords, iptccopyright, iptcheadline, iptccaption, " +
+                    "exifaperture, exifexposuretime, exifiso, exifflash, exifexposureprog, photographerid)" +
+                    " VALUES (DEFAULT, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
+            preparedStatement.setString(1, pictureModel.getFileName());
+            // execute insert SQL stetement
+            preparedStatement.executeUpdate();
+        }else{ //ToDo: This!!!!
+            /*String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
+            PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
+            //preparedStatement.setString(1, photographerModel.getFirstName());
+            //preparedStatement.setString(2, photographerModel.getLastName());
+            //preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+           // preparedStatement.setString(4, photographerModel.getNotes());
+            //preparedStatement.setInt(4, photographerModel.getID());
+            // execute update SQL stetement
+            preparedStatement.executeUpdate();*/
+        }
     }
 
     @Override
     public void deletePicture(int i) throws Exception {
-
+        //ToDo: This!!!!
     }
 
     @Override
@@ -210,7 +230,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setString(2, photographerModel.getLastName());
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
             preparedStatement.setString(4, photographerModel.getNotes());
-            // execute delete SQL stetement
+            // execute insert SQL stetement
             preparedStatement.executeUpdate();
         }else{
             String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
@@ -220,10 +240,11 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
             preparedStatement.setString(4, photographerModel.getNotes());
             preparedStatement.setInt(4, photographerModel.getID());
-            // execute delete SQL stetement
+            // execute update SQL stetement
             preparedStatement.executeUpdate();
         }
     }
+
 
     @Override
     public void deletePhotographer(int i) throws Exception {
@@ -253,7 +274,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         try {
             preparedStatement = openConnection().prepareStatement(selectSQL);
             preparedStatement.setInt(1, i);
-            rs = preparedStatement.executeQuery(selectSQL);
+            rs = preparedStatement.executeQuery();
 
             if(rs.next()){
                 cam.setMake(rs.getString("model"));
@@ -274,18 +295,17 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         return cam;
     }
 
-    private Connection openConnection() throws Exception{
+    private Connection openConnection() throws Exception{ //ToDo: get a more efficient way of getting a connection that refreshes with every new command but nor every new statement
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
-                    "postgres");
+            if(con == null || conCounter >= 100){ // reset connection only every 100th try, this takes too long ^^
+                con = DriverManager.getConnection(
+                        "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
+                        "postgres");
+                conCounter = 0;
+            }
+            conCounter ++;
             return con;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Where is your PostgreSQL JDBC Driver? "
-                    + "Include in your library path!");
-            e.printStackTrace();
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         throw new RuntimeException("Couldn't get a connection to Database");

@@ -23,11 +23,6 @@ public class PictureModelImpl implements PictureModel {
         this.fileName = fileName;
     }
 
-    public PictureModelImpl(int id, String fileName){
-        this.fileName = fileName;
-        this.id = id;
-    }
-
     @Override
     public int getID() {
         return id;
