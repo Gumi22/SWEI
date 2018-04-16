@@ -50,5 +50,10 @@ public class UEB5Impl implements UEB5 {
 	@Override
 	public void testSetup(String picturePath) {
 		path = picturePath;
+		try {
+			BusinessLayerImpl.getInstance(path, true).sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

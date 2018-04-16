@@ -6,6 +6,7 @@ import BIF.SWE2.interfaces.UEB3;
 import BIF.SWE2.interfaces.presentationmodels.SearchPresentationModel;
 import picdb.BusinessLayerImpl;
 import picdb.DALFactory;
+import picdb.DataAccessLayers.DataAccessLayerImpl;
 import picdb.presentationmodels.SearchPresentationModelImpl;
 
 public class UEB3Impl implements UEB3 {
@@ -41,5 +42,10 @@ public class UEB3Impl implements UEB3 {
 	@Override
 	public void testSetup(String picturePath) {
 		path = picturePath;
+		try {
+			BusinessLayerImpl.getInstance(path, true).sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
