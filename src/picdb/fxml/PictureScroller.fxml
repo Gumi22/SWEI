@@ -15,7 +15,8 @@
           fx:controller="picdb.controllers.MainController"
           orientation="HORIZONTAL"
           fx:id="pictureScroller"
-          minHeight="150">
+          prefHeight="150"
+          minHeight="50">
     <items>
         <FXCollections fx:factory="observableArrayList">
             <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">

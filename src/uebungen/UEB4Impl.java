@@ -66,5 +66,10 @@ public class UEB4Impl implements UEB4 {
 	@Override
 	public void testSetup(String picturePath) {
 		path = picturePath;
+		try {
+			BusinessLayerImpl.getInstance(path, true).sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

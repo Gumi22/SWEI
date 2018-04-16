@@ -4,6 +4,8 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.models.PictureModel;
 import BIF.SWE2.interfaces.presentationmodels.PictureListPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
+import javafx.scene.Parent;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import picdb.BusinessLayerImpl;
@@ -22,12 +24,12 @@ public class PictureListPresentationModelImpl implements PictureListPresentation
 
     public PictureListPresentationModelImpl(){}
 
-    public PictureListPresentationModelImpl(Collection<PictureModel> l){
+    public PictureListPresentationModelImpl(Collection<PictureModel> l, ListView Parent){
         for (PictureModel pm: l) {
             ImageView imgV = new ImageView(new Image("file:" + path + "/" + pm.getFileName()));
             imgV.setPreserveRatio(true);
             imgV.setFocusTraversable(true);
-            imgV.setFitHeight(128);
+            imgV.fitHeightProperty().bind(Parent.heightProperty().subtract( 30));
             list.add(imgV);
         }
     }

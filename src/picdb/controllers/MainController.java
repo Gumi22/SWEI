@@ -71,7 +71,7 @@ public class MainController extends AbstractController {
         ImageInfoSplit.getItems().add(0, scrollPane);
 
         try {
-            pictureScroller.setItems(FXCollections.observableList((List)new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null)).getImages()));
+            pictureScroller.setItems(FXCollections.observableList((List)new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null), pictureScroller).getImages()));
         } catch (Exception e) {
             e.printStackTrace();
         }
