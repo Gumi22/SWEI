@@ -2,20 +2,19 @@
 	
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.*?>
 
 <?import javafx.stage.Stage ?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<Stage title= "Main" xmlns:fx="http://javafx.com/fxml" fx:controller="picdb.controllers.MainController">
+<Stage title= "Main"
+	   xmlns="http://javafx.com/javafx"
+	   xmlns:fx="http://javafx.com/fxml"
+	   fx:controller="picdb.controllers.MainController">
 	<scene>
 		<Scene width="700" height="500">
 			<root>
 
-				<BorderPane>
+				<BorderPane fx:id="mainBorderPane">
 
 					<top>
 						<VBox>
@@ -33,9 +32,7 @@
 						<SplitPane focusTraversable="true" orientation="VERTICAL" dividerPositions = "0.75">
 						<SplitPane fx:id="ImageInfoSplit" focusTraversable="true" dividerPositions = "0.75" style='-fx-background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");-fx-background-size: cover ;'>
 							<items>
-
-								<!-- <ScrollPane fx:id="scrollPane"/>-->
-
+								<fx:include source="../fxml/PictureView.fxml"/>
 								<fx:include source="../fxml/PictureInfo.fxml"/>
 							</items>
 						</SplitPane>
@@ -47,7 +44,6 @@
 
 
 					<bottom>
-						<Label fx:id="lbStatus" />
 					</bottom>
 
 

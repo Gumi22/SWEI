@@ -8,6 +8,7 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -18,10 +19,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.BorderPane;
 import picdb.BusinessLayerImpl;
 import picdb.models.IPTCModelImpl;
 import picdb.presentationmodels.IPTCPresentationModelImpl;
 import picdb.presentationmodels.PictureListPresentationModelImpl;
+import picdb.presentationmodels.PicturePresentationModelImpl;
 
 public class MainController extends AbstractController {
 
@@ -31,10 +34,9 @@ public class MainController extends AbstractController {
     public MenuBar menuBarRight;
     public ComboBox IPTCCopyrighNotices;
     public SplitPane ImageInfoSplit = new SplitPane();
-    final DoubleProperty zoomProperty = new SimpleDoubleProperty(100);
-    public ImageView SelectedPicture = new ImageView();
-    public ScrollPane scrollPane = new ScrollPane();
     public ListView pictureScroller = new ListView();
+    @FXML
+    public BorderPane mainBorderPane;
     private BusinessLayer BL = BusinessLayerImpl.getInstance("Pictures", false); //E:/Bilder/Desktophintergrund/FHungergames
 
 
@@ -49,32 +51,16 @@ public class MainController extends AbstractController {
 
         sync();
 
-        zoomProperty.addListener(arg01 -> {
-            SelectedPicture.setFitWidth(zoomProperty.get() * 4);
-            SelectedPicture.setFitHeight(zoomProperty.get() * 3);
-        });
-
-        scrollPane.addEventFilter(ScrollEvent.ANY, event -> {
-            if (event.getDeltaY() > 0) {
-                zoomProperty.set(zoomProperty.get() * 1.1);
-            } else if (event.getDeltaY() < 0) {
-                zoomProperty.set(zoomProperty.get() / 1.1);
-            }
-            scrollPane.setHvalue(scrollPane.getHvalue() + event.getDeltaY() / SelectedPicture.getBoundsInParent().getMaxX() * 2);
-            scrollPane.setVvalue(scrollPane.getVvalue() + event.getDeltaY() / SelectedPicture.getBoundsInParent().getMaxY() * 2);
-        });
-
-        SelectedPicture.setImage(new Image("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"));
-        SelectedPicture.preserveRatioProperty().set(true);
-        scrollPane.setContent(SelectedPicture);
-        scrollPane.setPannable(true);
-        ImageInfoSplit.getItems().add(0, scrollPane);
 
         try {
             pictureScroller.setItems(FXCollections.observableList((List)new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null), pictureScroller).getImages()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        pictureScroller.getSelectionModel().getSelectedItems()
+                .addListener((ListChangeListener<String>) arg01 -> System.out.println("Selection Changed!"));
+
     }
 
     @FXML

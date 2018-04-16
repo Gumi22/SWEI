@@ -190,24 +190,28 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                     " VALUES (DEFAULT, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
             PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
             preparedStatement.setString(1, pictureModel.getFileName());
-            // execute insert SQL stetement
+            // execute insert SQL statement
             preparedStatement.executeUpdate();
         }else{ //ToDo: This!!!!
-            /*String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
+            /*String updateSQL = "UPDATE picture SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
             PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
             //preparedStatement.setString(1, photographerModel.getFirstName());
             //preparedStatement.setString(2, photographerModel.getLastName());
             //preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
            // preparedStatement.setString(4, photographerModel.getNotes());
             //preparedStatement.setInt(4, photographerModel.getID());
-            // execute update SQL stetement
+            // execute update SQL statement
             preparedStatement.executeUpdate();*/
         }
     }
 
     @Override
     public void deletePicture(int i) throws Exception {
-        //ToDo: This!!!!
+        String deleteSQL = "DELETE FROM picture WHERE id = ?";
+        PreparedStatement preparedStatement = openConnection().prepareStatement(deleteSQL);
+        preparedStatement.setInt(1, i);
+        // execute delete SQL statement
+        preparedStatement.executeUpdate();
     }
 
     @Override
