@@ -191,6 +191,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                     " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
             preparedStatement.setString(1, pictureModel.getFileName());
+<<<<<<< HEAD
             //using setobject from here on out because we can set null values without exception
             preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID());
             preparedStatement.setObject(3, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getKeywords());
@@ -228,12 +229,30 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             // execute update SQL statement
             preparedStatement.executeUpdate();
 
+=======
+            // execute insert SQL statement
+            preparedStatement.executeUpdate();
+        }else{ //ToDo: This!!!!
+            /*String updateSQL = "UPDATE picture SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
+            PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
+            //preparedStatement.setString(1, photographerModel.getFirstName());
+            //preparedStatement.setString(2, photographerModel.getLastName());
+            //preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+           // preparedStatement.setString(4, photographerModel.getNotes());
+            //preparedStatement.setInt(4, photographerModel.getID());
+            // execute update SQL statement
+            preparedStatement.executeUpdate();*/
+>>>>>>> fa35d54976c0c3e4589cf125b0ead1439b1c742c
         }
     }
 
     @Override
     public void deletePicture(int i) throws Exception {
-        //ToDo: This!!!!
+        String deleteSQL = "DELETE FROM picture WHERE id = ?";
+        PreparedStatement preparedStatement = openConnection().prepareStatement(deleteSQL);
+        preparedStatement.setInt(1, i);
+        // execute delete SQL statement
+        preparedStatement.executeUpdate();
     }
 
     @Override

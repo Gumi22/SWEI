@@ -16,7 +16,7 @@
           orientation="HORIZONTAL"
           fx:id="pictureScroller"
           prefHeight="150"
-          minHeight="50">
+          minHeight="80">
     <items>
         <FXCollections fx:factory="observableArrayList">
             <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
