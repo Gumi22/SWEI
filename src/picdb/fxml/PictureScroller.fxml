@@ -19,51 +19,7 @@
           minHeight="80">
     <items>
         <FXCollections fx:factory="observableArrayList">
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" focusTraversable="false">
-                <image>
-                    <Image url="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png"/>
-                </image>
-            </ImageView>
+
         </FXCollections>
     </items>
 </ListView>

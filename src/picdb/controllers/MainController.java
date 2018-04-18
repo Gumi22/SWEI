@@ -59,7 +59,7 @@ public class MainController extends AbstractController {
         }
 
         pictureScroller.getSelectionModel().getSelectedItems()
-                .addListener((ListChangeListener<String>) arg01 -> System.out.println("Selection Changed!"));
+                .addListener((ListChangeListener<String>) arg01 -> changeSelectedPicture());
 
     }
 
@@ -81,6 +81,11 @@ public class MainController extends AbstractController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeSelectedPicture(){
+        System.out.println("Selection Changed!");
+        pictureScroller.getSelectionModel().getSelectedItems().iterator().next();
     }
 
 }

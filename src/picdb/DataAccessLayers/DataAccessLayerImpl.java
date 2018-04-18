@@ -3,10 +3,7 @@ package picdb.DataAccessLayers;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
-import picdb.models.CameraModelImpl;
-import picdb.models.EXIFModelImpl;
-import picdb.models.IPTCModelImpl;
-import picdb.models.PictureModelImpl;
+import picdb.models.*;
 import BIF.SWE2.interfaces.models.PictureModel;
 
 import javax.swing.*;
@@ -170,14 +167,23 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
         String selectSQL = "SELECT id, filename, cameraid, iptckeywords, " +
                 "iptccopyright, iptcheadline, iptccaption, exifaperture, " +
-                "exifexposuretime, exifiso, exifflash, exifexposureprog FROM picture WHERE id = ?";
+                "exifexposuretime, exifiso, exifflash, exifexposureprog, " +
+                "photographerid FROM picture WHERE id = ?";
         PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
         preparedStatement.setInt(1, i);
         ResultSet rs = preparedStatement.executeQuery(selectSQL);
 
-        rs.next();
-        PictureModelImpl pic = new PictureModelImpl();
-        //ToDo: set all values of models
+        PictureModelImpl pic = null;
+        if(rs.next()) {
+            pic = new PictureModelImpl();
+            pic.setID(i);
+            pic.setFileName(rs.getString("filename"));
+            pic.setCamera(getCamera(rs.getInt("cameraid")));
+            //ToDo: set all values of models
+            pic.setIPTC(new IPTCModelImpl());
+            pic.setEXIF(new EXIFModelImpl());
+            pic.setPhotographer(new PhotographerModelImpl());
+        }
 
         return pic;
     }
@@ -258,7 +264,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setString(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
-            preparedStatement.setString(4, photographerModel.getNotes());
+            preparedStatement.setObject(4, photographerModel.getNotes());
             // execute insert SQL stetement
             preparedStatement.executeUpdate();
         }else{
@@ -267,7 +273,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setString(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
             preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
-            preparedStatement.setString(4, photographerModel.getNotes());
+            preparedStatement.setObject(4, photographerModel.getNotes());
             preparedStatement.setInt(4, photographerModel.getID());
             // execute update SQL stetement
             preparedStatement.executeUpdate();
