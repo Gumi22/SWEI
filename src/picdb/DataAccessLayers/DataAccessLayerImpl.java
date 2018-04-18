@@ -183,25 +183,51 @@ public class DataAccessLayerImpl implements DataAccessLayer {
     }
 
     @Override
-    public void save(PictureModel pictureModel) throws Exception {
+    public void save(PictureModel pictureModel1) throws Exception {
+        PictureModelImpl pictureModel = (PictureModelImpl) pictureModel1;
         if(pictureModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new picture
             String insertSQL = "INSERT INTO picture (id, filename, cameraid, iptckeywords, iptccopyright, iptcheadline, iptccaption, " +
                     "exifaperture, exifexposuretime, exifiso, exifflash, exifexposureprog, photographerid)" +
-                    " VALUES (DEFAULT, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+                    " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
             preparedStatement.setString(1, pictureModel.getFileName());
-            // execute insert SQL stetement
+            //using setobject from here on out because we can set null values without exception
+            preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID());
+            preparedStatement.setObject(3, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getKeywords());
+            preparedStatement.setObject(4, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getCopyrightNotice());
+            preparedStatement.setObject(5, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getHeadline());
+            preparedStatement.setObject(6, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getCaption());
+            preparedStatement.setObject(7, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFNumber());
+            preparedStatement.setObject(8, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureTime());
+            preparedStatement.setObject(9, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getISOValue());
+            preparedStatement.setObject(10, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFlash());
+            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram());
+            preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
+            // execute insert SQL statement
             preparedStatement.executeUpdate();
         }else{ //ToDo: This!!!!
-            /*String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
+
+            String updateSQL = "UPDATE picture SET filename = ?, cameraid = ?, iptckeywords = ?, iptccopyright = ?, iptcheadline = ?, iptccaption = ?, " +
+                    "exifaperture = ?, exifexposuretime = ?, exifiso = ?, exifflash = ?, exifexposureprog = ?, photographerid = ? WHERE id = ?";
             PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
-            //preparedStatement.setString(1, photographerModel.getFirstName());
-            //preparedStatement.setString(2, photographerModel.getLastName());
-            //preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
-           // preparedStatement.setString(4, photographerModel.getNotes());
-            //preparedStatement.setInt(4, photographerModel.getID());
-            // execute update SQL stetement
-            preparedStatement.executeUpdate();*/
+            preparedStatement.setString(1, pictureModel.getFileName());
+            //using setobject from here on out because we can set null values without exception
+            preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID());
+            preparedStatement.setObject(3, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getKeywords());
+            preparedStatement.setObject(4, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getCopyrightNotice());
+            preparedStatement.setObject(5, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getHeadline());
+            preparedStatement.setObject(6, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getCaption());
+            preparedStatement.setObject(7, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFNumber());
+            preparedStatement.setObject(8, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureTime());
+            preparedStatement.setObject(9, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getISOValue());
+            preparedStatement.setObject(10, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFlash());
+            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram());
+            preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
+            //set id:
+            preparedStatement.setInt(13, pictureModel.getID());
+            // execute update SQL statement
+            preparedStatement.executeUpdate();
+
         }
     }
 
