@@ -11,7 +11,7 @@
 
 <TabPane fx:id="tabs" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
-         fx:controller="picdb.controllers.MainController"
+         fx:controller="picdb.controllers.PictureInfoController"
          minWidth="150"
          prefWidth="200"
          tabClosingPolicy="UNAVAILABLE">

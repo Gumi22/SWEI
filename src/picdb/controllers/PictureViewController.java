@@ -1,20 +1,15 @@
 package picdb.controllers;
 
+import BIF.SWE2.interfaces.models.PictureModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.FXCollections;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
-import picdb.presentationmodels.PictureListPresentationModelImpl;
-import picdb.presentationmodels.PicturePresentationModelImpl;
+import picdb.BusinessLayerImpl;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class PictureViewController extends AbstractController {
@@ -53,5 +48,7 @@ public class PictureViewController extends AbstractController {
 
     }
 
-
+    public void changePicture(String url){
+        SelectedPicture.setImage(new Image(url));
+    }
 }

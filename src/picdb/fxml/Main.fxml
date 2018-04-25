@@ -1,56 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.*?>
 
 <?import javafx.stage.Stage ?>
 
-<Stage title= "Main"
-	   xmlns="http://javafx.com/javafx"
-	   xmlns:fx="http://javafx.com/fxml"
-	   fx:controller="picdb.controllers.MainController">
-	<scene>
-		<Scene width="700" height="500">
-			<root>
+<Stage title="Main"
+       xmlns="http://javafx.com/javafx"
+       xmlns:fx="http://javafx.com/fxml"
+       fx:controller="picdb.controllers.MainController">
+    <scene>
+        <Scene width="700" height="500">
+            <root>
 
-				<BorderPane fx:id="mainBorderPane">
+                <BorderPane fx:id="mainBorderPane">
 
-					<top>
-						<VBox>
-							<children>
-								<fx:include source="../fxml/MenuBar.fxml"/>
-								<fx:include source="../fxml/Search.fxml"/>
-							</children>
-						</VBox>
+                    <top>
+                        <VBox fx:id="topBars">
+                        </VBox>
+                    </top>
 
 
-					</top>
+                    <center>
+                        <SplitPane fx:id="TopBottomSplit" focusTraversable="true" orientation="VERTICAL"
+                                   dividerPositions="0.75">
+                            <SplitPane fx:id="ImageInfoSplit" focusTraversable="true" dividerPositions="0.75"
+                                       style='-fx-background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");-fx-background-size: cover ;'>
+                            </SplitPane>
+                        </SplitPane>
+                    </center>
 
+                    <bottom>
+                    </bottom>
 
-					<center>
-						<SplitPane focusTraversable="true" orientation="VERTICAL" dividerPositions = "0.75">
-						<SplitPane fx:id="ImageInfoSplit" focusTraversable="true" dividerPositions = "0.75" style='-fx-background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");-fx-background-size: cover ;'>
-							<items>
-								<fx:include source="../fxml/PictureView.fxml"/>
-								<fx:include source="../fxml/PictureInfo.fxml"/>
-							</items>
-						</SplitPane>
-							<fx:include source="../fxml/PictureScroller.fxml"/>
+                </BorderPane>
 
-						</SplitPane>
-
-					</center>
-
-
-					<bottom>
-					</bottom>
-
-
-				</BorderPane>
-
-			</root>
-		</Scene>
-	</scene>
+            </root>
+        </Scene>
+    </scene>
 </Stage>
 

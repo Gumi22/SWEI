@@ -17,6 +17,7 @@ import java.io.File;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Created by if16b014 on 05.03.18.
@@ -61,7 +62,7 @@ public class BusinessLayerImpl implements BusinessLayer {
     @Override
     public Collection<PictureModel> getPictures(String s, PhotographerModel photographerModel, IPTCModel iptcModel, EXIFModel exifModel) throws Exception {
         Collection<PictureModel> pics = myDAL.getPictures(s, photographerModel, iptcModel, exifModel);
-        if (testingMode && s == "blume") {
+        if (testingMode && Objects.equals(s, "blume")) {
             pics.add(new PictureModelImpl());
         }
         return pics;

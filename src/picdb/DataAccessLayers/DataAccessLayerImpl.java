@@ -47,7 +47,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                 "LEFT JOIN camera cam ON pic.cameraid = cam.id WHERE ";
 
         if(namePart != null && !namePart.isEmpty()){
-            selectSQL += "concat_ws(' ', phot.name::text, phot.surname::text) LIKE ? "; //? = namePart
+            selectSQL += "pic.filename LIKE ? "; //? = namePart
             namePartSet = true;
         }
 

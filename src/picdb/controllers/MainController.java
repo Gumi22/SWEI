@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import BIF.SWE2.interfaces.BusinessLayer;
+import BIF.SWE2.interfaces.models.PictureModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
@@ -20,8 +23,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import picdb.BusinessLayerImpl;
 import picdb.models.IPTCModelImpl;
+import picdb.models.PictureModelImpl;
 import picdb.presentationmodels.IPTCPresentationModelImpl;
 import picdb.presentationmodels.PictureListPresentationModelImpl;
 import picdb.presentationmodels.PicturePresentationModelImpl;
@@ -29,63 +36,82 @@ import picdb.presentationmodels.PicturePresentationModelImpl;
 public class MainController extends AbstractController {
 
     @FXML
-    public MenuBar menuBarLeft;
-    public TabPane tabs;
-    public MenuBar menuBarRight;
-    public ComboBox IPTCCopyrighNotices;
-    public SplitPane ImageInfoSplit = new SplitPane();
-    public ListView pictureScroller = new ListView();
-    @FXML
+    public SplitPane ImageInfoSplit;
     public BorderPane mainBorderPane;
-    private BusinessLayer BL = BusinessLayerImpl.getInstance("Pictures", false); //E:/Bilder/Desktophintergrund/FHungergames
+    public SplitPane TopBottomSplit;
+    public VBox topBars;
+
+    private BusinessLayer BL; //E:/Bilder/Desktophintergrund/FHungergames
+
+    private PictureViewController PVC;
+    private PictureInfoController PIC;
+    private PictureScrollerController PSC;
+    private SearchController SC;
+    private MenuBarController MBC;
 
 
-    @FXML
-	private void onBtnAbout(ActionEvent event) throws IOException {
-        showDialog("../fxml/About.fxml", "About");
-	}
-
-	@Override
+    @Override
     public void initialize(java.net.URL arg0, ResourceBundle arg1) {
-        super.initialize(arg0,arg1);
+        super.initialize(arg0, arg1);
 
-        sync();
-
-
+        BL = BusinessLayerImpl.getInstance("Pictures", false);
+        //synch Businesslayer at startup :D
         try {
-            pictureScroller.setItems(FXCollections.observableList((List)new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null), pictureScroller).getImages()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        pictureScroller.getSelectionModel().getSelectedItems()
-                .addListener((ListChangeListener<String>) arg01 -> changeSelectedPicture());
-
-    }
-
-    @FXML
-    private void onIPTCCopyrightListLoad(Event event) throws IOException {
-        ObservableList obList = FXCollections.observableList((List)new IPTCPresentationModelImpl(new IPTCModelImpl()).getCopyrightNotices());
-        obList.add("Not Set");
-        IPTCCopyrighNotices.getItems().clear();
-        IPTCCopyrighNotices.setItems(obList);
-    }
-
-    public void onBtnSynch(ActionEvent actionEvent) {
-        sync();
-    }
-
-    private void sync(){
-        try{
             BL.sync();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        //load other controllers
+        try {
+            loadControllers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
-    public void changeSelectedPicture(){
-        System.out.println("Selection Changed!");
-        pictureScroller.getSelectionModel().getSelectedItems().iterator().next();
+    private void loadControllers() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        ScrollPane sp = fxmlLoader.load(getClass().getResource("../fxml/PictureView.fxml").openStream());
+        PVC = (PictureViewController) fxmlLoader.getController();
+        ImageInfoSplit.getItems().add(sp);
+
+        fxmlLoader = new FXMLLoader();
+        TabPane tp = fxmlLoader.load(getClass().getResource("../fxml/PictureInfo.fxml").openStream());
+        PIC = (PictureInfoController) fxmlLoader.getController();
+        ImageInfoSplit.getItems().add(tp);
+
+        fxmlLoader = new FXMLLoader();
+        ListView lv = fxmlLoader.load(getClass().getResource("../fxml/PictureScroller.fxml").openStream());
+        PSC = (PictureScrollerController) fxmlLoader.getController();
+        PSC.setBL(BL);
+        PSC.setMC(this);
+        TopBottomSplit.getItems().add(lv);
+
+        fxmlLoader = new FXMLLoader();
+        HBox hb = fxmlLoader.load(getClass().getResource("../fxml/MenuBar.fxml").openStream());
+        MBC = (MenuBarController) fxmlLoader.getController();
+        MBC.setBL(BL);
+        MBC.setMC(this);
+        topBars.getChildren().add(hb);
+
+        fxmlLoader = new FXMLLoader();
+        HBox h = fxmlLoader.load(getClass().getResource("../fxml/Search.fxml").openStream());
+        SC = (SearchController) fxmlLoader.getController();
+        topBars.getChildren().add(h);
+
+    }
+
+    public void changeSelectedPicture(ImageView next) {
+        try {
+            PVC.changePicture(next.getImage().impl_getUrl());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

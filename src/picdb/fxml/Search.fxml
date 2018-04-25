@@ -7,13 +7,14 @@
 <?import javafx.scene.image.Image?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="picdb.controllers.MainController"
+      fx:controller="picdb.controllers.SearchController"
       prefWidth="Infinity">
+
     <children>
         <StackPane focusTraversable="true" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
             <children>
-                <TextField focusTraversable="true" HBox.hgrow="ALWAYS" promptText="Search"></TextField>
-                <Button style="-fx-background-color: transparent;">
+                <TextField fx:id="searchText" HBox.hgrow="ALWAYS" promptText="Search"/>
+                <Button fx:id="searchButton" style="-fx-background-color: transparent;">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25" focusTraversable="true">
                             <image>
@@ -25,4 +26,5 @@
             </children>
         </StackPane>
     </children>
+
 </HBox>
