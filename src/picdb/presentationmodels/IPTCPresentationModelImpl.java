@@ -2,6 +2,7 @@ package picdb.presentationmodels;
 
 import BIF.SWE2.interfaces.models.IPTCModel;
 import BIF.SWE2.interfaces.presentationmodels.IPTCPresentationModel;
+import javafx.beans.property.SimpleStringProperty;
 import picdb.models.IPTCModelImpl;
 
 import java.lang.reflect.Array;
@@ -75,5 +76,9 @@ public class IPTCPresentationModelImpl implements IPTCPresentationModel {
     @Override
     public void setCaption(String s) {
         iptc.setCaption(s);
+    }
+
+    public SimpleStringProperty getKeywordsProperty() {
+        return new SimpleStringProperty(iptc.getKeywords());
     }
 }

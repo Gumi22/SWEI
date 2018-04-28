@@ -23,6 +23,10 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
 
     public PicturePresentationModelImpl(PictureModel pi){
         pic = (pi != null)? pi : new PictureModelImpl("lel.jpg");
+        iptc = new IPTCPresentationModelImpl(pi.getIPTC());
+        exif = new EXIFPresentationModelImpl(pi.getEXIF());
+        cam = new CameraPresentationModelImpl(pi.getCamera());
+        phot = new PhotographerPresentationModelImpl(new PhotographerModelImpl());
     }
 
     public PicturePresentationModelImpl(PictureModel pi, IPTCPresentationModel i, EXIFPresentationModel e,
@@ -74,4 +78,21 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
     public CameraPresentationModel getCamera() {
         return cam;
     }
+
+    public IPTCPresentationModelImpl getIPTCImpl() {
+        return (IPTCPresentationModelImpl) iptc;
+    }
+
+    public EXIFPresentationModelImpl getEXIFImpl() {
+        return (EXIFPresentationModelImpl) exif;
+    }
+
+    public PhotographerPresentationModelImpl getPhotographerImpl() {
+        return (PhotographerPresentationModelImpl) phot;
+    }
+
+    public CameraPresentationModelImpl getCameraImpl() {
+        return (CameraPresentationModelImpl) cam;
+    }
+
 }

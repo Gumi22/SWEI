@@ -35,7 +35,7 @@
                                 <TextField fx:id="IPTCByLine" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
                             </HBox>
                             <Text text="Keywords:" />
-                            <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                            <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS" onMouseClicked="#onIPTCCopyrightListLoad"/>
                             <HBox>
                                 <Text text="Copyright Notice:" />
                                 <ComboBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity" onMouseClicked="#onIPTCCopyrightListLoad" editable="true">
@@ -48,7 +48,7 @@
                             </HBox>
                             <HBox>
                                 <Region HBox.hgrow="SOMETIMES"/>
-                                <Button>Save</Button>
+                                <Button onMouseClicked="#save">Save</Button>
                             </HBox>
                         </children>
                     </VBox>

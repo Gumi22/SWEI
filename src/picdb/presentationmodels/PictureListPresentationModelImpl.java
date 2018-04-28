@@ -1,10 +1,10 @@
 package picdb.presentationmodels;
 
-import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.models.PictureModel;
 import BIF.SWE2.interfaces.presentationmodels.PictureListPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
-import javafx.scene.Parent;
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,9 +18,12 @@ import java.util.Collection;
  */
 public class PictureListPresentationModelImpl implements PictureListPresentationModel {
 
-    private Collection<PicturePresentationModel> l = new ArrayList<>();
-    private Collection<ImageView> list = new ArrayList<>();
+    private ArrayList<PicturePresentationModel> l = new ArrayList<>();
+    private ArrayList<ImageView> list = new ArrayList<>();
+    int index = 0;
     String path = BusinessLayerImpl.getPath();
+
+    private ObservableList<ImageView> obList = new ObservableListWrapper<ImageView>(list);
 
     public PictureListPresentationModelImpl(){}
 
@@ -31,12 +34,13 @@ public class PictureListPresentationModelImpl implements PictureListPresentation
             imgV.setFocusTraversable(true);
             imgV.fitHeightProperty().bind(Parent.heightProperty().subtract( 30));
             list.add(imgV);
+            this.l.add(new PicturePresentationModelImpl(pm));
         }
     }
 
     @Override
     public PicturePresentationModel getCurrentPicture() {
-        return null;
+        return l.get(index);
     }
 
     @Override
@@ -44,30 +48,60 @@ public class PictureListPresentationModelImpl implements PictureListPresentation
         return l;
     }
 
-    public Collection<ImageView> getImages(){return list;}
+    public Collection<ImageView> getImages(){return obList;}
+
+    public void setSelected(int i){
+        index = i;
+    }
 
     @Override
     public Collection<PicturePresentationModel> getPrevPictures() {
-        return null;
+        ArrayList<PicturePresentationModel> ret = new ArrayList<>();
+        try{
+            ret.add(l.get(index-1));
+            try{
+                ret.add(l.get(index-2));
+                try{
+                    ret.add(l.get(index-3));
+                }catch (Exception e){
+                }
+            }catch (Exception e){
+            }
+        }catch (Exception e) {
+        }
+        return ret;
     }
 
     @Override
     public Collection<PicturePresentationModel> getNextPictures() {
-        return null;
+        ArrayList<PicturePresentationModel> ret = new ArrayList<>();
+        try{
+            ret.add(l.get(index+1));
+            try{
+                ret.add(l.get(index+2));
+                try{
+                    ret.add(l.get(index+3));
+                }catch (Exception e){
+                }
+            }catch (Exception e){
+            }
+        }catch (Exception e) {
+        }
+        return ret;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return l.size();
     }
 
     @Override
     public int getCurrentIndex() {
-        return 0;
+        return index;
     }
 
     @Override
     public String getCurrentPictureAsString() {
-        return null;
+        return l.get(index).getDisplayName();
     }
 }

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.models.PictureModel;
+import BIF.SWE2.interfaces.presentationmodels.PicturePresentationModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -65,15 +66,17 @@ public class MainController extends AbstractController {
 
         //load other controllers
         try {
-            loadControllers();
+            loadIncludesAndControllers();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+
+
     }
 
-    private void loadControllers() throws IOException {
+    private void loadIncludesAndControllers() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         ScrollPane sp = fxmlLoader.load(getClass().getResource("../fxml/PictureView.fxml").openStream());
@@ -88,8 +91,8 @@ public class MainController extends AbstractController {
         fxmlLoader = new FXMLLoader();
         ListView lv = fxmlLoader.load(getClass().getResource("../fxml/PictureScroller.fxml").openStream());
         PSC = (PictureScrollerController) fxmlLoader.getController();
-        PSC.setBL(BL);
         PSC.setMC(this);
+        PSC.setBL(BL);
         TopBottomSplit.getItems().add(lv);
 
         fxmlLoader = new FXMLLoader();
@@ -109,6 +112,24 @@ public class MainController extends AbstractController {
     public void changeSelectedPicture(ImageView next) {
         try {
             PVC.changePicture(next.getImage().impl_getUrl());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeSelectedPicture(PicturePresentationModel pic) {
+        try {
+            PVC.changePicture("file:" + BusinessLayerImpl.getPath() + "/" + pic.getFileName());
+            PIC.changePicture(pic);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void synchAll(){
+        try {
+            BL.sync();
+            PSC.loadPictures();
         } catch (Exception e) {
             e.printStackTrace();
         }

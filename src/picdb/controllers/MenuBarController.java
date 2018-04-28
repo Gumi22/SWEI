@@ -23,15 +23,7 @@ public class MenuBarController extends AbstractController {
 
     @FXML
     public void onBtnSynch(ActionEvent actionEvent) {
-        sync();
-    }
-
-    private void sync(){
-        try{
-            BL.sync();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        MC.synchAll();
     }
 
     @FXML
@@ -45,6 +37,5 @@ public class MenuBarController extends AbstractController {
 
     public void setBL(BusinessLayer BL) {
         MenuBarController.BL = BL;
-
     }
 }
