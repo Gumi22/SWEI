@@ -35,10 +35,10 @@
                                 <TextField fx:id="IPTCByLine" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
                             </HBox>
                             <Text text="Keywords:" />
-                            <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS" onMouseClicked="#onIPTCCopyrightListLoad"/>
+                            <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
                             <HBox>
                                 <Text text="Copyright Notice:" />
-                                <ComboBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity" onMouseClicked="#onIPTCCopyrightListLoad" editable="true">
+                                <ComboBox fx:id="IPTCCopyrighNotices" HBox.hgrow="ALWAYS" maxWidth="Infinity" editable="true">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Not Set"/>

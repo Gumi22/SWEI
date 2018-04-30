@@ -207,7 +207,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setObject(8, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureTime());
             preparedStatement.setObject(9, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getISOValue());
             preparedStatement.setObject(10, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFlash());
-            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram());
+            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram().getValue());
             preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
             // execute insert SQL statement
             preparedStatement.executeUpdate();

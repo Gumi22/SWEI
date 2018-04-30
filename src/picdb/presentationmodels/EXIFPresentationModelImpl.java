@@ -5,6 +5,7 @@ import BIF.SWE2.interfaces.ISORatings;
 import BIF.SWE2.interfaces.presentationmodels.CameraPresentationModel;
 import BIF.SWE2.interfaces.presentationmodels.EXIFPresentationModel;
 import BIF.SWE2.interfaces.models.EXIFModel;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Created by if16b014 on 05.03.18.

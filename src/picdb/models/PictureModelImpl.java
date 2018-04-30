@@ -15,10 +15,14 @@ public class PictureModelImpl implements PictureModel {
     private PhotographerModel phot;
 
     public PictureModelImpl(){
+        iptc = new IPTCModelImpl();
+        exif = new EXIFModelImpl();
     }
 
     public PictureModelImpl(String fileName){
         this.fileName = fileName;
+        iptc = new IPTCModelImpl();
+        exif = new EXIFModelImpl();
     }
 
     @Override

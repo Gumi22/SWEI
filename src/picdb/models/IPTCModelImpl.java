@@ -13,6 +13,14 @@ public class IPTCModelImpl implements IPTCModel {
     private String headline;
     private String caption;
 
+    public IPTCModelImpl(){
+        keywords = "test, nature, animal, beautiful";
+        byLine = "Test";
+        copyright = "CC";
+        headline = "Nice Picture of an animal";
+        caption = "Test test test test";
+    }
+
 
     @Override
     public String getKeywords() {
