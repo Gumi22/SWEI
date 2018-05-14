@@ -95,4 +95,8 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
         return (CameraPresentationModelImpl) cam;
     }
 
+    public PictureModelImpl getPictureModel(){
+        return (PictureModelImpl)pic;
+    }
+
 }

@@ -2,6 +2,7 @@ package picdb.presentationmodels;
 
 import BIF.SWE2.interfaces.models.PhotographerModel;
 import BIF.SWE2.interfaces.presentationmodels.PhotographerPresentationModel;
+import picdb.models.PhotographerModelImpl;
 
 import java.time.LocalDate;
 
@@ -92,5 +93,9 @@ public class PhotographerPresentationModelImpl implements PhotographerPresentati
     @Override
     public boolean isValidBirthDay() {
         return phot.getBirthDay() == null || (phot.getBirthDay().isBefore(LocalDate.now()));
+    }
+
+    public PhotographerModelImpl getPhotographer(){
+        return (PhotographerModelImpl)phot;
     }
 }

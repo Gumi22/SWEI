@@ -124,4 +124,8 @@ public class CameraPresentationModelImpl implements CameraPresentationModel {
 	public ISORatings translateISORating(double v) {
 		return null;
 	}
+
+	public String getFullName(){
+		return getProducer() + " " + getMake();
+	}
 }

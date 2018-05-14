@@ -39,10 +39,10 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         boolean exifModelSet = false;
         int counter = 1;
 
-        String selectSQL = "SELECT pic.id, pic.filename, pic.cameraid, pic.iptckeywords, " +
+        String selectSQL = "SELECT pic.id as picid, pic.filename, pic.cameraid, pic.iptckeywords, " +
                 "pic.iptccopyright, pic.iptcheadline, pic.iptccaption, pic.exifaperture, " +
                 "pic.exifexposuretime, pic.exifiso, pic.exifflash, pic.exifexposureprog, " +
-                "phot.id, phot.name, phot.surname, phot.birthdate, phot.notes, cam.model " +
+                "phot.id as photid, phot.name, phot.surname, phot.birthdate, phot.notes, cam.model " +
                 "FROM picture pic LEFT JOIN photographer phot ON pic.photographerid = phot.id " +
                 "LEFT JOIN camera cam ON pic.cameraid = cam.id WHERE ";
 
@@ -144,17 +144,21 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             iptc.setByLine(rs.getString("name") + " " + rs.getString("surname"));
             iptc.setCaption(rs.getString("iptccaption"));
             iptc.setCopyrightNotice(rs.getString("iptccopyright"));
+            System.out.println(iptc.getCopyrightNotice());
             iptc.setHeadline(rs.getString("iptcheadline"));
             iptc.setKeywords(rs.getString("iptckeywords"));
 
             CameraModelImpl cam = (CameraModelImpl) getCamera(rs.getInt("cameraid"));
 
+            PhotographerModelImpl phot = (PhotographerModelImpl) getPhotographer(rs.getInt("photid"));
+
             PictureModelImpl pic = new PictureModelImpl();
             pic.setCamera(cam);
             pic.setEXIF(exif);
             pic.setIPTC(iptc);
+            pic.setPhotographer(phot);
             pic.setFileName(rs.getString("filename"));
-            pic.setID(rs.getInt("id"));
+            pic.setID(rs.getInt("picid"));
 
             myPics.add(pic);
         }
@@ -171,7 +175,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                 "photographerid FROM picture WHERE id = ?";
         PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
         preparedStatement.setInt(1, i);
-        ResultSet rs = preparedStatement.executeQuery(selectSQL);
+        ResultSet rs = preparedStatement.executeQuery();
 
         PictureModelImpl pic = null;
         if(rs.next()) {
@@ -182,7 +186,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             //ToDo: set all values of models
             pic.setIPTC(new IPTCModelImpl());
             pic.setEXIF(new EXIFModelImpl());
-            pic.setPhotographer(new PhotographerModelImpl());
+            pic.setPhotographer(getPhotographer(rs.getInt("photographerid")));
         }
 
         return pic;
@@ -211,7 +215,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
             // execute insert SQL statement
             preparedStatement.executeUpdate();
-        }else{ //ToDo: This!!!!
+        }else{
 
             String updateSQL = "UPDATE picture SET filename = ?, cameraid = ?, iptckeywords = ?, iptccopyright = ?, iptcheadline = ?, iptccaption = ?, " +
                     "exifaperture = ?, exifexposuretime = ?, exifiso = ?, exifflash = ?, exifexposureprog = ?, photographerid = ? WHERE id = ?";
@@ -227,8 +231,9 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setObject(8, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureTime());
             preparedStatement.setObject(9, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getISOValue());
             preparedStatement.setObject(10, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFlash());
-            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram());
+            preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram().getValue());
             preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
+            System.out.println(pictureModel.getPhotographer().getID());
             //set id:
             preparedStatement.setInt(13, pictureModel.getID());
             // execute update SQL statement
@@ -252,7 +257,22 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public PhotographerModel getPhotographer(int i) throws Exception {
-        return null;
+        String selectSQL = "SELECT id, name, surname, birthdate, notes FROM photographer WHERE id = ?";
+        PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
+        preparedStatement.setInt(1, i);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        PhotographerModel phot = null;
+        if(rs.next()) {
+            phot = new PhotographerModelImpl();
+            phot.setID(i);
+            phot.setNotes(rs.getString("notes"));
+            phot.setBirthDay(rs.getDate("birthdate").toLocalDate());
+            phot.setLastName(rs.getString("surname"));
+            phot.setFirstName(rs.getString("name"));
+        }
+
+        return phot;
     }
 
     @Override
