@@ -28,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import picdb.BusinessLayerImpl;
+import picdb.GlobalConfig;
 import picdb.models.IPTCModelImpl;
 import picdb.models.PictureModelImpl;
 import picdb.presentationmodels.IPTCPresentationModelImpl;
@@ -55,7 +56,7 @@ public class MainController extends AbstractController {
     public void initialize(java.net.URL arg0, ResourceBundle arg1) {
         super.initialize(arg0, arg1);
 
-        BL = BusinessLayerImpl.getInstance("Pictures", false);
+        BL = BusinessLayerImpl.getInstance(GlobalConfig.getInstance().getPath(), GlobalConfig.getInstance().isTestingMode());
         //synch Businesslayer at startup :D
         try {
             BL.sync();

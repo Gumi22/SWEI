@@ -144,7 +144,6 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             iptc.setByLine(rs.getString("name") + " " + rs.getString("surname"));
             iptc.setCaption(rs.getString("iptccaption"));
             iptc.setCopyrightNotice(rs.getString("iptccopyright"));
-            System.out.println(iptc.getCopyrightNotice());
             iptc.setHeadline(rs.getString("iptcheadline"));
             iptc.setKeywords(rs.getString("iptckeywords"));
 
@@ -233,7 +232,6 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setObject(10, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getFlash());
             preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram().getValue());
             preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
-            System.out.println(pictureModel.getPhotographer().getID());
             //set id:
             preparedStatement.setInt(13, pictureModel.getID());
             // execute update SQL statement
