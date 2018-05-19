@@ -4,6 +4,8 @@ import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.EXIFModel;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.Random;
+
 /**
  * Created by if16b014 on 05.03.18.
  */
@@ -17,12 +19,14 @@ public class EXIFModelImpl implements EXIFModel {
     private ExposurePrograms exposureProgram;
 
     public EXIFModelImpl(){
-        this.make = "Test";
-        this.fNumber = 2.3f;
-        this.exposureTime = 10f;
-        this.iso = 800f;
-        this.flash = true;
-        this.exposureProgram = ExposurePrograms.LandscapeMode;
+        Random rnd = new Random(53333317);
+
+        this.make = "Test" + Integer.toString(rnd.nextInt());
+        this.fNumber = rnd.nextDouble();
+        this.exposureTime = rnd.nextDouble();
+        this.iso = rnd.nextDouble() * 10000f;
+        this.flash = rnd.nextBoolean();
+        this.exposureProgram = ExposurePrograms.values()[rnd.nextInt(ExposurePrograms.values().length)];
     }
 
 

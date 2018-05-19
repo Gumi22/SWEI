@@ -250,7 +250,25 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public Collection<PhotographerModel> getPhotographers() throws Exception {
-        return null;
+        String selectSQL = "SELECT id, name, surname, birthdate, notes FROM photographer";
+        PreparedStatement preparedStatement = openConnection().prepareStatement(selectSQL);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Collection<PhotographerModel> phots = new ArrayList<>();
+
+        while(rs.next()) {
+
+            PhotographerModel phot = new PhotographerModelImpl();
+            phot.setID(rs.getInt("id"));
+            phot.setNotes(rs.getString("notes"));
+            phot.setBirthDay(rs.getDate("birthdate").toLocalDate());
+            phot.setLastName(rs.getString("surname"));
+            phot.setFirstName(rs.getString("name"));
+
+            phots.add(phot);
+        }
+
+        return phots;
     }
 
     @Override
@@ -310,7 +328,39 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public Collection<CameraModel> getCameras() {
-        return null;
+        String selectSQL = "SELECT id, producer, model, purchasedate, " +
+                "notes, isolimitgood, isolimitacceptable FROM camera";
+
+        PreparedStatement preparedStatement;
+        ResultSet rs;
+
+        Collection<CameraModel> cams = new ArrayList<>();
+
+        try {
+            preparedStatement = openConnection().prepareStatement(selectSQL);
+            rs = preparedStatement.executeQuery();
+
+            while(rs.next()){
+                CameraModelImpl cam = new CameraModelImpl();
+
+                cam.setMake(rs.getString("model"));
+                cam.setProducer(rs.getString("producer"));
+                cam.setBoughtOn(rs.getDate("purchasedate").toLocalDate());
+                cam.setID(rs.getInt("id"));
+                cam.setISOLimitAcceptable(rs.getDouble("isolimitacceptable"));
+                cam.setISOLimitGood(rs.getDouble("isolimitgood"));
+                cam.setNotes(rs.getString("notes"));
+
+                cams.add(cam);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return cams;
     }
 
     @Override
@@ -319,8 +369,8 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         String selectSQL = "SELECT id, producer, model, purchasedate, " +
                 "notes, isolimitgood, isolimitacceptable FROM camera WHERE id = ?";
 
-        PreparedStatement preparedStatement = null;
-        ResultSet rs = null;
+        PreparedStatement preparedStatement;
+        ResultSet rs;
         CameraModelImpl cam = new CameraModelImpl();
 
 

@@ -13,10 +13,10 @@ public class GlobalConfig {
 
     private Map<String, String> configs;
 
-    private GlobalConfig(){
+    private GlobalConfig(String path){
         configs = new HashMap<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("config.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.replaceAll("\\s+"," "); //remove unnecessary whitespaces
@@ -30,14 +30,15 @@ public class GlobalConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //path = "Pictures";
-        //testingMode = false;
     }
 
     public static GlobalConfig getInstance() {
+        return getInstance("config.txt");
+    }
+
+    public static GlobalConfig getInstance(String path) {
         if (GlobalConfig.instance == null) {
-            GlobalConfig.instance = new GlobalConfig();
+            GlobalConfig.instance = new GlobalConfig(path);
         }
         return GlobalConfig.instance;
     }
