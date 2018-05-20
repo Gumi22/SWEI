@@ -40,7 +40,7 @@ public class PictureListPresentationModelImpl implements PictureListPresentation
 
     @Override
     public PicturePresentationModel getCurrentPicture() {
-        return l.get(index < 0 ? 0 : 1);
+        return l.get(index < 0 ? 0 : index);
     }
 
     @Override

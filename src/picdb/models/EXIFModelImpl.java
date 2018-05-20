@@ -19,7 +19,7 @@ public class EXIFModelImpl implements EXIFModel {
     private ExposurePrograms exposureProgram;
 
     public EXIFModelImpl(){
-        Random rnd = new Random(53333317);
+        Random rnd = new Random(System.currentTimeMillis());
 
         this.make = "Test" + Integer.toString(rnd.nextInt());
         this.fNumber = rnd.nextDouble();

@@ -36,8 +36,12 @@ public class PictureScrollerController extends AbstractController {
     }
 
     public void loadPictures(){
+        loadPictures(null);
+    }
+
+    public void loadPictures(String name){
         try {
-            PL = new PictureListPresentationModelImpl(BL.getPictures(null, null, null, null), pictureScroller);
+            PL = new PictureListPresentationModelImpl(BL.getPictures(name, null, null, null), pictureScroller);
             pictureScroller.setItems((ObservableList) PL.getImages());
         } catch (Exception e) {
             e.printStackTrace();

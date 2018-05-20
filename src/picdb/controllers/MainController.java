@@ -107,6 +107,7 @@ public class MainController extends AbstractController {
         fxmlLoader = new FXMLLoader();
         HBox h = fxmlLoader.load(getClass().getResource("../fxml/Search.fxml").openStream());
         SC = (SearchController) fxmlLoader.getController();
+        SC.setPictureScrollerController(PSC);
         topBars.getChildren().add(h);
 
     }

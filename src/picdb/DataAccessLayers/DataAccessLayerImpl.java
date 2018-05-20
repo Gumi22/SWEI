@@ -7,6 +7,8 @@ import picdb.models.*;
 import BIF.SWE2.interfaces.models.PictureModel;
 
 import javax.swing.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,11 +65,10 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             if(namePartSet || photModelIdSet){
                 selectSQL += "AND ";
             }
-            selectSQL += "pic.iptckeywords = ? " + // ? = getKeywords -> ToDo: Sollte auch mit "LIKE" sein :D
-                    "AND pic.iptccopyright = ? " + // ? = getCopyrightNotice
-                    "AND pic.iptcheadline = ? " + // ? = getHeadline
-                    "AND pic.iptccaption = ? " + // ? = getCaption
-                    "AND concat_ws(' ', phot.name::text, phot.surname::text) LIKE ? "; // ? = getByLine
+            selectSQL += "pic.iptckeywords LIKE ? " + // ? = getKeywords
+                    "AND pic.iptccopyright LIKE ? " + // ? = getCopyrightNotice
+                    "AND pic.iptcheadline LIKE ? " + // ? = getHeadline
+                    "AND pic.iptccaption LIKE ? ";// ? = getCaption
             iptcModelSet = true;
         }
 
@@ -75,11 +76,10 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             if(namePartSet || photModelIdSet || iptcModelSet){
                 selectSQL += "AND ";
             }
-            selectSQL += "pic.exifaperture = ? " + // ? = getFNumber
-                    "AND pic.exifexposuretime = ? " + // ? = getExposureTime
-                    "AND pic.exifiso = ? " + // ? = getISOValue
+            selectSQL += "round(pic.exifaperture::numeric,2) = ? " + // ? = getFNumber
+                    "AND round(pic.exifexposuretime::numeric,2) = ? " + // ? = getExposureTime
+                    "AND round(pic.exifiso::numeric,2) = ? " + // ? = getISOValue
                     "AND pic.exifflash = ? " + // ? = getFlash
-                    "AND cam.model = ? " + // ? = getMake
                     "AND pic.exifexposureprog = ? "; // ? = getExposureProgram
             exifModelSet = true;
         }
@@ -111,23 +111,20 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                 counter ++;
                 preparedStatement.setString(counter, iptcModel.getCaption());
                 counter ++;
-                preparedStatement.setString(counter, "%" +  iptcModel.getByLine() + "%");
-                counter ++;
             }
             if(exifModelSet){
-                preparedStatement.setDouble(counter, exifModel.getFNumber());
+                preparedStatement.setDouble(counter, new BigDecimal(Double.toString(exifModel.getFNumber())).setScale(2, RoundingMode.HALF_UP).doubleValue());
                 counter ++;
-                preparedStatement.setDouble(counter, exifModel.getExposureTime());
+                preparedStatement.setDouble(counter, new BigDecimal(Double.toString(exifModel.getExposureTime())).setScale(2, RoundingMode.HALF_UP).doubleValue());
                 counter ++;
-                preparedStatement.setDouble(counter, exifModel.getISOValue());
+                preparedStatement.setDouble(counter, new BigDecimal(Double.toString(exifModel.getISOValue())).setScale(2, RoundingMode.HALF_UP).doubleValue());
                 counter ++;
                 preparedStatement.setBoolean(counter, exifModel.getFlash());
-                counter ++;
-                preparedStatement.setString(counter, exifModel.getMake());
                 counter ++;
                 preparedStatement.setInt(counter, exifModel.getExposureProgram().getValue());
             }
 
+            System.out.println(preparedStatement.toString());
             rs = preparedStatement.executeQuery();
         }
 

@@ -11,10 +11,11 @@
       prefWidth="Infinity">
 
     <children>
-        <StackPane focusTraversable="true" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+        <StackPane focusTraversable="true" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" prefHeight="-Infinity">
             <children>
-                <TextField fx:id="searchText" HBox.hgrow="ALWAYS" promptText="Search"/>
-                <Button fx:id="searchButton" style="-fx-background-color: transparent;">
+                <TextField fx:id="searchText" HBox.hgrow="ALWAYS" promptText="Search" prefHeight="Infinity" onAction="#search"/>
+                <Button fx:id="searchButton" style="-fx-background-color: transparent; -fx-border-radius: 10 10 10 10;  -fx-border-width: 1; -fx-border-color:transparent;"
+                        onMousePressed="#search" onMouseReleased="#searched" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25" focusTraversable="true">
                             <image>
