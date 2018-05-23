@@ -31,8 +31,14 @@
                                 <TextField fx:id="IPTCCaption" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
                             </HBox>
                             <HBox>
-                                <Text text="By Line:" />
-                                <TextField fx:id="IPTCByLine" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                                <Text text="By:" />
+                                <ComboBox fx:id="IPTCByLine" HBox.hgrow="ALWAYS" maxWidth="Infinity" editable="true">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Not Set"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
                             </HBox>
                             <Text text="Keywords:" />
                             <TextArea fx:id="IPTCKeywords" prefHeight="50" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
@@ -63,7 +69,13 @@
                         <children>
                             <HBox>
                                 <Text text="UsedCamera:" />
-                                <TextField fx:id="UsedCamera" maxWidth="Infinity" HBox.hgrow="ALWAYS" disable="true"/>
+                                <ComboBox fx:id="UsedCamera" HBox.hgrow="ALWAYS" maxWidth="Infinity" editable="true">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Not Set"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
                             </HBox>
                             <HBox>
                                 <Text text="F-Number:" />
@@ -88,6 +100,10 @@
                             <HBox>
                                 <Text text="ISO-Rating:" />
                                 <Text fx:id="EXIFISORating"/>
+                            </HBox>
+                            <HBox>
+                                <Region HBox.hgrow="SOMETIMES"/>
+                                <Button onMouseClicked="#save">Save</Button>
                             </HBox>
                         </children>
                     </VBox>

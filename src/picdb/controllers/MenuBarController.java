@@ -38,4 +38,16 @@ public class MenuBarController extends AbstractController {
     public void setBL(BusinessLayer BL) {
         MenuBarController.BL = BL;
     }
+
+    public void onBtnExit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void onBtnEditPhotographers(ActionEvent actionEvent) throws IOException {
+        showDialog("../fxml/EditPhotographers.fxml", "Edit Photographers");
+    }
+
+    public void onBtnEditCameras(ActionEvent actionEvent) throws IOException {
+        showDialog("../fxml/EditCameras.fxml", "Edit Cameras");
+    }
 }

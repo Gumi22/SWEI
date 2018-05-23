@@ -26,7 +26,8 @@ public class PicturePresentationModelImpl implements PicturePresentationModel {
         iptc = new IPTCPresentationModelImpl(pi.getIPTC());
         exif = new EXIFPresentationModelImpl(pi.getEXIF());
         cam = new CameraPresentationModelImpl(pi.getCamera());
-        phot = new PhotographerPresentationModelImpl(new PhotographerModelImpl());
+        phot = new PhotographerPresentationModelImpl(((PictureModelImpl)pi).getPhotographer());
+        exif.setCamera(cam);
     }
 
     public PicturePresentationModelImpl(PictureModel pi, IPTCPresentationModel i, EXIFPresentationModel e,

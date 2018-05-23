@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.*?>
+
+<?import javafx.stage.Stage ?>
+
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+<Stage title="Edit Photographers" xmlns:fx="http://javafx.com/fxml"
+       fx:controller="picdb.controllers.EditPhotographersController" resizable="false">
+    <scene>
+        <Scene width="500" height="381">
+            <root>
+
+                <VBox xmlns:fx="http://javafx.com/fxml">
+                    <TableView fx:id="table" prefHeight="255.0" prefWidth="501.0">
+                        <columns>
+                            <TableColumn fx:id="idColumn" prefWidth="30.0" text="ID">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="id"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="firstNameColumn" prefWidth="90.0" text="First Name">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="firstName"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="lastNameColumn" prefWidth="90.0" text="Last Name">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="lastName"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="dateOfBirthColumn" prefWidth="90.0" text="Date of Birth">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="birthDay"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="notesColumn" prefWidth="210.0" text="Notes">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="notes"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+
+                    <BorderPane>
+                        <left>
+                            <VBox>
+                                <padding>
+                                    <Insets top="5"/>
+                                </padding>
+                                <Text>First Name</Text>
+                                <VBox>
+                                    <padding>
+                                        <Insets top="8"/>
+                                    </padding>
+                                    <Text>Last Name</Text>
+                                    <VBox>
+                                        <padding>
+                                            <Insets top="8"/>
+                                        </padding>
+                                        <Text>Birth Date</Text>
+                                        <VBox>
+                                            <padding>
+                                                <Insets top="8"/>
+                                            </padding>
+                                            <Text>Notes</Text>
+                                        </VBox>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </left>
+                        <center>
+                            <VBox>
+                                <TextField fx:id="firstName"/>
+                                <TextField fx:id="lastName"/>
+                                <TextField fx:id="birthDate" promptText="YYYY-MM-DD"/>
+                                <TextField fx:id="notes"/>
+                            </VBox>
+                        </center>
+                        <right>
+                            <VBox>
+                                <Text fx:id="errorMsgNew" style="-fx-stroke: red; -fx-stroke-width: .4;"/>
+                                <Region VBox.vgrow="ALWAYS"/>
+                                <Button onAction="#submit">Submit</Button>
+                            </VBox>
+                        </right>
+                    </BorderPane>
+
+
+                    <HBox prefWidth="Infinity">
+                        <padding>
+                            <Insets top="10"/>
+                        </padding>
+                        <children>
+                            <Text fx:id="errorMsg" style="-fx-stroke: red; -fx-stroke-width: .4;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button onAction="#onClose" text="Close"/>
+                        </children>
+                    </HBox>
+                </VBox>
+            </root>
+        </Scene>
+    </scene>
+</Stage>
+

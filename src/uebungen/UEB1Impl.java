@@ -62,7 +62,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public PhotographerListPresentationModel getEmptyPhotographerListPresentationModel() {
-		return new PhotographerListPresentationModelImpl();
+		return new PhotographerListPresentationModelImpl(new PictureModelImpl());
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class UEB1Impl implements UEB1 {
 
 	@Override
 	public CameraListPresentationModel getEmptyCameraListPresentationModel() {
-		return new CameraListPresentationModelImpl();
+		return new CameraListPresentationModelImpl(new PictureModelImpl());
 	}
 
 	@Override

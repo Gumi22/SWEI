@@ -17,17 +17,13 @@
                         <MenuItem text="Open"/>
                         <MenuItem text="Synch" onAction="#onBtnSynch"/>
                         <SeparatorMenuItem  />
-                        <MenuItem text="Exit"/>
+                        <MenuItem text="Exit" onAction="#onBtnExit"/>
                     </items>
                 </Menu>
                 <Menu text="Edit">
                     <items>
-                        <MenuItem text="Save"/>
-                        <MenuItem text="Delete"/>
-                        <MenuItem text="Add Photographer"/>
-                        <MenuItem text="Delete Photographer"/>
-                        <MenuItem text="Add Camera"/>
-                        <MenuItem text="Delete Camera"/>
+                        <MenuItem text="Edit Photographers" onAction="#onBtnEditPhotographers"/>
+                        <MenuItem text="Show Cameras" onAction="#onBtnEditCameras"/>
                     </items>
                 </Menu>
                 <Menu text="Options">

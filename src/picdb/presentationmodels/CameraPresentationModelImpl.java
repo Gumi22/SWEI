@@ -128,4 +128,13 @@ public class CameraPresentationModelImpl implements CameraPresentationModel {
 	public String getFullName(){
 		return getProducer() + " " + getMake();
 	}
+
+	public CameraModel getCamera(){
+		return cam;
+	}
+
+	@Override
+	public String toString() {
+		return getFullName();
+	}
 }

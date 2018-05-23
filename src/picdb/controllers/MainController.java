@@ -88,6 +88,7 @@ public class MainController extends AbstractController {
         TabPane tp = fxmlLoader.load(getClass().getResource("../fxml/PictureInfo.fxml").openStream());
         PIC = (PictureInfoController) fxmlLoader.getController();
         PIC.setBL(BL);
+        PIC.setMC(this);
         ImageInfoSplit.getItems().add(tp);
 
         fxmlLoader = new FXMLLoader();

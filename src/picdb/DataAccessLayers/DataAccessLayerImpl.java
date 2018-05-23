@@ -124,7 +124,6 @@ public class DataAccessLayerImpl implements DataAccessLayer {
                 preparedStatement.setInt(counter, exifModel.getExposureProgram().getValue());
             }
 
-            System.out.println(preparedStatement.toString());
             rs = preparedStatement.executeQuery();
         }
 
@@ -149,12 +148,12 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             PhotographerModelImpl phot = (PhotographerModelImpl) getPhotographer(rs.getInt("photid"));
 
             PictureModelImpl pic = new PictureModelImpl();
-            pic.setCamera(cam);
             pic.setEXIF(exif);
             pic.setIPTC(iptc);
             pic.setPhotographer(phot);
             pic.setFileName(rs.getString("filename"));
             pic.setID(rs.getInt("picid"));
+            pic.setCamera(cam);
 
             myPics.add(pic);
         }
@@ -195,7 +194,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             String insertSQL = "INSERT INTO picture (id, filename, cameraid, iptckeywords, iptccopyright, iptcheadline, iptccaption, " +
                     "exifaperture, exifexposuretime, exifiso, exifflash, exifexposureprog, photographerid)" +
                     " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
+            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL, new String[]{ "id" });
             preparedStatement.setString(1, pictureModel.getFileName());
             //using setobject from here on out because we can set null values without exception
             preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID());
@@ -210,7 +209,20 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             preparedStatement.setObject(11, pictureModel.getEXIF() == null ? null : pictureModel.getEXIF().getExposureProgram().getValue());
             preparedStatement.setObject(12, pictureModel.getPhotographer() == null ? null : pictureModel.getPhotographer().getID());
             // execute insert SQL statement
-            preparedStatement.executeUpdate();
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    pictureModel.setID(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         }else{
 
             String updateSQL = "UPDATE picture SET filename = ?, cameraid = ?, iptckeywords = ?, iptccopyright = ?, iptcheadline = ?, iptccaption = ?, " +
@@ -258,7 +270,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             PhotographerModel phot = new PhotographerModelImpl();
             phot.setID(rs.getInt("id"));
             phot.setNotes(rs.getString("notes"));
-            phot.setBirthDay(rs.getDate("birthdate").toLocalDate());
+            phot.setBirthDay(rs.getDate("birthdate") == null ? null :  rs.getDate("birthdate").toLocalDate());
             phot.setLastName(rs.getString("surname"));
             phot.setFirstName(rs.getString("name"));
 
@@ -293,21 +305,35 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         if(photographerModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new photographer
             String insertSQL = "INSERT INTO photographer (id, name, surname, birthdate, notes)" +
                     " VALUES (DEFAULT, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL);
-            preparedStatement.setString(1, photographerModel.getFirstName());
+            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL, new String[]{ "id" });
+            preparedStatement.setObject(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
-            preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+            preparedStatement.setObject(3, photographerModel.getBirthDay() == null ? null : Date.valueOf(photographerModel.getBirthDay()));
             preparedStatement.setObject(4, photographerModel.getNotes());
             // execute insert SQL stetement
-            preparedStatement.executeUpdate();
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    photographerModel.setID(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         }else{
             String updateSQL = "UPDATE photographer SET name = ?, surname = ?, birthdate = ?, notes = ? WHERE id = ?";
             PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
-            preparedStatement.setString(1, photographerModel.getFirstName());
+            preparedStatement.setObject(1, photographerModel.getFirstName());
             preparedStatement.setString(2, photographerModel.getLastName());
-            preparedStatement.setDate(3, Date.valueOf(photographerModel.getBirthDay()));
+            preparedStatement.setObject(3, photographerModel.getBirthDay() == null ? null : Date.valueOf(photographerModel.getBirthDay()));
             preparedStatement.setObject(4, photographerModel.getNotes());
-            preparedStatement.setInt(4, photographerModel.getID());
+            preparedStatement.setInt(5, photographerModel.getID());
             // execute update SQL stetement
             preparedStatement.executeUpdate();
         }

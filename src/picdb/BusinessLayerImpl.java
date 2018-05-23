@@ -138,7 +138,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 
     @Override
     public void deletePhotographer(int i) throws Exception {
-
+        myDAL.deletePhotographer(i);
     }
 
     @Override
