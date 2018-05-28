@@ -67,7 +67,7 @@ public class MenuBarController extends AbstractController {
     public void onBtnOpen(ActionEvent actionEvent) {
         String newDir = getPathFromUser();
         //ToDo: save new Path to Config
-        //System.out.println(GlobalConfig.getInstance().getPath() + "->" + newDir);
+        System.out.println(GlobalConfig.getInstance().getPath() + "->" + newDir);
     }
 
     public void onBtnTagsPDF(ActionEvent actionEvent) {
