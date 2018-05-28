@@ -3,12 +3,12 @@ package picdb.controllers;
 import BIF.SWE2.interfaces.BusinessLayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.MenuBar;
+import javafx.stage.DirectoryChooser;
 import picdb.BusinessLayerImpl;
 import picdb.GlobalConfig;
 
-import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -54,6 +54,20 @@ public class MenuBarController extends AbstractController {
 
     public void onBtnEditCameras(ActionEvent actionEvent) throws IOException {
         showDialog("../fxml/EditCameras.fxml", "Edit Cameras");
+    }
+
+    private String getPathFromUser(){
+
+        DirectoryChooser DR = new DirectoryChooser();
+        File f = DR.showDialog(getStage());
+
+        return f.getAbsolutePath();
+    }
+
+    public void onBtnOpen(ActionEvent actionEvent) {
+        String newDir = getPathFromUser();
+        //ToDo: save new Path to Config
+        //System.out.println(GlobalConfig.getInstance().getPath() + "->" + newDir);
     }
 
     public void onBtnTagsPDF(ActionEvent actionEvent) {
