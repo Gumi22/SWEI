@@ -57,26 +57,27 @@ public class MenuBarController extends AbstractController {
     }
 
     private String getPathFromUser(){
-
         DirectoryChooser DR = new DirectoryChooser();
         File f = DR.showDialog(getStage());
 
-        return f.getAbsolutePath();
+        return ( f == null ) ? null : f.getAbsolutePath();
     }
 
     public void onBtnOpen(ActionEvent actionEvent) {
         String newDir = getPathFromUser();
-        //ToDo: save new Path to Config
-        System.out.println(GlobalConfig.getInstance().getPath() + "->" + newDir);
+        if(newDir != null || !newDir.isEmpty()){
+            GlobalConfig.getInstance().setPath(newDir);
+        }
     }
 
     public void onBtnTagsPDF(ActionEvent actionEvent) {
-        //ToDo: get path and filename from Fileopendialogue;
-
-        try {
-            ((BusinessLayerImpl)BL).writeTagsPDF(GlobalConfig.getInstance().getPath() + "/Tags.pdf");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        String newDir = getPathFromUser();
+        if(newDir != null || !newDir.isEmpty()){
+            try {
+                ((BusinessLayerImpl)BL).writeTagsPDF(newDir + "/Tags.pdf");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
