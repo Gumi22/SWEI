@@ -2,6 +2,10 @@
   <library name="postgresql-42.1.4">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/postgresql-42.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/BIF-SWE2-Interfaces.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/io-7.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/kernel-7.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/layout-7.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

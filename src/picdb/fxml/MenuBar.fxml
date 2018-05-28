@@ -28,6 +28,7 @@
                 </Menu>
                 <Menu text="Options">
                     <items>
+                        <MenuItem text="Create Tags PDF" onAction="#onBtnTagsPDF"/>
                         <MenuItem text="About" onAction="#onBtnAbout"/>
                     </items>
                 </Menu>

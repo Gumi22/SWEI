@@ -4,20 +4,32 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.property.UnitValue;
+import javafx.util.Pair;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.omg.CosNaming.NamingContextPackage.NotFoundReason;
 import picdb.DataAccessLayers.DataAccessLayerImpl;
-import picdb.DataAccessLayers.DataAccessLayerMockImpl;
 import picdb.models.EXIFModelImpl;
 import picdb.models.IPTCModelImpl;
 import picdb.models.PictureModelImpl;
 
 import java.io.File;
-import java.nio.file.FileSystems;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Objects;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.itextpdf.io.*;
+import com.itextpdf.kernel.*;
+import com.itextpdf.layout.*;
 
 /**
  * Created by if16b014 on 05.03.18.
@@ -187,5 +199,35 @@ public class BusinessLayerImpl implements BusinessLayer {
     @Override
     public CameraModel getCamera(int i) {
         return myDAL.getCamera(i);
+    }
+
+    public void writeTagsPDF(String path) throws FileNotFoundException {
+        Collection<Pair<String, Integer>> tags = ((DataAccessLayerImpl)myDAL).getTags();
+        Document doc = getPDFDocument(path);
+
+        doc.add(new Paragraph().add(new Text("Tags:")));
+
+        Table tagTable = new Table(new float[]{4, 1});
+        tagTable.setWidth(UnitValue.createPercentValue(100));
+
+        tagTable.addHeaderCell("Tag");
+        tagTable.addHeaderCell("N");
+
+        for (Pair<String, Integer> p: tags) {
+            tagTable.addCell(p.getKey());
+            tagTable.addCell(p.getValue().toString());
+        }
+
+        doc.add(tagTable);
+        doc.close();
+
+    }
+
+    private Document getPDFDocument(String fullFileName) throws FileNotFoundException {
+        PdfWriter writer = new PdfWriter(fullFileName);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document doc = new Document(pdf);
+        doc.setMargins(20, 20, 20, 20);
+        return doc;
     }
 }

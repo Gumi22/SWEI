@@ -3,6 +3,7 @@ package picdb.DataAccessLayers;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import javafx.util.Pair;
 import picdb.models.*;
 import BIF.SWE2.interfaces.models.PictureModel;
 
@@ -419,6 +420,31 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         }
 
         return cam;
+    }
+
+    public Collection<Pair<String,Integer>> getTags(){
+        String selectSQL = "Select regexp_split_to_table(iptckeywords, E',\\\\s*') as tags, COUNT(*) as count FROM picture Group By tags;";
+
+        PreparedStatement preparedStatement;
+        ResultSet rs;
+
+        Collection<Pair<String,Integer>> tags = new ArrayList<>();
+
+        try {
+            preparedStatement = openConnection().prepareStatement(selectSQL);
+            rs = preparedStatement.executeQuery();
+
+            while(rs.next()){
+                //add tag to collection
+                tags.add(new Pair<>(rs.getString("tags"), rs.getInt("count")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tags;
     }
 
     private Connection openConnection() throws Exception{ //ToDo: get a more efficient way of getting a connection that refreshes with every new command but nor every new statement

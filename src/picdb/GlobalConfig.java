@@ -50,4 +50,11 @@ public class GlobalConfig {
     public boolean isTestingMode() {
         return Boolean.parseBoolean(configs.get("testing"));
     }
+
+    public void setPath(String path){
+        if(path != null && !path.trim().isEmpty()){
+            configs.remove("path");
+            configs.put("path", path);
+        }
+    }
 }
