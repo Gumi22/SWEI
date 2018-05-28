@@ -104,7 +104,7 @@ public class BusinessLayerImpl implements BusinessLayer {
         File[] listOfFiles = folder.listFiles();
 
         //Add new Pictures
-        for (File listOfFile : listOfFiles) {
+        for (File listOfFile : listOfFiles != null ? listOfFiles : new File[0]) {
             boolean alreadySaved = false;
             if (listOfFile.isFile()) {
                 for (PictureModel pm : DBPics) {
@@ -122,7 +122,7 @@ public class BusinessLayerImpl implements BusinessLayer {
         DBPics = myDAL.getPictures(null, null, null, null);
         for (PictureModel pm : DBPics) {
             boolean onDisk = false;
-            for (File listOfFile : listOfFiles) {
+            for (File listOfFile : listOfFiles != null ? listOfFiles : new File[0]) {
                 if (pm.getFileName().equals(listOfFile.getName())) {
                     onDisk = true;
                 }
@@ -210,8 +210,8 @@ public class BusinessLayerImpl implements BusinessLayer {
         Table tagTable = new Table(new float[]{4, 1});
         tagTable.setWidth(UnitValue.createPercentValue(100));
 
-        tagTable.addHeaderCell("Tag");
-        tagTable.addHeaderCell("N");
+        tagTable.addHeaderCell("Tag").;
+        tagTable.addHeaderCell("Count");
 
         for (Pair<String, Integer> p: tags) {
             tagTable.addCell(p.getKey());

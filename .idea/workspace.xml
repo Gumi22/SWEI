@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96e9f715-ee4e-4ead-841d-4896a781aa66" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/io-7.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/kernel-7.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/layout-7.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/log4j-1.2-api-2.11.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/log4j-core-2.11.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/pdfa-7.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/postgresql-42.1.4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/slf4j-api-1.8.0-beta2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/slf4j-simple-1.8.0-beta2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/postgresql_42_1_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_1_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" afterPath="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java" afterPath="$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java" />
     </list>
     <ignored path="PicDB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,12 +43,9 @@
       <file leaf-file-name="GlobalConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/picdb/GlobalConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="463">
               <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-              <folding>
-                <element signature="e#1045#1046#0" expanded="true" />
-                <element signature="e#1093#1094#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,12 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BusinessLayerImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BusinessLayerImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1139">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="330">
+              <caret line="215" column="45" lean-forward="true" selection-start-line="215" selection-start-column="45" selection-end-line="215" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuBarController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuBarController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="76" column="101" lean-forward="true" selection-start-line="76" selection-start-column="101" selection-end-line="76" selection-end-column="101" />
+            <state relative-caret-position="463">
+              <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
               <folding>
                 <element signature="e#668#669#0" expanded="true" />
                 <element signature="e#712#713#0" expanded="true" />
@@ -234,9 +245,9 @@
         <option value="$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml" />
         <option value="$PROJECT_DIR$/src/picdb/GlobalConfig.java" />
         <option value="$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml" />
-        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java" />
+        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
       </list>
     </option>
   </component>
@@ -274,6 +285,11 @@
             <path>
               <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
               <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
@@ -357,8 +373,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/layout-7.1.2.jar!/" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/slf4j-simple-1.8.0-beta2.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -920,7 +936,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527510733860</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="cameras nun aufgelistet und zuordenbar">
+      <created>1527511554593</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1527511554593</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -957,21 +980,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.4375" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.35885417" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.371875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27783668" sideWeight="0.6411458" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.628125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10520833" sideWeight="0.4948605" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -982,7 +1005,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.44583333" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10572917" sideWeight="0.5110132" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767764" sideWeight="0.4875" order="1" side_tool="false" content_ui="tabs" />
@@ -1381,8 +1403,8 @@
         <state relative-caret-position="429">
           <caret line="74" column="14" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="14" />
           <folding>
-            <element signature="e#1383#1384#0" expanded="true" />
-            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1383#1384#0" expanded="false" />
+            <element signature="e#1416#1417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1400,17 +1422,6 @@
         <state relative-caret-position="72">
           <caret line="90" column="14" lean-forward="true" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/GlobalConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding>
-            <element signature="e#1045#1046#0" expanded="true" />
-            <element signature="e#1093#1094#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1443,14 +1454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1139">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1471,10 +1474,18 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/GlobalConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="76" column="101" lean-forward="true" selection-start-line="76" selection-start-column="101" selection-end-line="76" selection-end-column="101" />
+        <state relative-caret-position="463">
+          <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
           <folding>
             <element signature="e#668#669#0" expanded="true" />
             <element signature="e#712#713#0" expanded="true" />
@@ -1486,6 +1497,16 @@
             <element signature="e#1111#1112#0" expanded="true" />
             <element signature="e#1165#1166#0" expanded="true" />
             <element signature="e#1195#1196#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="215" column="45" lean-forward="true" selection-start-line="215" selection-start-column="45" selection-end-line="215" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
