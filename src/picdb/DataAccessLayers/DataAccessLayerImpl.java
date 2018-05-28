@@ -231,7 +231,7 @@ public class DataAccessLayerImpl implements DataAccessLayer {
             PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
             preparedStatement.setString(1, pictureModel.getFileName());
             //using setobject from here on out because we can set null values without exception
-            preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID());
+            preparedStatement.setObject(2, pictureModel.getCamera() == null ? null : pictureModel.getCamera().getID() <= 0 ? null : pictureModel.getCamera().getID() );
             preparedStatement.setObject(3, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getKeywords());
             preparedStatement.setObject(4, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getCopyrightNotice());
             preparedStatement.setObject(5, pictureModel.getIPTC() == null ? null : pictureModel.getIPTC().getHeadline());

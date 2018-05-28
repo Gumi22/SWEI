@@ -211,7 +211,7 @@ public class BusinessLayerImpl implements BusinessLayer {
         Table tagTable = new Table(new float[]{4, 1});
         tagTable.setWidth(UnitValue.createPercentValue(100));
 
-        tagTable.addHeaderCell("Tag").;
+        tagTable.addHeaderCell("Tag");
         tagTable.addHeaderCell("Count");
 
         for (Pair<String, Integer> p: tags) {
