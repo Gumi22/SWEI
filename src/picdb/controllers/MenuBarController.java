@@ -74,7 +74,18 @@ public class MenuBarController extends AbstractController {
         String newDir = getPathFromUser();
         if(newDir != null || !newDir.isEmpty()){
             try {
-                ((BusinessLayerImpl)BL).writeTagsPDF(newDir + "/Tags.pdf");
+                ((BusinessLayerImpl)BL).writeTagsPDF(newDir);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void onBtnPicturePDF(ActionEvent actionEvent) {
+        String newDir = getPathFromUser();
+        if(newDir != null || !newDir.isEmpty()){
+            try {
+                ((BusinessLayerImpl)BL).writePicturePDF(newDir, MC.getCurrentPicture());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

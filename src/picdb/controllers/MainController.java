@@ -51,6 +51,8 @@ public class MainController extends AbstractController {
     private SearchController SC;
     private MenuBarController MBC;
 
+    private PictureModel currentPicture;
+
 
     @Override
     public void initialize(java.net.URL arg0, ResourceBundle arg1) {
@@ -113,21 +115,18 @@ public class MainController extends AbstractController {
 
     }
 
-    public void changeSelectedPicture(ImageView next) {
+    public void changeSelectedPicture(PicturePresentationModel pic) {
         try {
-            PVC.changePicture(next.getImage().impl_getUrl());
+            PVC.changePicture("file:" + BusinessLayerImpl.getPath() + "/" + pic.getFileName());
+            PIC.changePicture(pic);
+            currentPicture = ((PicturePresentationModelImpl)pic).getPictureModel();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void changeSelectedPicture(PicturePresentationModel pic) {
-        try {
-            PVC.changePicture("file:" + BusinessLayerImpl.getPath() + "/" + pic.getFileName());
-            PIC.changePicture(pic);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public PictureModel getCurrentPicture(){
+        return currentPicture;
     }
 
     public void synchAll(){

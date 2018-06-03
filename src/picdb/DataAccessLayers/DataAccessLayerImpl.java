@@ -4,6 +4,7 @@ import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
 import javafx.util.Pair;
+import picdb.GlobalConfig;
 import picdb.models.*;
 import BIF.SWE2.interfaces.models.PictureModel;
 
@@ -340,7 +341,6 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         }
     }
 
-
     @Override
     public void deletePhotographer(int i) throws Exception {
         String deleteSQL = "DELETE photographer WHERE id = ?";
@@ -422,6 +422,48 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         return cam;
     }
 
+    public void save(CameraModel cameraModel) throws Exception {
+        if(cameraModel.getID() <= 0){ //database integer only has positive values from 1 to 2147483647, if <=0 its a new photographer
+            String insertSQL = "INSERT INTO camera (id, producer, model, purchasedate, notes, isolimitgood, isolimitacceptable)" +
+                    " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = openConnection().prepareStatement(insertSQL, new String[]{ "id" });
+            preparedStatement.setObject(1, cameraModel.getProducer());
+            preparedStatement.setString(2, cameraModel.getMake());
+            preparedStatement.setObject(3, cameraModel.getBoughtOn() == null ? null : Date.valueOf(cameraModel.getBoughtOn()));
+            preparedStatement.setObject(4, cameraModel.getNotes());
+            preparedStatement.setDouble(5, cameraModel.getISOLimitGood());
+            preparedStatement.setDouble(6, cameraModel.getISOLimitAcceptable());
+            // execute insert SQL stetement
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    cameraModel.setID(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        }else{
+            String updateSQL = "UPDATE camera SET producer = ?, model = ?, purchasedate = ?, notes = ?, isolimitgood = ?, isolimitacceptable = ? WHERE id = ?";
+            PreparedStatement preparedStatement = openConnection().prepareStatement(updateSQL);
+            preparedStatement.setObject(1, cameraModel.getProducer());
+            preparedStatement.setString(2, cameraModel.getMake());
+            preparedStatement.setObject(3, cameraModel.getBoughtOn() == null ? null : Date.valueOf(cameraModel.getBoughtOn()));
+            preparedStatement.setObject(4, cameraModel.getNotes());
+            preparedStatement.setDouble(5, cameraModel.getISOLimitGood());
+            preparedStatement.setDouble(6, cameraModel.getISOLimitAcceptable());
+            preparedStatement.setInt(7, cameraModel.getID());
+            // execute update SQL stetement
+            preparedStatement.executeUpdate();
+        }
+    }
+
     public Collection<Pair<String,Integer>> getTags(){
         String selectSQL = "Select regexp_split_to_table(iptckeywords, E',\\\\s*') as tags, COUNT(*) as count FROM picture Group By tags;";
 
@@ -451,8 +493,8 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         try {
             if(con == null || conCounter >= 100){ // reset connection only every 100th try, this takes too long ^^
                 con = DriverManager.getConnection(
-                        "jdbc:postgresql://127.0.0.1:5432/imgDB", "postgres",
-                        "postgres");
+                        GlobalConfig.getInstance().getValue("dburl"), GlobalConfig.getInstance().getValue("dbuser"),
+                        GlobalConfig.getInstance().getValue("dbpassword"));
                 conCounter = 0;
             }
             conCounter ++;

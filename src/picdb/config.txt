@@ -1,2 +1,5 @@
 path:Pictures
 testing: false
+dburl: jdbc:postgresql://127.0.0.1:5432/imgDB
+dbuser: postgres
+dbpassword: postgres

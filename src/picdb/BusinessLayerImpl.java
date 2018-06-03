@@ -4,13 +4,15 @@ import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.DataAccessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
 import BIF.SWE2.interfaces.models.*;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.element.Text;
+import com.itextpdf.kernel.pdf.canvas.draw.DottedLine;
+import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.UnitValue;
 import javafx.util.Pair;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.omg.CosNaming.NamingContextPackage.NotFoundReason;
@@ -25,12 +27,8 @@ import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Objects;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.itextpdf.io.*;
-import com.itextpdf.kernel.*;
 import com.itextpdf.layout.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by if16b014 on 05.03.18.
@@ -41,6 +39,8 @@ public class BusinessLayerImpl implements BusinessLayer {
     private static DataAccessLayer myDAL;
     private static boolean testingMode = true;
     private static String path;
+
+    private static final Logger logger = LogManager.getRootLogger();
 
     private BusinessLayerImpl() {
     }
@@ -56,10 +56,6 @@ public class BusinessLayerImpl implements BusinessLayer {
         myDAL = DALFactory.getInstance(!testingMode).getDAL();
 
         return BusinessLayerImpl.instance;
-    }
-
-    public static boolean isTestingMode() {
-        return testingMode;
     }
 
     public static String getPath() {
@@ -183,13 +179,12 @@ public class BusinessLayerImpl implements BusinessLayer {
             } else {
                 throw new NotFound("No such Picture: " + s, NotFoundReason.not_object, new NameComponent[1]);
             }
-            //return exif;
         } else return null;
     }
 
     @Override
     public void writeIPTC(String s, IPTCModel iptcModel) throws Exception {
-        //ToDo: Write IPTC To DAL
+        throw new NotImplementedException();
     }
 
     @Override
@@ -202,9 +197,14 @@ public class BusinessLayerImpl implements BusinessLayer {
         return myDAL.getCamera(i);
     }
 
+    public void save(CameraModel cameraModel) throws Exception {
+        ((DataAccessLayerImpl)myDAL).save(cameraModel);
+    }
+
+
     public void writeTagsPDF(String path) throws FileNotFoundException {
-        Collection<Pair<String, Integer>> tags = ((DataAccessLayerImpl)myDAL).getTags();
-        Document doc = getPDFDocument(path);
+        Collection<Pair<String, Integer>> tags = ((DataAccessLayerImpl) myDAL).getTags();
+        Document doc = getPDFDocument(path + "/Tags.pdf");
 
         doc.add(new Paragraph().add(new Text("Tags:")));
 
@@ -214,7 +214,7 @@ public class BusinessLayerImpl implements BusinessLayer {
         tagTable.addHeaderCell("Tag");
         tagTable.addHeaderCell("Count");
 
-        for (Pair<String, Integer> p: tags) {
+        for (Pair<String, Integer> p : tags) {
             tagTable.addCell(p.getKey());
             tagTable.addCell(p.getValue().toString());
         }
@@ -230,5 +230,75 @@ public class BusinessLayerImpl implements BusinessLayer {
         Document doc = new Document(pdf);
         doc.setMargins(20, 20, 20, 20);
         return doc;
+    }
+
+    public void writePicturePDF(String path, PictureModel pic) throws FileNotFoundException {
+        Document doc = getPDFDocument(path + "/" + pic.getFileName().split("\\.")[0] + ".pdf");
+
+        DottedLine  customLine= new DottedLine();
+        customLine.setGap(7);
+        customLine.setLineWidth(2);
+
+        try {
+            doc.add(new Paragraph().add(new Text("Bild: " + pic.getFileName() + " [" + pic.getID() + "]").setBold()));
+
+            doc.add(new LineSeparator(customLine));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            doc.add(new Paragraph().add(new Image(ImageDataFactory.create(GlobalConfig.getInstance().getPath() + "/" + pic.getFileName())).setAutoScale(true)));
+
+            doc.add(new LineSeparator(customLine));
+        } catch (Exception e) {
+            doc.add(new Paragraph("Error loading Image"));
+            doc.add(new LineSeparator(customLine));
+            e.printStackTrace();
+        }
+        try {
+            Paragraph iptc = new Paragraph().add(new Text("IPTC Infos:")).add("\n");
+            iptc.add(new Text("Headline: " + pic.getIPTC().getHeadline())).add("\n");
+            iptc.add(new Text("Caption: " + pic.getIPTC().getCaption())).add("\n");
+            iptc.add(new Text("Keywords: " + pic.getIPTC().getKeywords())).add("\n");
+            iptc.add(new Text("By: " + pic.getIPTC().getByLine())).add("\n");
+            iptc.add(new Text("Copyright: " + pic.getIPTC().getCopyrightNotice())).add("\n");
+            doc.add(iptc);
+
+            doc.add(new LineSeparator(customLine));
+        } catch (Exception e) {
+            doc.add(new Paragraph("Error Parsing IPTC Informations"));
+            doc.add(new LineSeparator(customLine));
+            e.printStackTrace();
+        }
+        try {
+            Paragraph exif = new Paragraph().add(new Text("EXIF Infos:")).add("\n");
+            exif.add(new Text("Make: " + ((pic.getEXIF().getMake() == null)? "not set" : pic.getEXIF().getMake()))).add("\n");
+            exif.add(new Text("ISO: " + pic.getEXIF().getISOValue())).add("\n");
+            exif.add(new Text("Exposure Time: " + pic.getEXIF().getExposureTime())).add("\n");
+            exif.add(new Text("F-Number: " + pic.getEXIF().getFNumber())).add("\n");
+            exif.add(new Text("Flash: " + pic.getEXIF().getFlash())).add("\n");
+            exif.add(new Text("Exposure Program: " + pic.getEXIF().getExposureProgram())).add("\n");
+            doc.add(exif);
+
+            doc.add(new LineSeparator(customLine));
+        } catch (Exception e) {
+            doc.add(new Paragraph("Error Parsing EXIF Informations"));
+            doc.add(new LineSeparator(customLine));
+            e.printStackTrace();
+        }
+        try {
+            doc.add(new Paragraph().add(new Text("Camera: " + pic.getCamera().getProducer().trim() + " " + pic.getCamera().getMake().trim() + " [" + pic.getCamera().getID() + "]")));
+        } catch (Exception e) {
+            doc.add(new Paragraph().add(new Text("Camera not set")));
+            e.printStackTrace();
+        }
+        try {
+            doc.add(new Paragraph().add(new Text("Photographer: " + ((PictureModelImpl)pic).getPhotographer().getFirstName() + " " + ((PictureModelImpl)pic).getPhotographer().getLastName() + " [" + ((PictureModelImpl)pic).getPhotographer().getID() + "]")));
+        } catch (Exception e) {
+            doc.add(new Paragraph().add(new Text("Photographer not set")));
+            e.printStackTrace();
+        }
+
+        doc.close();
     }
 }

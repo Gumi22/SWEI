@@ -13,7 +13,7 @@
 <Stage title="Edit Photographers" xmlns:fx="http://javafx.com/fxml"
        fx:controller="picdb.controllers.EditCamerasController" resizable="false">
     <scene>
-        <Scene width="640" height="200">
+        <Scene width="640" height="400">
             <root>
 
                 <VBox xmlns:fx="http://javafx.com/fxml">
@@ -57,11 +57,70 @@
                         </columns>
                     </TableView>
 
+                    <BorderPane>
+                        <left>
+                            <VBox>
+                                <padding>
+                                    <Insets top="5"/>
+                                </padding>
+                                <Text>Producer</Text>
+                                <VBox>
+                                    <padding>
+                                        <Insets top="8"/>
+                                    </padding>
+                                    <Text>Make</Text>
+                                    <VBox>
+                                        <padding>
+                                            <Insets top="8"/>
+                                        </padding>
+                                        <Text>Bought on</Text>
+                                        <VBox>
+                                            <padding>
+                                                <Insets top="8"/>
+                                            </padding>
+                                            <Text>Notes</Text>
+                                            <VBox>
+                                                <padding>
+                                                    <Insets top="8"/>
+                                                </padding>
+                                                <Text>Iso Limit Good</Text>
+                                                <VBox>
+                                                    <padding>
+                                                        <Insets top="8"/>
+                                                    </padding>
+                                                    <Text>Iso Limit Acceptable</Text>
+                                                </VBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </left>
+                        <center>
+                            <VBox>
+                                <TextField fx:id="producer"/>
+                                <TextField fx:id="make"/>
+                                <TextField fx:id="boughtOn" promptText="YYYY-MM-DD"/>
+                                <TextField fx:id="notes"/>
+                                <TextField fx:id="isoLimitGood"/>
+                                <TextField fx:id="isoLimitAcceptable"/>
+                            </VBox>
+                        </center>
+                        <right>
+                            <VBox>
+                                <Text fx:id="errorMsgNew" style="-fx-stroke: red; -fx-stroke-width: .4;"/>
+                                <Region VBox.vgrow="ALWAYS"/>
+                                <Button onAction="#submit">Submit</Button>
+                            </VBox>
+                        </right>
+                    </BorderPane>
+
                     <HBox prefWidth="Infinity">
                         <padding>
                             <Insets top="10"/>
                         </padding>
                         <children>
+                            <Text fx:id="errorMsg" style="-fx-stroke: red; -fx-stroke-width: .4;"/>
                             <Region HBox.hgrow="ALWAYS"/>
                             <Button onAction="#onClose" text="Close"/>
                         </children>
