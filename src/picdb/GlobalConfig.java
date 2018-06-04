@@ -6,6 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +37,7 @@ public class GlobalConfig {
                     configs.put(splittedline[0].toLowerCase(), value.toString());
                 }
             }
+            configs.put("configFilePath", path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -62,7 +67,9 @@ public class GlobalConfig {
 
     public void setPath(String path){
         if(path != null && !path.trim().isEmpty()){
-            configs.remove("path");
+            if(configs.remove("path") != null){
+                savePathToFile(path);
+            }
             configs.put("path", path);
         }
     }
@@ -70,4 +77,14 @@ public class GlobalConfig {
     public String getValue(String key){
         return configs.get(key);
     }
+
+    private void savePathToFile(String newPath){
+        try {
+            Files.write(Paths.get(configs.get("configFilePath")), ("\npath: " + newPath).getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
