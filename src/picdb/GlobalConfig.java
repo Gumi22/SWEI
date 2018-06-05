@@ -40,8 +40,10 @@ public class GlobalConfig {
             configs.put("configFilePath", path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            setUpDefaults();
         } catch (IOException e) {
             e.printStackTrace();
+            setUpDefaults();
         }
     }
 
@@ -76,6 +78,14 @@ public class GlobalConfig {
 
     public String getValue(String key){
         return configs.get(key);
+    }
+
+    private void setUpDefaults(){
+        configs.put("path", "Pictures");
+        configs.put("testing", "false");
+        configs.put("dburl", "jdbc:postgresql://127.0.0.1:5432/imgDB");
+        configs.put("dbuser", "postgres");
+        configs.put("dbpassword", "postgres");
     }
 
     private void savePathToFile(String newPath){

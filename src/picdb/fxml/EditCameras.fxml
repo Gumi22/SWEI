@@ -13,7 +13,7 @@
 <Stage title="Edit Photographers" xmlns:fx="http://javafx.com/fxml"
        fx:controller="picdb.controllers.EditCamerasController" resizable="false">
     <scene>
-        <Scene width="640" height="400">
+        <Scene width="699" height="400">
             <root>
 
                 <VBox xmlns:fx="http://javafx.com/fxml">
@@ -52,6 +52,11 @@
                             <TableColumn fx:id="isoLimitAcceptableColumn" prefWidth="110.0" text="ISO-limit Acceptable">
                                 <cellValueFactory>
                                     <PropertyValueFactory property="ISOLimitAcceptable"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="deleteButtonColumn">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="DUMMY"/>
                                 </cellValueFactory>
                             </TableColumn>
                         </columns>

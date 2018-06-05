@@ -5,19 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96e9f715-ee4e-4ead-841d-4896a781aa66" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/log4j-api-2.11.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/postgresql_42_1_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_1_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/config.txt" afterPath="$PROJECT_DIR$/deploy/config.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" afterPath="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java" afterPath="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/GlobalConfig.java" afterPath="$PROJECT_DIR$/src/picdb/GlobalConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/config.txt" afterPath="$PROJECT_DIR$/src/picdb/config.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java" afterPath="$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/controllers/MainController.java" afterPath="$PROJECT_DIR$/src/picdb/controllers/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java" afterPath="$PROJECT_DIR$/src/picdb/controllers/MenuBarController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java" afterPath="$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml" afterPath="$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml" afterPath="$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picdb/fxml/EditPhotographers.fxml" afterPath="$PROJECT_DIR$/src/picdb/fxml/EditPhotographers.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java" afterPath="$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/GlobalConfigTest.java" afterPath="$PROJECT_DIR$/src/test/GlobalConfigTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/config.txt" afterPath="$PROJECT_DIR$/src/test/config.txt" />
     </list>
     <ignored path="PicDB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,38 +38,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EditCameras.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml">
+      <file leaf-file-name="DataAccessLayerImplTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="73" lean-forward="true" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
+            <state relative-caret-position="293">
+              <caret line="178" column="19" lean-forward="true" selection-start-line="178" selection-start-column="19" selection-end-line="178" selection-end-column="19" />
               <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditCamerasController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditPhotographersController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <element signature="e#1874#1875#0" expanded="true" />
-                <element signature="e#1903#1904#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -181,17 +153,13 @@
         <option value="$PROJECT_DIR$/src/picdb/models/IPTCModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/models/PictureModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/IPTCPresentationModelImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/GlobalConfigTest.java" />
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/PictureListPresentationModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/controllers/PictureScrollerController.java" />
         <option value="$PROJECT_DIR$/src/picdb/fxml/Search.fxml" />
         <option value="$PROJECT_DIR$/src/picdb/controllers/SearchController.java" />
         <option value="$PROJECT_DIR$/src/test/DataAccessLayerImplTest.groovy" />
         <option value="$PROJECT_DIR$/src/picdb/models/EXIFModelImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java" />
-        <option value="$PROJECT_DIR$/src/picdb/fxml/EditPhotographers.fxml" />
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/PhotographerPresentationModelImpl.java" />
-        <option value="$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java" />
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/EXIFPresentationModelImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/presentationmodels/CameraListPresentationModelImpl.java" />
         <option value="$PROJECT_DIR$/src/uebungen/UEB1Impl.java" />
@@ -206,12 +174,16 @@
         <option value="$PROJECT_DIR$/deploy/config.txt" />
         <option value="$PROJECT_DIR$/src/picdb/log4j.properties" />
         <option value="$PROJECT_DIR$/src/picdb/log4j2.xml" />
-        <option value="$PROJECT_DIR$/src/picdb/GlobalConfig.java" />
         <option value="$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml" />
-        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/GlobalConfigTest.java" />
+        <option value="$PROJECT_DIR$/src/picdb/GlobalConfig.java" />
+        <option value="$PROJECT_DIR$/src/picdb/fxml/EditPhotographers.fxml" />
+        <option value="$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java" />
         <option value="$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java" />
+        <option value="$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java" />
         <option value="$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java" />
         <option value="$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml" />
+        <option value="$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java" />
       </list>
     </option>
   </component>
@@ -274,6 +246,22 @@
             <path>
               <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
               <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="deploy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -312,6 +300,12 @@
             </path>
             <path>
               <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWE2-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWE2-Java" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -336,24 +330,134 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\libs" />
+      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\picdb\fxml" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="picdb.controllers" />
       <recent name="picdb.DataAccessLayers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\deploy" />
-      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\picdb\fxml" />
-      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\test" />
-      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\picdb" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="picdb.controllers" />
       <recent name="picdb.DataAccessLayers" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\libs" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\test" />
+      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\deploy" />
       <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\picdb\fxml" />
+      <recent name="E:\FH\4_Semester\SWEI\SWE2-Java\src\picdb" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/picdb/GlobalConfig.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -367,7 +471,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PicDB">
+  <component name="RunManager" selected="JUnit.myTests">
     <configuration name="PicDB" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="picdb.Main" />
@@ -894,38 +998,45 @@
       <option name="project" value="LOCAL" />
       <updated>1527511554593</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="cameras nun BEARBEITBAR UND HINZUFÜGBAR">
+      <created>1528061606824</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1528061606824</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests - 2018.05.22 at 12h 38m 00s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Tests - 2018.05.22 at 12h 38m 15s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Tests - 2018.05.22 at 12h 39m 18s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="myTests - 2018.05.20 at 14h 45m 21s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 37m 02s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.20 at 14h 51m 33s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 42m 33s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.20 at 15h 07m 17s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 43m 12s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.20 at 15h 50m 34s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 43m 48s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.20 at 15h 50m 46s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 47m 01s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.21 at 11h 54m 31s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 48m 04s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="myTests - 2018.05.21 at 12h 07m 59s.xml">
+    <history-entry file="myTests - 2018.06.05 at 12h 48m 55s.xml">
+      <configuration name="myTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="myTests - 2018.06.05 at 12h 49m 57s.xml">
+      <configuration name="myTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="myTests - 2018.06.05 at 12h 50m 27s.xml">
+      <configuration name="myTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="myTests - 2018.06.05 at 12h 51m 03s.xml">
       <configuration name="myTests" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -935,13 +1046,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.43541667" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.3796875" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.3875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27783668" sideWeight="0.6203125" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783668" sideWeight="0.6125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -956,7 +1068,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.43541667" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10572917" sideWeight="0.5110132" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767764" sideWeight="0.48541668" order="1" side_tool="false" content_ui="tabs" />
@@ -1018,24 +1129,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/picdb/controllers/PictureScrollerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Tests/BIF-SWE2.UnitTests/src/BIF/SWE2/unittests/UEB5Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/javafx-src.zip!/javafx/scene/control/TextField.java" />
-    <entry file="jar://D:/Java/javafx-src.zip!/javafx/scene/control/TextInputControl.java" />
-    <entry file="jar://D:/Java/javafx-src.zip!/javafx/beans/binding/NumberExpressionBase.java" />
     <entry file="jar://D:/Java/javafx-src.zip!/javafx/beans/binding/IntegerExpression.java" />
     <entry file="jar://D:/Java/javafx-src.zip!/javafx/beans/property/ReadOnlyIntegerProperty.java" />
     <entry file="jar://D:/Java/javafx-src.zip!/javafx/beans/property/IntegerProperty.java" />
@@ -1184,14 +1277,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/config.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/picdb/config.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1226,27 +1311,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy/config.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/log4j2.xml" />
-    <entry file="file://$PROJECT_DIR$/src/picdb/GlobalConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2126#2127#0" expanded="true" />
-            <element signature="e#2165#2166#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/fxml/MenuBar.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1256,26 +1321,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="922">
-          <caret line="452" column="102" lean-forward="true" selection-start-line="452" selection-start-column="102" selection-end-line="452" selection-end-column="102" />
-          <folding>
-            <element signature="method#deletePhotographer#0;class#DataAccessLayerImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="201" column="5" lean-forward="true" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/presentationmodels/CameraPresentationModelImpl.java">
@@ -1289,44 +1334,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/GlobalConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="86" column="42" lean-forward="true" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="357" column="42" lean-forward="true" selection-start-line="357" selection-start-column="42" selection-end-line="357" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/BusinessLayerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="203" column="53" lean-forward="true" selection-start-line="203" selection-start-column="53" selection-end-line="203" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/fxml/EditPhotographers.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="94" column="47" lean-forward="true" selection-start-line="94" selection-start-column="47" selection-end-line="94" selection-end-column="47" />
+        <state relative-caret-position="238">
+          <caret line="50" column="42" lean-forward="true" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="73" lean-forward="true" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/picdb/controllers/EditPhotographersController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1903#1904#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-17">
+          <caret line="153" column="5" lean-forward="true" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/controllers/EditCamerasController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="161" column="43" lean-forward="false" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/fxml/EditCameras.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/GlobalConfigTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picdb/DataAccessLayers/DataAccessLayerMockImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1370">
+          <caret line="22" column="50" lean-forward="true" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/DataAccessLayerImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="178" column="19" lean-forward="true" selection-start-line="178" selection-start-column="19" selection-end-line="178" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

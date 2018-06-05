@@ -343,7 +343,15 @@ public class DataAccessLayerImpl implements DataAccessLayer {
 
     @Override
     public void deletePhotographer(int i) throws Exception {
-        String deleteSQL = "DELETE photographer WHERE id = ?";
+        String deleteSQL = "DELETE FROM photographer WHERE id = ?";
+        PreparedStatement preparedStatement = openConnection().prepareStatement(deleteSQL);
+        preparedStatement.setInt(1, i);
+        // execute delete SQL stetement
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteCamera(int i ) throws Exception{
+        String deleteSQL = "DELETE FROM camera WHERE id = ?";
         PreparedStatement preparedStatement = openConnection().prepareStatement(deleteSQL);
         preparedStatement.setInt(1, i);
         // execute delete SQL stetement

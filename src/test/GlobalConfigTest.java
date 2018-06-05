@@ -33,4 +33,17 @@ public class GlobalConfigTest {
         assertTrue(!GC.isTestingMode());
     }
 
+    @Test
+    public void globalConfigDatabaseCredentialsSet() throws Exception {
+        assertNotNull(GC.getValue("dbuser"));
+        assertNotNull(GC.getValue("dbpassword"));
+        assertEquals("Pictures", GC.getPath());
+    }
+
+    @Test
+    public void globalConfigDatabaseUrlSet() throws Exception {
+        assertNotNull(GC.getValue("dburl"));
+        assertEquals("jdbc:postgresql://127.0.0.1:5432/imgDB", GC.getValue("dburl"));
+    }
+
 }

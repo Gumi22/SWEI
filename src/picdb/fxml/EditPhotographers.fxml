@@ -13,7 +13,7 @@
 <Stage title="Edit Photographers" xmlns:fx="http://javafx.com/fxml"
        fx:controller="picdb.controllers.EditPhotographersController" resizable="false">
     <scene>
-        <Scene width="500" height="381">
+        <Scene width="559" height="381">
             <root>
 
                 <VBox xmlns:fx="http://javafx.com/fxml">
@@ -42,6 +42,11 @@
                             <TableColumn fx:id="notesColumn" prefWidth="210.0" text="Notes">
                                 <cellValueFactory>
                                     <PropertyValueFactory property="notes"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="deleteButtonColumn">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="DUMMY"/>
                                 </cellValueFactory>
                             </TableColumn>
                         </columns>

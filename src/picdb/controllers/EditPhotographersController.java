@@ -2,14 +2,17 @@ package picdb.controllers;
 
 import BIF.SWE2.interfaces.BusinessLayer;
 import BIF.SWE2.interfaces.ExposurePrograms;
+import BIF.SWE2.interfaces.presentationmodels.PhotographerPresentationModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import picdb.BusinessLayerImpl;
@@ -34,6 +37,8 @@ public class EditPhotographersController extends AbstractController {
     public TableColumn<PhotographerPresentationModelImpl, String> lastNameColumn;
     @FXML
     public TableColumn<PhotographerPresentationModelImpl, String> notesColumn;
+    @FXML
+    public TableColumn<PhotographerPresentationModelImpl, String> deleteButtonColumn;
     @FXML
     public Text errorMsg;
     @FXML
@@ -84,6 +89,7 @@ public class EditPhotographersController extends AbstractController {
 
         idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         idColumn.editableProperty().set(false);
+
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         firstNameColumn.setOnEditCommit(event -> {
                     (event.getTableView().getItems().get(
@@ -92,6 +98,7 @@ public class EditPhotographersController extends AbstractController {
                     save(event.getTableView().getItems().get(event.getTablePosition().getRow()));
                 }
         );
+
         lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameColumn.setOnEditCommit(event -> {
             ((PhotographerPresentationModelImpl) event.getTableView().getItems()
@@ -99,6 +106,7 @@ public class EditPhotographersController extends AbstractController {
                     .setLastName(event.getNewValue());
             save(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
+
         dateOfBirthColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
         dateOfBirthColumn.setOnEditCommit(event -> {
             ((PhotographerPresentationModelImpl) event.getTableView().getItems()
@@ -106,6 +114,7 @@ public class EditPhotographersController extends AbstractController {
                     .setBirthDay(event.getNewValue());
             save(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
+
         notesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         notesColumn.setOnEditCommit(event -> {
                     (event.getTableView().getItems().get(
@@ -114,6 +123,34 @@ public class EditPhotographersController extends AbstractController {
                     save(event.getTableView().getItems().get(event.getTablePosition().getRow()));
                 }
         );
+
+        deleteButtonColumn.setEditable(false);
+        Callback<TableColumn<PhotographerPresentationModelImpl, String>, TableCell<PhotographerPresentationModelImpl, String>> cellFactory =
+                new Callback<TableColumn<PhotographerPresentationModelImpl, String>, TableCell<PhotographerPresentationModelImpl, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<PhotographerPresentationModelImpl, String> param) {
+                        return new TableCell<PhotographerPresentationModelImpl, String>() {
+
+                            final Button btn = new Button("Delete");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(event -> {
+                                        delete(getTableView().getItems().get(getIndex()));
+                                    });
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
+                    }
+                };
+        deleteButtonColumn.setCellFactory(cellFactory);
     }
 
     private boolean save(PhotographerPresentationModelImpl Phot) {
@@ -130,6 +167,15 @@ public class EditPhotographersController extends AbstractController {
         return false;
     }
 
+    private void delete(PhotographerPresentationModelImpl phot){
+        try {
+            BL.deletePhotographer(phot.getID());
+            photographers.remove(phot);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void submit(final ActionEvent event) {
         PhotographerModelImpl phot = new PhotographerModelImpl();
@@ -137,10 +183,11 @@ public class EditPhotographersController extends AbstractController {
         phot.setLastName(lastName.getText());
         try {
             phot.setBirthDay(LocalDate.parse(birthDate.getText()));
-        }catch (Exception e){      }
+        } catch (Exception e) {
+        }
         phot.setNotes(notes.getText());
         PhotographerPresentationModelImpl photModel = new PhotographerPresentationModelImpl(phot);
-        if(save(photModel)){
+        if (save(photModel)) {
             photographers.add(photModel);
         }
         errorMsgNew.setText(photModel.getValidationSummary());

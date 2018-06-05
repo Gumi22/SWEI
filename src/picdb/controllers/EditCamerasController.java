@@ -5,12 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
@@ -41,6 +40,8 @@ public class EditCamerasController extends AbstractController {
     public TableColumn<CameraPresentationModelImpl, Double> isoLimitGoodColumn;
     @FXML
     public TableColumn<CameraPresentationModelImpl, Double> isoLimitAcceptableColumn;
+    @FXML
+    public TableColumn<CameraPresentationModelImpl, String> deleteButtonColumn;
     @FXML
     public Text errorMsg;
     @FXML
@@ -145,6 +146,34 @@ public class EditCamerasController extends AbstractController {
             save(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
 
+        deleteButtonColumn.setEditable(false);
+        Callback<TableColumn<CameraPresentationModelImpl, String>, TableCell<CameraPresentationModelImpl, String>> cellFactory =
+                new Callback<TableColumn<CameraPresentationModelImpl, String>, TableCell<CameraPresentationModelImpl, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<CameraPresentationModelImpl, String> param) {
+                        return new TableCell<CameraPresentationModelImpl, String>() {
+
+                            final Button btn = new Button("Delete");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(event -> {
+                                        delete(getTableView().getItems().get(getIndex()));
+                                    });
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
+                    }
+                };
+        deleteButtonColumn.setCellFactory(cellFactory);
+
     }
 
     public void submit(ActionEvent actionEvent) {
@@ -170,6 +199,15 @@ public class EditCamerasController extends AbstractController {
             cameras.add(camModel);
         }
         errorMsgNew.setText(camModel.getValidationSummary());
+    }
+
+    private void delete(CameraPresentationModelImpl cam){
+        try {
+            ((BusinessLayerImpl)BL).deleteCamera(cam.getID());
+            cameras.remove(cam);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean save(CameraPresentationModelImpl Cam) {

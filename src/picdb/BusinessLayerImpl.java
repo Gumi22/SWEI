@@ -201,6 +201,9 @@ public class BusinessLayerImpl implements BusinessLayer {
         ((DataAccessLayerImpl)myDAL).save(cameraModel);
     }
 
+    public void deleteCamera(int i) throws Exception{
+        ((DataAccessLayerImpl)myDAL).deleteCamera(i);
+    }
 
     public void writeTagsPDF(String path) throws FileNotFoundException {
         Collection<Pair<String, Integer>> tags = ((DataAccessLayerImpl) myDAL).getTags();
