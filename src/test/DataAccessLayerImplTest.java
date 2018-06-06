@@ -25,7 +25,7 @@ public class DataAccessLayerImplTest {
     @Before
     public void setUp() {
         DAL = new DataAccessLayerImpl();
-        GC = GlobalConfig.getInstance("E:\\FH\\4_Semester\\SWEI\\SWE2-Java\\src\\test\\config.txt");
+        GC = GlobalConfig.getInstance("D:\\FH\\4_Semester\\SWEI\\SWE2-Java\\src\\picdb\\config.txt");
     }
 
     @Test
@@ -63,14 +63,14 @@ public class DataAccessLayerImplTest {
         EXIF.setFNumber(2.29999995231628);
         EXIF.setFlash(true);
         EXIF.setExposureProgram(ExposurePrograms.values()[8]);
-        assertEquals(4, DAL.getPictures(null, null, null, EXIF).size());
+        assertEquals(5, DAL.getPictures(null, null, null, EXIF).size());
 
-        EXIF.setExposureTime(0.690946546174846);
-        EXIF.setISOValue(7019.35525455328);
-        EXIF.setFNumber(0.832433887917029);
+        EXIF.setExposureTime(0.614177867512815);
+        EXIF.setISOValue(7183.84819149721);
+        EXIF.setFNumber(0.0657194419868822);
         EXIF.setFlash(true);
-        EXIF.setExposureProgram(ExposurePrograms.values()[1]);
-        assertEquals(2, DAL.getPictures(null, null, null, EXIF).size());
+        EXIF.setExposureProgram(ExposurePrograms.values()[4]);
+        assertEquals(1, DAL.getPictures(null, null, null, EXIF).size());
     }
 
     @Test

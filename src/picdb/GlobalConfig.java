@@ -79,7 +79,6 @@ public class GlobalConfig {
     public String getValue(String key){
         return configs.get(key);
     }
-
     private void setUpDefaults(){
         configs.put("path", "Pictures");
         configs.put("testing", "false");
