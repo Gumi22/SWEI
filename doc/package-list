@@ -1,0 +1,11 @@
+BIF.SWE2.interfaces
+BIF.SWE2.interfaces.models
+BIF.SWE2.interfaces.presentationmodels
+BIF.SWE2.unittests
+picdb
+picdb.DataAccessLayers
+picdb.controllers
+picdb.models
+picdb.presentationmodels
+test
+uebungen
